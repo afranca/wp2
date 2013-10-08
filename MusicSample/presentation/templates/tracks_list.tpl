@@ -15,31 +15,29 @@
 	{section name=i loop=$obj->mTracks}
 	<!--<tr class="{cycle values="odd,even"}">-->
     <tr>
-		{* Generate a new artist in the list *}
-		<td>
-            {$obj->mTracks[i].track_title}
-		</td>
+
         <td>
-		
-		<!--
         	<table>
             <tr>
-            	{section name=j loop=$obj->mArtistAlbums[i]}
+            	
                 <td>
-                    {if $obj->mArtistAlbums[i][j].image neq ""}
-            			<a href="?op=Details&album_id={$obj->mArtistAlbums[i][j].album_id}">      
-							<img src="./images/{$obj->mArtistAlbums[i][j].image}"
-                            	 alt="{$obj->mArtistAlbums[i][j].album_title}"
+                    {if $obj->mTrackAlbum[i].image neq ""}
+            			<a href="?op=Details&album_id={$obj->mTrackAlbum[i].album_id}">      
+							<img src="./images/{$obj->mTrackAlbum[i].image}"
+                            	 alt="{$obj->mTrackAlbum[i].album_title}"
                         		height="50" width="50" />
             			</a>
                     	<br />
 					{/if}
                 </td>
-                {/section}
+                
             </tr>
             </table>
-		-->
-        </td>
+        </td>	
+		<td>
+            {$obj->mTracks[i].track_title} ({$obj->mTrackAlbum[i].artist})
+		</td>
+
 	</tr>
 	{/section}
 	</tbody>

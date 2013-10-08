@@ -389,7 +389,7 @@ class Collection
   public static function GetAllTracks()
   {
     // Build the SQL query
-    $sql = 'SELECT * FROM track';
+    $sql = 'SELECT * FROM track ORDER By track_title';
 
 
     // Execute the query

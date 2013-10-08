@@ -12,7 +12,7 @@
 		public function init(){
 			$this->mTracks = Collection::GetAllTracks();
 			for ($i = 0; $i < count($this->mTracks); $i++){
-				//$this->mArtistAlbums[$i] = Collection::GetArtistAlbums($this->mArtists[$i]['artist']);			
+				$this->mTrackAlbum[$i] = Collection::GetAlbumDetails($this->mTracks[$i]['album_id']);			
 			}
 		}
 	}
