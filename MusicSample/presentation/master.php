@@ -20,21 +20,22 @@ class Master
 		require_once BUSINESS_DIR . 'collection.php';
 
 
- 		if ($_SESSION['CurrentPage'] == 'Home' || $_SESSION['CurrentPage'] == 'Albums')
-		{
+ 		if ($_SESSION['CurrentPage'] == 'Home' || $_SESSION['CurrentPage'] == 'Albums')	{
 			$this->mContentsCell = 'albums_list.tpl';
 			if ($_SESSION['CurrentPage'] == 'Home')
 				$this->mSideBar = 'albumratings_list.tpl';
 			else
 				$this->mSideBar = 'categories_list.tpl';
-		}
-		elseif ($_SESSION['CurrentPage'] == 'Details')
-		{
+		}elseif ($_SESSION['CurrentPage'] == 'Details')	{
 			$this->mContentsCell = 'album_details.tpl';
 			$this->mSideBar = 'albumsrelated_list.tpl';
-		}
-		else
-		{
+		}elseif ($_SESSION['CurrentPage'] == 'Artists')	{
+			$this->mContentsCell = 'artists_list.tpl';
+			$this->mSideBar = 'not_implemented.tpl';
+		}elseif ($_SESSION['CurrentPage'] == 'Songs')	{
+			$this->mContentsCell = 'tracks_list.tpl';
+			$this->mSideBar = 'not_implemented.tpl';				
+		}else{
 			$this->mContentsCell = 'not_implemented.tpl';
 			$this->mSideBar = 'not_implemented.tpl';
 		}

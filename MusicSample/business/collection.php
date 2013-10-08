@@ -384,5 +384,18 @@ class Collection
     // Execute the query
     DatabaseHandler::Execute($sql, $params);
   }
+  
+  // Updates album details
+  public static function GetAllTracks()
+  {
+    // Build the SQL query
+    $sql = 'SELECT * FROM track';
+
+
+    // Execute the query
+    return DatabaseHandler::GetAll($sql);
+  }  
+  
+  
 }
 ?>
