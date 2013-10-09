@@ -22,7 +22,7 @@
             	
                 <td>
                     {if $obj->mTrackAlbum[i].image neq ""}
-            			<a href="?op=Details&album_id={$obj->mTrackAlbum[i].album_id}">      
+            			<a href="index.php?op=Details&album_id={$obj->mTracks[i].album_id}">      
 							<img src="./images/{$obj->mTrackAlbum[i].image}"
                             	 alt="{$obj->mTrackAlbum[i].album_title}"
                         		height="50" width="50" />
@@ -35,7 +35,7 @@
             </table>
         </td>	
 		<td>
-            {$obj->mTracks[i].track_title} ({$obj->mTrackAlbum[i].artist})
+            {$obj->mTracks[i].track_title}  by <b>{$obj->mTrackAlbum[i].artist}</b>
 		</td>
 
 	</tr>
