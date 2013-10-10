@@ -20,7 +20,7 @@ class Master
 		require_once BUSINESS_DIR . 'collection.php';
 
 
- 		if ($_SESSION['CurrentPage'] == 'Home' || $_SESSION['CurrentPage'] == 'Albums')	{
+ 		if ($_SESSION['CurrentPage'] == 'Home' || $_SESSION['CurrentPage'] == 'Albums' )	{
 			$this->mContentsCell = 'albums_list.tpl';
 			if ($_SESSION['CurrentPage'] == 'Home')
 				$this->mSideBar = 'albumratings_list.tpl';
@@ -34,7 +34,10 @@ class Master
 			$this->mSideBar = 'not_implemented.tpl';
 		}elseif ($_SESSION['CurrentPage'] == 'Songs')	{
 			$this->mContentsCell = 'tracks_list.tpl';
-			$this->mSideBar = 'not_implemented.tpl';				
+			$this->mSideBar = 'not_implemented.tpl';	
+		}elseif ($_SESSION['CurrentPage'] == 'Search')	{
+			$this->mContentsCell = 'search_list.tpl';
+			$this->mSideBar = 'categories_list.tpl';				
 		}else{
 			$this->mContentsCell = 'not_implemented.tpl';
 			$this->mSideBar = 'not_implemented.tpl';
