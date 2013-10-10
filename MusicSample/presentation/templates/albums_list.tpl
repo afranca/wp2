@@ -32,19 +32,18 @@
 	</div>
 {* End albums list *}
 {/if}
-
+<div>
 {if count($obj->mAlbumListPages) > 0}
 	<div>
 		{if $obj->mLinkToPreviousPage}
 			<a href="{$obj->mLinkToPreviousPage}">Previous page</a>
-		{/if}
-	 
+		{/if}		
+			
 		{section name=m loop=$obj->mAlbumListPages}
 			{if $obj->mPage eq $smarty.section.m.index_next}
 				<strong> {$smarty.section.m.index_next} </strong>
 			{else}
-				<a href="{$obj->mAlbumListPages[m]}">
-					{$smarty.section.m.index_next} </a>
+				<a href="{$obj->mAlbumListPages[m]}">{$smarty.section.m.index_next} </a>
 			{/if}
 		{/section}
 		
@@ -53,4 +52,4 @@
 		{/if}		
 	</div>	
 {/if}
-
+</div>	
