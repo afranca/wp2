@@ -4,6 +4,7 @@
 		public $mAlbums;
 		public $rHowManyPages;
 		public $searchText;
+		public $searchCategory;
 		
 
 		// Class constructor
@@ -13,13 +14,18 @@
 			
 			if (isset($_POST['searchText']))	{
 				$this->searchText = $_POST['searchText'];
+			} elseif (isset($_GET['searchCategory'])) {
+				$this->searchCategory = $_GET['searchCategory'];
 			}			
 
 		}
 
 		public function init(){	
-			$this->mAlbums = Collection::Search($this->searchText,1,$this->rHowManyPages)['albums'];
-			
+			if (isset($this->searchText)) {
+				$this->mAlbums = Collection::Search($this->searchText,1,$this->rHowManyPages)['albums'];
+			} elseif ($this->searchCategory){
+				$this->mAlbums = Collection::GetAlbumsByCategory($this->searchCategory, 1, $this->rHowManyPages);
+			}
 			
 		}
 	}
