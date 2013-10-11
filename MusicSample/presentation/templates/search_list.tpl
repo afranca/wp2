@@ -32,7 +32,30 @@
         	{/if}            
 		{/section}
 	</div>
-{* End albums list *}
+	
+	{* Paginating *}
+	<div>
+	{if count($obj->mAlbums) > 0}
+		<div>
+			{if $obj->mLinkToPreviousPage}
+				<a href="{$obj->mLinkToPreviousPage}">Previous page</a>
+			{/if}		
+				
+			{section name=m loop=$obj->mAlbumListPages}
+				{if $obj->mPage eq $smarty.section.m.index_next}
+					<strong> {$smarty.section.m.index_next} </strong>
+				{else}
+					<a href="{$obj->mAlbumListPages[m]}">{$smarty.section.m.index_next} </a>
+				{/if}
+			{/section}
+			
+			{if $obj->mLinkToNextPage}
+				<a href="{$obj->mLinkToNextPage}">Next page</a>
+			{/if}		
+		</div>	
+	{/if}
+	</div>		
+		
 {else}
 
 	<div id="galleryThumbnail">
