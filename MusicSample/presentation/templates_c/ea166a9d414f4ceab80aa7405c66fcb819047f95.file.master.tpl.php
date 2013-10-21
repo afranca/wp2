@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2013-10-03 16:35:42
+<?php /* Smarty version Smarty-3.1.14, created on 2013-10-10 16:09:33
          compiled from "C:\xampp\htdocs\MusicSample\presentation\templates\master.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:21520524d80bea0bc86-50893383%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ea166a9d414f4ceab80aa7405c66fcb819047f95' => 
     array (
       0 => 'C:\\xampp\\htdocs\\MusicSample\\presentation\\templates\\master.tpl',
-      1 => 1376405260,
+      1 => 1381241550,
       2 => 'file',
     ),
   ),
@@ -15,13 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_524d80bea83016_89157983',
   'variables' => 
   array (
     'obj' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_524d80bea83016_89157983',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_524d80bea83016_89157983')) {function content_524d80bea83016_89157983($_smarty_tpl) {?><?php if (!is_callable('smarty_function_load_presentation_object')) include 'C:\\xampp\\htdocs\\MusicSample/presentation/smarty_plugins\\function.load_presentation_object.php';
 ?>

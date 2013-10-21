@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2013-10-03 16:35:42
+<?php /* Smarty version Smarty-3.1.14, created on 2013-10-10 17:16:48
          compiled from "C:\xampp\htdocs\MusicSample\presentation\templates\albums_list.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:7877524d80bebab648-09134143%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd2fc16ac1f4e7bd2de1bf66004ead120face66f1' => 
     array (
       0 => 'C:\\xampp\\htdocs\\MusicSample\\presentation\\templates\\albums_list.tpl',
-      1 => 1379582936,
+      1 => 1381418206,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_524d80bebf8a11_25733271',
   'variables' => 
   array (
     'obj' => 0,
     'resultcond' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_524d80bebf8a11_25733271',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_524d80bebf8a11_25733271')) {function content_524d80bebf8a11_25733271($_smarty_tpl) {?><?php if (!is_callable('smarty_function_load_presentation_object')) include 'C:\\xampp\\htdocs\\MusicSample/presentation/smarty_plugins\\function.load_presentation_object.php';
 if (!is_callable('smarty_function_math')) include 'C:\\xampp\\htdocs\\MusicSample/libs/smarty/plugins\\function.math.php';
@@ -61,8 +61,8 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 <?php $_tmp1=ob_get_clean();?><?php echo smarty_function_math(array('equation'=>"x % 4",'x'=>$_tmp1,'assign'=>"resultcond"),$_smarty_tpl);?>
         
         	<?php if ($_smarty_tpl->tpl_vars['resultcond']->value==0){?>             
-		  <div class="row">
-          <?php }?>
+		  		<div class="row">
+          	<?php }?>
 			<div class="cell">
 				<p>
                 	
@@ -78,19 +78,69 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 					<span>
                            <?php echo $_smarty_tpl->tpl_vars['obj']->value->mAlbums[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['album_title'];?>
 <br />
-						<?php echo $_smarty_tpl->tpl_vars['obj']->value->mAlbums[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['artist'];?>
+							<?php echo $_smarty_tpl->tpl_vars['obj']->value->mAlbums[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['artist'];?>
 
 					</span>
 				</p>
 			</div>
-               <?php ob_start();?><?php echo $_smarty_tpl->getVariable('smarty')->value['section']['i']['index'];?>
+            <?php ob_start();?><?php echo $_smarty_tpl->getVariable('smarty')->value['section']['i']['index'];?>
 <?php $_tmp2=ob_get_clean();?><?php echo smarty_function_math(array('equation'=>"x % 4",'x'=>$_tmp2+1,'assign'=>"resultcond"),$_smarty_tpl);?>
  
         	<?php if ($_smarty_tpl->tpl_vars['resultcond']->value==0){?>              
-		   </div>
+		   		</div>
         	<?php }?>            
 		<?php endfor; endif; ?>
 	</div>
 
 <?php }?>
+
+<?php if (count($_smarty_tpl->tpl_vars['obj']->value->mAlbumListPages)>0){?>
+	<div>
+		<?php if ($_smarty_tpl->tpl_vars['obj']->value->mLinkToPreviousPage){?>
+			<a href="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mLinkToPreviousPage;?>
+">Previous page</a>
+		<?php }?>
+	 
+		<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['m'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['m']);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['m']['name'] = 'm';
+$_smarty_tpl->tpl_vars['smarty']->value['section']['m']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['obj']->value->mAlbumListPages) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['m']['show'] = true;
+$_smarty_tpl->tpl_vars['smarty']->value['section']['m']['max'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['loop'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['m']['step'] = 1;
+$_smarty_tpl->tpl_vars['smarty']->value['section']['m']['start'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['step'] > 0 ? 0 : $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['loop']-1;
+if ($_smarty_tpl->tpl_vars['smarty']->value['section']['m']['show']) {
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['total'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['loop'];
+    if ($_smarty_tpl->tpl_vars['smarty']->value['section']['m']['total'] == 0)
+        $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['show'] = false;
+} else
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['total'] = 0;
+if ($_smarty_tpl->tpl_vars['smarty']->value['section']['m']['show']):
+
+            for ($_smarty_tpl->tpl_vars['smarty']->value['section']['m']['index'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['start'], $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['iteration'] = 1;
+                 $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['iteration'] <= $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['total'];
+                 $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['index'] += $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['step'], $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['iteration']++):
+$_smarty_tpl->tpl_vars['smarty']->value['section']['m']['rownum'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['iteration'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['m']['index_prev'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['index'] - $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['step'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['m']['index_next'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['index'] + $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['step'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['m']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['m']['iteration'] == 1);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['m']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['m']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['m']['total']);
+?>
+			<?php if ($_smarty_tpl->tpl_vars['obj']->value->mPage==$_smarty_tpl->getVariable('smarty')->value['section']['m']['index_next']){?>
+				<strong> <?php echo $_smarty_tpl->getVariable('smarty')->value['section']['m']['index_next'];?>
+ </strong>
+			<?php }else{ ?>
+				<a href="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mAlbumListPages[$_smarty_tpl->getVariable('smarty')->value['section']['m']['index']];?>
+">
+					<?php echo $_smarty_tpl->getVariable('smarty')->value['section']['m']['index_next'];?>
+ </a>
+			<?php }?>
+		<?php endfor; endif; ?>
+		
+		<?php if ($_smarty_tpl->tpl_vars['obj']->value->mLinkToNextPage){?>
+			<a href="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mLinkToNextPage;?>
+">Next page</a>
+		<?php }?>		
+	</div>	
+<?php }?>
+
 <?php }} ?>

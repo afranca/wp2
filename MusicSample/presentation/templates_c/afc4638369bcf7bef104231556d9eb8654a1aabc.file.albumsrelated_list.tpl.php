@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2013-10-03 18:04:20
+<?php /* Smarty version Smarty-3.1.14, created on 2013-10-10 16:22:56
          compiled from "C:\xampp\htdocs\MusicSample\presentation\templates\albumsrelated_list.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5724524d9329e8c7a0-51672296%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'afc4638369bcf7bef104231556d9eb8654a1aabc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\MusicSample\\presentation\\templates\\albumsrelated_list.tpl',
-      1 => 1380815907,
+      1 => 1381241550,
       2 => 'file',
     ),
   ),

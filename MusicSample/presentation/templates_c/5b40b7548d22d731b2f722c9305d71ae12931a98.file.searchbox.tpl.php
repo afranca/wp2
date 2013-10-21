@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2013-10-03 16:35:42
+<?php /* Smarty version Smarty-3.1.14, created on 2013-10-10 16:09:33
          compiled from "C:\xampp\htdocs\MusicSample\presentation\templates\searchbox.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:22319524d80beb54844-79773987%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5b40b7548d22d731b2f722c9305d71ae12931a98' => 
     array (
       0 => 'C:\\xampp\\htdocs\\MusicSample\\presentation\\templates\\searchbox.tpl',
-      1 => 1376916838,
+      1 => 1381241550,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.14',
   'unifunc' => 'content_524d80beb56ef6_66031213',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_524d80beb56ef6_66031213')) {function content_524d80beb56ef6_66031213($_smarty_tpl) {?>
 <div id="searchBox">

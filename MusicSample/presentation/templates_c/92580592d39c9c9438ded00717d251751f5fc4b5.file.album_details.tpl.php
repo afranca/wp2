@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2013-10-03 17:23:32
+<?php /* Smarty version Smarty-3.1.14, created on 2013-10-10 16:22:57
          compiled from "C:\xampp\htdocs\MusicSample\presentation\templates\album_details.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20008524d8baee49357-25048549%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '92580592d39c9c9438ded00717d251751f5fc4b5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\MusicSample\\presentation\\templates\\album_details.tpl',
-      1 => 1380813792,
+      1 => 1381241550,
       2 => 'file',
     ),
   ),
