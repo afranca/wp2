@@ -8,7 +8,7 @@
 			{section name=i loop=$obj->mTags}
 			<li>
 				{* Generate a new tag in the list *}
-        			{$obj->mTags[i].tag_name}&nbsp;
+        			<a href="?op=SearchTag&searchParam={$obj->mTags[i].tag_name}">{$obj->mTags[i].tag_name}</a>&nbsp;
 					({$obj->mTags[i].kount})
 			</li>
 			{/section}

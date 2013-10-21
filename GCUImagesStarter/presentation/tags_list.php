@@ -1,17 +1,14 @@
 <?php
-	class TagsList
-	{
+	class TagsList{
 		// Public variables to be read from Smarty template
 		public $mTags;
 
 		// Class constructor
-		public function __construct()
-		{
+		public function __construct(){
 
  		}
 
-		public function init()
-		{
+		public function init(){
 				$this->mTags = Collection::GetTags();
 		}
 	}

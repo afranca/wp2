@@ -12,6 +12,7 @@
 		
 		public $searchText;		
 		public $searchCategory;
+		public $searchTag;
 
 		// Class constructor
 		public function __construct(){
@@ -26,13 +27,17 @@
 			if (isset($_POST['searchText'])){
 				$this->searchText = $_POST['searchText'];
 			}	
-			if (isset($_GET['searchParam'])){
+			if (isset($_GET['searchParam']) && $this->mCurrentPage == 'SearchCategory'){
 				$this->searchCategory = $_GET['searchParam'];
-			}				
+			}
+			if (isset($_GET['searchParam']) && $this->mCurrentPage == 'SearchTag'){
+				$this->searchTag = $_GET['searchParam'];
+			}	
+			
 		}
 
 		public function init(){
-			if ( $this->mCurrentPage == 'Images' || $this->mCurrentPage == 'Search' || $this->mCurrentPage == 'SearchCategory'){
+			if ( $this->mCurrentPage == 'Images' || $this->mCurrentPage == 'Search' || $this->mCurrentPage == 'SearchCategory' || $this->mCurrentPage == 'SearchTag'){
 				$basicURL = '?op=' . $_SESSION['CurrentPage'];
 			 
 				if (isset($this->searchText)){					 
@@ -41,6 +46,10 @@
 					$this->mImages = Collection::GetImagesByCategory($this->searchCategory,$this->mPage,$this->mrTotalPages);
 					//echo(count($this->mImages));
 					$basicURL = $basicURL.'&searchParam='.$this->searchCategory;
+				}elseif(isset($this->searchTag)){
+					$this->mImages = Collection::GetImagesByTag($this->searchTag,$this->mPage,$this->mrTotalPages);
+					//echo(count($this->mImages));
+					$basicURL = $basicURL.'&searchParam='.$this->searchTag;					
 				}else{
 					$this->mImages = Collection::GetImagesInCollection($this->mPage,$this->mrTotalPages);
 				}

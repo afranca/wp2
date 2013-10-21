@@ -31,7 +31,10 @@ class Master {
 			$this->mSideBar = 'tags_list.tpl';
 		}else if($_SESSION['CurrentPage'] == 'SearchCategory'){
 			$this->mContentsCell = 'images_list.tpl';
-			$this->mSideBar = 'categories_list.tpl';	
+			$this->mSideBar = 'categories_list.tpl';
+		}else if($_SESSION['CurrentPage'] == 'SearchTag'){
+			$this->mContentsCell = 'images_list.tpl';
+			$this->mSideBar = 'tags_list.tpl';			
 		}else if($_SESSION['CurrentPage'] == 'Contributors'){
 			$this->mContentsCell = 'contributors_list.tpl';
 			$this->mSideBar = 'categories_list.tpl';				
