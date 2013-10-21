@@ -26,6 +26,9 @@ class Master {
 		}else if($_SESSION['CurrentPage'] == 'Search'){
 			$this->mContentsCell = 'images_list.tpl';
 			$this->mSideBar = 'tags_list.tpl';
+		}else if($_SESSION['CurrentPage'] == 'SearchCategory'){
+			$this->mContentsCell = 'images_list.tpl';
+			$this->mSideBar = 'categories_list.tpl';			
 		}else{
 			$this->mContentsCell = 'not_implemented.tpl';
 			$this->mSideBar = 'not_implemented.tpl';

@@ -11,6 +11,7 @@
 		public $mImageListPages = array();		
 		
 		public $searchText;		
+		public $searchCategory;
 
 		// Class constructor
 		public function __construct(){
@@ -24,20 +25,28 @@
 			}
 			if (isset($_POST['searchText'])){
 				$this->searchText = $_POST['searchText'];
-			}			
+			}	
+			if (isset($_GET['searchParam'])){
+				$this->searchCategory = $_GET['searchParam'];
+			}				
 		}
 
 		public function init(){
-			if ( $this->mCurrentPage == 'Images' || $this->mCurrentPage == 'Search'){
-			
+			if ( $this->mCurrentPage == 'Images' || $this->mCurrentPage == 'Search' || $this->mCurrentPage == 'SearchCategory'){
+				$basicURL = '?op=' . $_SESSION['CurrentPage'];
+			 
 				if (isset($this->searchText)){					 
 					$this->mImages = Collection::Search($this->searchText,$this->mPage,$this->mrTotalPages)['images'];
+				}elseif(isset($this->searchCategory)){
+					$this->mImages = Collection::GetImagesByCategory($this->searchCategory,$this->mPage,$this->mrTotalPages);
+					//echo(count($this->mImages));
+					$basicURL = $basicURL.'&searchParam='.$this->searchCategory;
 				}else{
 					$this->mImages = Collection::GetImagesInCollection($this->mPage,$this->mrTotalPages);
 				}
 						
 				
-				$basicURL = '?op=' . $_SESSION['CurrentPage'];
+				
 				
 				if ($this->mrTotalPages > 1){	
 						
