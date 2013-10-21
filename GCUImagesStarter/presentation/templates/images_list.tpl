@@ -14,7 +14,9 @@
 			
 				<p>	
 					{if $obj->mImages[i].image_url neq ""}
-						<img src="./images/{$obj->mImages[i].image_url}" alt="{$obj->mImages[i].image_title}"  height="100" width="100" />
+						<a href="?op=Details&image_id={$obj->mImages[i].image_id}">
+							<img src="./images/{$obj->mImages[i].image_url}" alt="{$obj->mImages[i].image_title}"  height="100" width="100" />
+						</a>
 					{/if}
 					<span>
 						{$obj->mImages[i].image_title}<br />
