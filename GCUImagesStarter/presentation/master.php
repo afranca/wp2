@@ -1,18 +1,14 @@
 <?php
-class Master
-{
+class Master {
 	// Define the template file for the page contents
 	public $mContentsCell;
 	public $mSideBar;
 
 	// Class constructor
-	public function __construct()
-	{
-	}
+	public function __construct()	{	}
 
 	// Initialize presentation object
-	public function init()
-	{
+	public function init()	{
 		// Load the database handler
 		require_once BUSINESS_DIR . 'database_handler.php';
 
@@ -20,16 +16,14 @@ class Master
 		require_once BUSINESS_DIR . 'collection.php';
 
 
- 		if ($_SESSION['CurrentPage'] == 'Home' || $_SESSION['CurrentPage'] == 'Images')
-		{
+ 		if ($_SESSION['CurrentPage'] == 'Home' || $_SESSION['CurrentPage'] == 'Images')	{
 			$this->mContentsCell = 'images_list.tpl';
-			if ($_SESSION['CurrentPage'] == 'Home')
+			if ($_SESSION['CurrentPage'] == 'Home'){
 				$this->mSideBar = 'categories_list.tpl';
-			else
+			}else{
 				$this->mSideBar = 'tags_list.tpl';
-		}
-		else
-		{
+			}
+		}else{
 			$this->mContentsCell = 'not_implemented.tpl';
 			$this->mSideBar = 'not_implemented.tpl';
 		}
