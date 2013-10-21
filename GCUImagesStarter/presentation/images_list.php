@@ -10,6 +10,7 @@
 		public $mLinkToPreviousPage;
 		public $mImageListPages = array();		
 		
+		public $searchText;		
 
 		// Class constructor
 		public function __construct(){
@@ -17,18 +18,25 @@
 			
 			if (isset($_GET['image_id'])){
 				$this->mImageID = $_GET['image_id'];
-			}			
-
+			}
 			if (isset ($_GET['Page'])){
 				$this->mPage = (int)$_GET['Page'];
+			}
+			if (isset($_POST['searchText'])){
+				$this->searchText = $_POST['searchText'];
 			}			
 		}
 
 		public function init(){
-			if ( $this->mCurrentPage == 'Images'){
+			if ( $this->mCurrentPage == 'Images' || $this->mCurrentPage == 'Search'){
 			
-				$this->mImages = Collection::GetImagesInCollection($this->mPage,$this->mrTotalPages);
-				//$this->mImages = Collection::GetImages();
+				if (isset($this->searchText)){					 
+					$this->mImages = Collection::Search($this->searchText,$this->mPage,$this->mrTotalPages)['images'];
+				}else{
+					$this->mImages = Collection::GetImagesInCollection($this->mPage,$this->mrTotalPages);
+				}
+						
+				
 				$basicURL = '?op=' . $_SESSION['CurrentPage'];
 				
 				if ($this->mrTotalPages > 1){	
@@ -40,12 +48,14 @@
 					if ($this->mPage > 1){
 						$previousPage = $this->mPage - 1;
 						$this->mLinkToPreviousPage = $basicURL. '&Page=' . $previousPage;						
-					}				
+					}	
+
+					for ($i = 1; $i <= $this->mrTotalPages; $i++)  {
+						$this->mImageListPages[] = $basicURL. '&Page=' . $i;  
+					}					
 				}	
 								
-				for ($i = 1; $i <= $this->mrTotalPages; $i++)  {
-					$this->mImageListPages[] = $basicURL. '&Page=' . $i;  
-				}				
+				
 				
 			}elseif($this->mCurrentPage == 'Home'){
 				$this->mImages = Collection::GetLatestImages();

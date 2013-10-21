@@ -11,8 +11,11 @@
         	{if $resultcond eq 0} 	<div class="row">	{/if}
 			
 			<div class="cell">
-				<p>					
-					<img src="./images/{$obj->mImages[i].image_url}" alt="{$obj->mImages[i].image_title}"  height="100" width="100" />
+			
+				<p>	
+					{if $obj->mImages[i].image_url neq ""}
+						<img src="./images/{$obj->mImages[i].image_url}" alt="{$obj->mImages[i].image_title}"  height="100" width="100" />
+					{/if}
 					<span>
 						{$obj->mImages[i].image_title}<br />
 						{$obj->mImages[i].image_contributor}
