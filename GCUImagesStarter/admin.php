@@ -13,5 +13,5 @@
 	$_SESSION['CurrentPage'] = 'Admin';
 
 	// Display the page
-	$application->display('not_implemented.tpl');
+	$application->display('admin.tpl');
 ?>

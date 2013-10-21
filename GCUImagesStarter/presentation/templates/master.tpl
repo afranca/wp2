@@ -14,17 +14,17 @@
 </head>
 <body>
   <div id="container">
-	{include file="header.tpl"}	{include file="menu.tpl"}
+		{include file="header.tpl"}	{include file="menu.tpl"}
 	
-	<div id="sidebar-a">
-		{include file=$obj->mSideBar}        
-    </div>
+		<div id="sidebar-a">
+			{include file=$obj->mSideBar}        
+		</div>
 	
-	<div id="content">
-    	{include file=$obj->mContentsCell}
-    </div>
+		<div id="content">
+			{include file=$obj->mContentsCell}
+		</div>
 	
-	{include file="footer.tpl"}
+		{include file="footer.tpl"}
   </div>
 </body>
 </html>

@@ -12,7 +12,7 @@
 		<a id="Menu_ContributorsLink" href="?op=Contributors">Contributors</a>
 	</li>  
 	<li>
-		<a id="Menu_AdminLink" href="admin.php">Admin</a>
+		<a id="Menu_AdminLink" href="?op=Login">Admin</a>
 	</li>     
 	</ul>
 </div>

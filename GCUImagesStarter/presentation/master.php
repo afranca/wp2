@@ -37,7 +37,10 @@ class Master {
 			$this->mSideBar = 'tags_list.tpl';			
 		}else if($_SESSION['CurrentPage'] == 'Contributors'){
 			$this->mContentsCell = 'contributors_list.tpl';
-			$this->mSideBar = 'categories_list.tpl';				
+			$this->mSideBar = 'categories_list.tpl';	
+		}else if($_SESSION['CurrentPage'] == 'Login'){
+			$this->mContentsCell = 'login.tpl';
+			$this->mSideBar = 'not_implemented.tpl';			
 		}else{
 			$this->mContentsCell = 'not_implemented.tpl';
 			$this->mSideBar = 'not_implemented.tpl';
