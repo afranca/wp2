@@ -23,24 +23,35 @@ class Master {
 			}else{
 				$this->mSideBar = 'tags_list.tpl';
 			}
+			
 		}else if($_SESSION['CurrentPage'] == 'Details'){
 			$this->mContentsCell = 'image_details.tpl';
 			$this->mSideBar = 'tags_list.tpl';	
+			
 		}else if($_SESSION['CurrentPage'] == 'Search'){
 			$this->mContentsCell = 'images_list.tpl';
 			$this->mSideBar = 'tags_list.tpl';
+			
 		}else if($_SESSION['CurrentPage'] == 'SearchCategory'){
 			$this->mContentsCell = 'images_list.tpl';
 			$this->mSideBar = 'categories_list.tpl';
+			
 		}else if($_SESSION['CurrentPage'] == 'SearchTag'){
 			$this->mContentsCell = 'images_list.tpl';
-			$this->mSideBar = 'tags_list.tpl';			
+			$this->mSideBar = 'tags_list.tpl';	
+			
 		}else if($_SESSION['CurrentPage'] == 'Contributors'){
 			$this->mContentsCell = 'contributors_list.tpl';
 			$this->mSideBar = 'categories_list.tpl';	
+			
 		}else if($_SESSION['CurrentPage'] == 'Login'){
 			$this->mContentsCell = 'login.tpl';
+			$this->mSideBar = 'not_implemented.tpl';
+			
+		}else if($_SESSION['CurrentPage'] == 'admImageList'){
+			$this->mContentsCell = 'adm_images_list.tpl';
 			$this->mSideBar = 'not_implemented.tpl';			
+			
 		}else{
 			$this->mContentsCell = 'not_implemented.tpl';
 			$this->mSideBar = 'not_implemented.tpl';

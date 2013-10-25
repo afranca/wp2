@@ -3,7 +3,7 @@
 {load_presentation_object filename="login" assign="obj"}
 <div>
 	<h2>Login</h2>
-	<form method="post" action="./admin.php" id="loginForm">
+	<form method="post" action="./index.php?op=admImageList" id="loginForm">
 	<div>
 		{if $obj->mLoginMessage neq ""}
 			<p class="error">{$obj->mLoginMessage}</p>
