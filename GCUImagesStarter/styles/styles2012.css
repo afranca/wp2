@@ -305,3 +305,18 @@ ul#tags li
 ul#tags li:last-child {
   border-right: none;
 }
+
+
+.header_row{
+   color:lightgreen;background-color:purple;font-size:medium;font-family:Verdana;border:medium solid white;
+}    
+
+.odd_row{
+   color:#333333;background-color:LightGreen;font-size:small;font-family:Verdana;border:medium solid white;
+}    
+
+.even_row{
+   color:#333333;background-color:#FFFFCC;font-size:small;font-family:Verdana;border:medium solid white;
+} 
+
+

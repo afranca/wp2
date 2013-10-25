@@ -3,34 +3,42 @@
 {if $obj->mImages}
 
 	<div id="galleryThumbnail">
-		
-		{section name=i loop=$obj->mImages} 
-        	
-			{math equation="x % 1" x={$smarty.section.i.index} assign="resultcond"}        
-        	{if $resultcond eq 0} 	<div class="row">	{/if}
+		<table>
+			<tr class="header_row">	
+				<td> Name </td>
+				<td> Author </td>
+				<td> Edit </td>
+				<td> Delete </td>
+			</tr>	
 			
-			<div class="cell">
-			
-				<p>	
-					{if $obj->mImages[i].image_url neq ""}
-						<a href="?op=Details&image_id={$obj->mImages[i].image_id}">
-							{$obj->mImages[i].image_title}<br />{$obj->mImages[i].image_contributor}
-						</a>
-					{/if}
-					<span>
-						<img src="./images/{$obj->mImages[i].image_url}" alt="{$obj->mImages[i].image_title}"  height="100" width="100" />
-
-					</span>
-				</p>
-			</div>
-			
-			{math equation="x % 1" x={$smarty.section.i.index}+1 assign="resultcond"} 
-        	{if $resultcond eq 0} </div>    	{/if}            
-		
-		{/section}
-	</div>
-	
+			{section name=i loop=$obj->mImages} 
+				{math equation="x % 2" x={$smarty.section.i.index} assign="resultcond"}        				
+				
+				<tr {if $resultcond eq 0} class="odd_row"	 {else}  class="even_row" {/if}>
+					<td>
+						<p>								
+							<a href="?op=Details&image_id={$obj->mImages[i].image_id}">
+								{$obj->mImages[i].image_title} 
+							</a>
+							
+							<span>
+								{if $obj->mImages[i].image_url neq ""}
+									<img src="./images/{$obj->mImages[i].image_url}" alt="{$obj->mImages[i].image_title}"  height="100" width="100" />
+								{/if}
+								hahah <a href="">Edit</a>
+							</span>
+						</p>
+					</td>	
+					<td> <a href="">{$obj->mImages[i].image_contributor} </a></td>
+					<td>  edt </td>
+					<td>  del </td>		
+				</tr>	
+			{/section}
+		</table>
+	</div>	
 {/if}
+
+
 <div>
 {if count($obj->mImageListPages) > 0}
 	<div>
