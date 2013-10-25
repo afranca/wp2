@@ -22,10 +22,12 @@
 							</a>
 							
 							<span>
+								{$obj->mImages[i].image_description|substr:0:75}... <br>
 								{if $obj->mImages[i].image_url neq ""}
-									<img src="./images/{$obj->mImages[i].image_url}" alt="{$obj->mImages[i].image_title}"  height="100" width="100" />
+									<img src="./images/{$obj->mImages[i].image_url}" alt="{$obj->mImages[i].image_title}"  height="100" width="100" /> 
 								{/if}
-								hahah <a href="">Edit</a>
+								
+								
 							</span>
 						</p>
 					</td>	

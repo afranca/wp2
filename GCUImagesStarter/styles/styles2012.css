@@ -308,15 +308,15 @@ ul#tags li:last-child {
 
 
 .header_row{
-   color:lightgreen;background-color:purple;font-size:medium;font-family:Verdana;border:medium solid white;
+   color:lightgreen;background-color:purple;font-size:medium;font-family:Verdana;border:medium solid white;height: 30px;
 }    
 
 .odd_row{
-   color:#333333;background-color:LightGreen;font-size:small;font-family:Verdana;border:medium solid white;
+   color:#333333;background-color:LightGreen;font-size:small;font-family:Verdana;border:medium solid white;height: 10px;
 }    
 
 .even_row{
-   color:#333333;background-color:#FFFFCC;font-size:small;font-family:Verdana;border:medium solid white;
+   color:#333333;background-color:#FFFFCC;font-size:small;font-family:Verdana;border:medium solid white;height: 20px;
 } 
 
 
