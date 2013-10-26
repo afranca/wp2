@@ -32,8 +32,8 @@
 						</p>
 					</td>	
 					<td> <a href="">{$obj->mImages[i].image_contributor} </a></td>
-					<td>  edt </td>
-					<td>  del </td>		
+					<td> <a href="?op=admImageEdit&image_id={$obj->mImages[i].image_id}"> edt </a></td>
+					<td> <a href="javascript:confirmDeletion({$obj->mImages[i].image_id});"> del </a></td>	
 				</tr>	
 			{/section}
 		</table>
