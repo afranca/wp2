@@ -1,4 +1,4 @@
-{load_presentation_object filename="adm_image_edit" assign="obj"}
+{load_presentation_object filename="adm_image_save" assign="obj"}
 
 {if $obj->mImage}
 <div>
