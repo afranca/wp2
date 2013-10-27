@@ -1,9 +1,9 @@
 {load_presentation_object filename="adm_image_edit" assign="obj"}
 
-{if $obj->mImage}
+
 <div>
     <div id="image">
-		<h2>{$obj->mImage.image_title} by {$obj->mImage.image_contributor} </h2>
+		<h2>{$obj->mImage.image_title} {if $obj->mImage}by {/if} {$obj->mImage.image_contributor} &nbsp; </h2>
 		<div id='leftItemTemplate'>
 			<form action="?op=admImageSave" method="post" enctype="multipart/form-data"> 
 				<input type="hidden" name="image_id" id="image_id" value="{$obj->mImage.image_id}"/>
@@ -31,5 +31,5 @@
 		</div>
 	</div>
 </div>
-{/if}       
+       
  

@@ -10,7 +10,13 @@
 
 	//Load Smarty template file
 	$application = new Application();
-	$_SESSION['CurrentPage'] = 'Admin';
+	
+	// Display the page
+	if (isset($_GET["op"]))
+		$_SESSION['CurrentPage'] = $_GET["op"];
+	else
+		$_SESSION['CurrentPage'] = 'admImageList';
+	
 
 	// Display the page
 	$application->display('admin.tpl');

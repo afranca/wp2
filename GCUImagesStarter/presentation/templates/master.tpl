@@ -1,4 +1,3 @@
-{* smarty *}
 {config_load file="site.conf"}
 {load_presentation_object filename="master" assign="obj"}
 <!DOCTYPE HTML>
@@ -14,7 +13,9 @@
 </head>
 <body>
   <div id="container">
-		{include file="header.tpl"}	{include file="menu.tpl"}
+		{include file="header.tpl"}	
+		
+		{include file=$obj->mTopMenu}
 	
 		<div id="sidebar-a">
 			{include file=$obj->mSideBar}        

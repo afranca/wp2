@@ -1,4 +1,3 @@
-{* smarty *}
 {config_load file="site.conf"}
 {load_presentation_object filename="login" assign="obj"}
 <div>

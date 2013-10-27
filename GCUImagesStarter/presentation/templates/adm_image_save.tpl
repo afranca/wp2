@@ -1,6 +1,5 @@
 {load_presentation_object filename="adm_image_save" assign="obj"}
 
-{if $obj->mImage}
 <div>
     <div id="image">
 		<h2>{$obj->mImage.image_title} by {$obj->mImage.image_contributor} </h2>
@@ -20,15 +19,15 @@
 			<div class="ret_msg"> <b>{$obj->ret_msg}</b> </div>
 		</div>
 		<div id='rightItemTemplate'>
-			{if $obj->mTags}
+			{*if $obj->mTags*}
 				<div id="tags">
 					<ul>						
-						{section name=i loop=$obj->mTags}
-							<li> {$obj->mTags[i].tag_name} </li>
-						{/section}        
+						{*section name=i loop=$obj->mTags*}
+							<li> {*$obj->mTags[i].tag_name*} </li>
+						{*/section*}        
 					</ul>
 				</div>			
-			{/if}
+			{*/if*}
 		</div>
 		
 		
@@ -36,5 +35,5 @@
 	
 	
 </div>
-{/if}       
+      
  

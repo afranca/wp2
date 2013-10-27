@@ -13,7 +13,7 @@
 				if (true) {
 					$_SESSION['admin_logged'] = true;			
 					header('Location: index.php?op=admImageList');
-					exit();					
+									
 				}else{				
 					$this->mLoginMessage = 'Login failed. Please try again:';
 				}

@@ -4,6 +4,7 @@ class Master {
 	public $mContentsCell;
 	public $mSideBar;
 
+	public $mTopMenu;
 	// Class constructor
 	public function __construct()	{	}
 
@@ -50,20 +51,33 @@ class Master {
 			
 		}else if($_SESSION['CurrentPage'] == 'admImageList'){
 			$this->mContentsCell = 'adm_images_list.tpl';
-			$this->mSideBar = 'not_implemented.tpl';			
+			$this->mSideBar = 'adm_side_menu.tpl';			
 		
 		}else if($_SESSION['CurrentPage'] == 'admImageEdit'){
 			$this->mContentsCell = 'adm_image_edit.tpl';
-			$this->mSideBar = 'not_implemented.tpl';	
+			$this->mSideBar = 'adm_side_menu.tpl';	
 		
 		}else if($_SESSION['CurrentPage'] == 'admImageSave'){
 			$this->mContentsCell = 'adm_image_save.tpl';
-			$this->mSideBar = 'not_implemented.tpl';				
+			$this->mSideBar = 'adm_side_menu.tpl';
+			
+		}else if($_SESSION['CurrentPage'] == 'admImageCreate'){
+			$this->mContentsCell = 'adm_image_create.tpl';
+			$this->mSideBar = 'adm_side_menu.tpl';					
 					
 		}else{
 			$this->mContentsCell = 'not_implemented.tpl';
 			$this->mSideBar = 'not_implemented.tpl';
 		}
+		
+		
+		if (isset($_SESSION['admin_logged']) && $_SESSION['admin_logged']==true){
+			$this->mTopMenu="adm_menu.tpl";		
+		} else {
+			$this->mTopMenu="menu.tpl";
+		}
+	
+		
 	}
 }
 ?>

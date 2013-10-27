@@ -31,6 +31,7 @@
 			if (isset($_POST['image_id'])){
 				$this->image_id = $_POST['image_id'];
 				$this->update = true;
+				
 			}						
 			if (isset ($_POST['image_title'])){
 				$this->image_title = $_POST['image_title'];
@@ -50,16 +51,17 @@
 		public function init(){
 				
 			$this::uploadImage();
-			
+			//echo ("id:".$_POST['image_id']." update:".$this->update."  isset?".isset($_POST['image_id']));
 			if (!$this->upload_error){		
 				if ($this->update){				
 					Collection::UpdateImage($this->image_id, $this->image_title, $this->image_contributor, $this->image_description, $this->new_image, 300 , 300, "update category");
-					$this->mImage = Collection::GetImageDetails($this->image_id);	
-					$this->ret_msg = "Operation Successful";
-				} else {	
-					echo ("<h1> CREATED</h1>");
-					//$this->mImages = Collection::AddImage( $this->image_title, $this->image_contributor, $this->image_description, $this->new_image, 300 , 300, "new category");
+					//$this->mImage = Collection::GetImageDetails($this->image_id);	
+					$this->ret_msg = "Update Successful";
+				} else {
+					$this->image_id = Collection::AddImage( $this->image_title, $this->image_contributor, $this->image_description, $this->new_image, 300 , 300, "new category");
+					$this->ret_msg = "Create Successful ";
 				}
+				$this->mImage = Collection::GetImageDetails($this->image_id);
 			} else {
 				$this->ret_msg = $this->upload_ret_msg;
 			}

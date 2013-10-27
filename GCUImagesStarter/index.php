@@ -1,6 +1,6 @@
 <?php
 
-	session_name('gcuimages');
+	$previous_name =session_name('gcuimages');
 	session_start();
 
 	// Include utility files
@@ -19,6 +19,9 @@
 	else
 		$_SESSION['CurrentPage'] = 'Home';
 
+
+
+	echo "The previous session name was $previous_name<br />".session_id();
 
 	$application->display('master.tpl');
 

@@ -1,6 +1,6 @@
 <?php
 	class AdmImagesList{
-		// Public variables to be read from Smarty template
+		
 		public $mImages;
 		public $mImageID;
 		
