@@ -410,11 +410,12 @@ class Collection
 	}
 
   // Add an image
-  public static function AddImage($imageTitle, $imageContributor, $imageDescription, $imageURL, $width, $height, $category)
-  {
+  public static function AddImage($imageTitle, $imageContributor, $imageDescription, $imageURL, $width, $height, $category){
     // Build the SQL query
-    $sql = 'CALL collection_add_image(:image_title, :image_contributor, :image_description, :image_url, :width, :height, :category)';
+    //$sql = 'CALL collection_add_image(:image_title, :image_contributor, :image_description, :image_url, :width, :height, :category)';
 
+	$sql = "INSERT INTO image (image_title, image_contributor, image_description, image_url, width, height, category) values ('".$imageTitle."','".$imageContributor."','".$imageDescription."','".$imageURL."',".$width.",".$height.",'".$category."')";
+	
     // Build the parameters array
     $params = array (':image_title' => $imageTitle,
                      ':image_contributor' => $imageContributor,
@@ -425,7 +426,14 @@ class Collection
 					 ':category'=>$category);
 
     // Execute the query
-    DatabaseHandler::Execute($sql, $params);
+    //DatabaseHandler::Execute($sql, $params);
+	//echo($sql);
+	DatabaseHandler::Execute($sql, null);
+	
+	$sql = "SELECT MAX( image_id ) as last FROM  image";
+	return DatabaseHandler:: GetOne($sql, null);
+	
+	
   }
 
   // Updates image details
