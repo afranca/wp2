@@ -3,8 +3,10 @@
 	
 		public $mImage;
 		
-		public $mTrags;
+		public $mTags;
 		public $mImageID;
+		
+		public $mCategories;
 		
 	
 		public function __construct(){
@@ -18,6 +20,9 @@
 			$this->mImage = Collection::GetImageDetails($this->mImageID);			
 			
 			$this->mTags = Collection::GetImageTags($this->mImageID);
+			
+			$this->mCategories = Collection::GetCategories();
+			
 			//echo("tags:".count($this->mTags));
 
 		}

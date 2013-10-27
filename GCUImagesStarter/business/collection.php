@@ -431,7 +431,7 @@ class Collection
 	DatabaseHandler::Execute($sql, null);
 	
 	$sql = "SELECT MAX( image_id ) as last FROM  image";
-	return DatabaseHandler:: GetOne($sql, null);
+	return DatabaseHandler::GetOne($sql, null);
 	
 	
   }

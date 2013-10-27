@@ -21,6 +21,7 @@
 		private $upload_error=false;
 		private $upload_ret_msg;
 		
+		public $mCategories;
 	
 		
 
@@ -45,6 +46,8 @@
 			if (isset($_POST['new_image'])){
 				$this->new_image = $_POST['new_image'];
 			}	
+			
+			$this->mCategories = Collection::GetCategories();
 			
 		}
 

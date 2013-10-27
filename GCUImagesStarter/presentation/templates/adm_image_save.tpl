@@ -9,7 +9,11 @@
 				Title: <input type="text" name="image_title" id="image_title" value="{$obj->mImage.image_title}"/> <br>
 				Contributor: <input type="text" name="image_contributor" id="image_contributor" value="{$obj->mImage.image_contributor}"/> <br>
 				Description: <textarea name="image_description" id="image_description" rows="5" cols="50"> {$obj->mImage.image_description} </textarea> <br>
-				
+				Category:   <SELECT name="image_category">
+								{section name=i loop=$obj->mCategories}
+									<OPTION VALUE="{$obj->mCategories[i].category}" {if $obj->mCategories[i].category== $obj->mImage.category} SELECTED {/if}>{$obj->mCategories[i].category}</OPTION>
+								{/section} 
+							</SELECT>			
 				<p><img src='./images/{$obj->mImage.image_url}' alt='{$obj->mImage.image_title}' height='200' width='200' /></p>
 				New Image: <input type="file" name="new_image" id="name="new_image">
 				<br>
