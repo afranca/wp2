@@ -16,7 +16,8 @@
 				<br>
 				<input type="submit" value="Save">
 			</form>
-
+			<br><br>
+			<div class="ret_msg"> <b>{$obj->ret_msg}</b> </div>
 		</div>
 		<div id='rightItemTemplate'>
 			{if $obj->mTags}
@@ -29,7 +30,11 @@
 				</div>			
 			{/if}
 		</div>
+		
+		
 	</div>
+	
+	
 </div>
 {/if}       
  

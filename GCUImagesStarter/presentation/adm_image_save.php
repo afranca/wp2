@@ -1,6 +1,6 @@
 <?php
 	class AdmImageSave{
-		// Public variables to be read from Smarty template
+		
 		public $mImage;
 			
 		public $image_id;		
@@ -13,8 +13,13 @@
 		public $image;
 		public $height;
 		public $category;
+		public $ret_msg;
+		
 		
 		private $update=false;
+		
+		private $upload_error=false;
+		private $upload_ret_msg;
 		
 	
 		
@@ -26,8 +31,7 @@
 			if (isset($_POST['image_id'])){
 				$this->image_id = $_POST['image_id'];
 				$this->update = true;
-			}
-						
+			}						
 			if (isset ($_POST['image_title'])){
 				$this->image_title = $_POST['image_title'];
 			}					
@@ -44,6 +48,28 @@
 		}
 
 		public function init(){
+				
+			$this::uploadImage();
+			
+			if (!$this->upload_error){		
+				if ($this->update){				
+					Collection::UpdateImage($this->image_id, $this->image_title, $this->image_contributor, $this->image_description, $this->new_image, 300 , 300, "update category");
+					$this->mImage = Collection::GetImageDetails($this->image_id);	
+					$this->ret_msg = "Operation Successful";
+				} else {	
+					echo ("<h1> CREATED</h1>");
+					//$this->mImages = Collection::AddImage( $this->image_title, $this->image_contributor, $this->image_description, $this->new_image, 300 , 300, "new category");
+				}
+			} else {
+				$this->ret_msg = $this->upload_ret_msg;
+			}
+					
+		}
+		
+		
+		
+		
+		private function uploadImage(){
 		
 			define("UPLOAD_DIR", "/Users/gauchoescoces/Documents/GitHub/wp2/GCUImagesStarter/images/");
 			
@@ -52,7 +78,8 @@
 				$myFile = $_FILES["new_image"];
 			 
 				if ($myFile["error"] !== UPLOAD_ERR_OK) {
-					echo "<p>An error occurred.</p>";
+					$this->upload_error = true;
+					$this->upload_ret_msg = "Network Error: File has not been transferred";					
 					exit;
 				}
 			 
@@ -70,29 +97,19 @@
 				// preserve file from temporary directory
 				$success = move_uploaded_file($myFile["tmp_name"],UPLOAD_DIR . $name);
 				if (!$success) { 
-					echo "<p>Unable to save file.</p>";
+					$this->upload_error = true;
+					$this->upload_ret_msg = "I/O Error: moving temp file failed";	
 					exit;
 				} else {
-					echo "<p>file was succesfully saved on </p> ".UPLOAD_DIR;
+					//echo "<p>file was succesfully saved on </p> ".UPLOAD_DIR;
 					$this->new_image = $name;
+					$this->upload_error = false;
+					$this->upload_ret_msg = "Uploaded Image Successfully";	
 				}
 			 
 
-			}		
-			
-		
-		
-		
-		
-			if ($this->update){
-				
-				Collection::UpdateImage($this->image_id, $this->image_title, $this->image_contributor, $this->image_description, $this->new_image, 300 , 300, "update category");
-				$this->mImage = Collection::GetImageDetails($this->image_id);	
-			} else {	
-				echo ("<h1> CREATED</h1>");
-				//$this->mImages = Collection::AddImage( $this->image_title, $this->image_contributor, $this->image_description, $this->new_image, 300 , 300, "new category");
 			}
-					
+		
 		}
 	}
 ?>

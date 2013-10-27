@@ -320,3 +320,13 @@ ul#tags li:last-child {
 } 
 
 
+.ret_msg{
+   color:#333333;
+   background-color:#FFFFCC;
+   font-size:small;
+   font-family:Verdana;
+   border:medium solid white;
+   height: 30px;
+   width: 200px;
+}
+
