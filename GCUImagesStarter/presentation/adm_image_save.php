@@ -45,9 +45,9 @@
 
 		public function init(){
 		
-			define("UPLOAD_DIR", "/Users/gauchoescoces/Documents/GitHub/wp2/upload/");
+			define("UPLOAD_DIR", "/Users/gauchoescoces/Documents/GitHub/wp2/GCUImagesStarter/images/");
 			
-			/*
+			
 			if (!empty($_FILES["new_image"])) {
 				$myFile = $_FILES["new_image"];
 			 
@@ -74,11 +74,12 @@
 					exit;
 				} else {
 					echo "<p>file was succesfully saved on </p> ".UPLOAD_DIR;
+					$this->new_image = $name;
 				}
 			 
 
 			}		
-			*/
+			
 		
 		
 		
