@@ -24,6 +24,29 @@ function showResult(str){
 	xmlhttp.open("GET","presentation/livesearch.php?q="+str,true);
 	xmlhttp.send();
 }
+
+function assignTagFieldTag(tag_id,tag_name){
+	alert(tag_id+"-"+tag_name);
+	document.getElementById('tag_name').value = tag_name;
+	document.getElementById('tag_id').value = tag_id;
+	
+	  document.getElementById("livesearch").innerHTML="";
+	  document.getElementById("livesearch").style.border="0px";
+
+}
+
+
+function assignTag(tag_id,tag_name){
+	
+	if (window.XMLHttpRequest) {
+	  xmlhttp=new XMLHttpRequest();
+	}else  {
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.open("GET","presentation/livesearch.php?q="+str,true);
+	xmlhttp.send();
+}
 </script>
 
 
@@ -60,7 +83,8 @@ function showResult(str){
 				</div>			
 			{/if}
 			<form>
-				<input type="text" size="30" onkeyup="javascript:showResult(this.value)">
+				<input type="text"   id="tag_name" size="30" onkeyup="javascript:showResult(this.value)">
+				<input type="hidden" id="tag_id">
 				<div id="livesearch"></div>
 			</form>
 			

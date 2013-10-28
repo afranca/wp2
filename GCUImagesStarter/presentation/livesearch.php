@@ -1,13 +1,50 @@
 <?php
-$xmlDoc=new DOMDocument();
-$xmlDoc->load("links.xml");
+//$xmlDoc=new DOMDocument();
+//$xmlDoc->load("links.xml");
 
-$x=$xmlDoc->getElementsByTagName('link');
 
+$hint="";
 //get the q parameter from URL
-$q=$_GET["q"];
+if (isset($_GET["q"]) ){
 
-//lookup all links from the xml file if length of q>0
+	$q=$_GET["q"];
+	
+	$con=mysqli_connect("localhost","imagesadmin","imagesadmin","gcuimages");
+	if (mysqli_connect_errno()){
+	  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	  exit;
+	}
+
+	$result = mysqli_query($con,"SELECT tag_id,tag_name FROM tag WHERE tag_name like '".$q."%'");
+
+	while($row = mysqli_fetch_array($result)){	
+
+			$hint=$hint .' <a href="javascript:assignTagFieldTag('.$row["tag_id"].',\''.$row["tag_name"].'\') " target="_blank">' .$row["tag_name"] . '</a> <br />';
+			
+			//$hint=$hint . " <a href='javascript:assignTagFieldTag(".$row['tag_id'].")' target='_blank'>" .$row['tag_name'] . "</a> <br />";
+			
+
+	}
+	 /*
+	while($row = mysqli_fetch_array($result)){	
+		if ($hint==""){
+			$hint="<a href='" . $row['tag_id'] ."' target='_blank'>" .	 $row['tag_name'] . "</a>";
+		} else  {
+			$hint=$hint . " <br /><a href='" .$row['tag_id']."' target='_blank'>" .$row['tag_name'] . "</a>";
+		}	
+
+	}	
+	*/
+	mysqli_close($con);
+		
+	
+}
+
+
+
+
+/*
+$x=$xmlDoc->getElementsByTagName('link');
 if (strlen($q)>0){
 	$hint="";
 	for($i=0; $i<($x->length); $i++)  {
@@ -25,7 +62,7 @@ if (strlen($q)>0){
 			}
 	}
 }
-
+*/
 // Set output to "no suggestion" if no hint were found
 // or to the correct values
 if ($hint=="") {
