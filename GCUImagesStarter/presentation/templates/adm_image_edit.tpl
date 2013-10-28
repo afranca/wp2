@@ -26,25 +26,37 @@ function showResult(str){
 }
 
 function assignTagFieldTag(tag_id,tag_name){
-	alert(tag_id+"-"+tag_name);
 	document.getElementById('tag_name').value = tag_name;
-	document.getElementById('tag_id').value = tag_id;
-	
-	  document.getElementById("livesearch").innerHTML="";
-	  document.getElementById("livesearch").style.border="0px";
-
+	document.getElementById('tag_id').value = tag_id;	
+	document.getElementById("livesearch").innerHTML="";
+	document.getElementById("livesearch").style.border="0px";
 }
 
 
-function assignTag(tag_id,tag_name){
+function assignTag(){
+
+	var tag_name = document.getElementById('tag_name').value;
+	var tag_id =   document.getElementById('tag_id').value;
+	var image_id =   document.getElementById('image_id').value;
 	
+	//document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+tag_name+"&nbsp;";
+		
 	if (window.XMLHttpRequest) {
 	  xmlhttp=new XMLHttpRequest();
 	}else  {
 	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	
-	xmlhttp.open("GET","presentation/livesearch.php?q="+str,true);
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)	{
+			document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+tag_name+"&nbsp;";
+			document.getElementById('tag_name').value="";			
+		} else {
+			alert("ajax error: xmlhttp.readyState="+xmlhttp.readyState+"  xmlhttp.status="+xmlhttp.status);
+		}
+	}	
+	
+	xmlhttp.open("GET","presentation/assign_tag.php?tag_id="+tag_id+"&image_id="+image_id,true);
 	xmlhttp.send();
 }
 </script>
@@ -75,17 +87,18 @@ function assignTag(tag_id,tag_name){
 		<div id='rightItemTemplate'>
 			{if $obj->mTags}
 				<div id="tags">
-					<ul>						
+											
 						{section name=i loop=$obj->mTags}
-							<li> {$obj->mTags[i].tag_name} </li>
+							 {$obj->mTags[i].tag_name} &nbsp;
 						{/section}        
-					</ul>
+					
 				</div>			
 			{/if}
 			<form>
-				<input type="text"   id="tag_name" size="30" onkeyup="javascript:showResult(this.value)">
+				<input type="text"   id="tag_name" size="30" onkeyup="javascript:showResult(this.value)"> <input type="button" value="assign"  onclick="javascript:assignTag();">
 				<input type="hidden" id="tag_id">
 				<div id="livesearch"></div>
+				
 			</form>
 			
 		</div>
