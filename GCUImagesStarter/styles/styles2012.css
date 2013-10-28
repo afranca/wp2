@@ -234,6 +234,7 @@ tr.even
     float: left;
     padding: 5px;
     width: 30%;
+	border: 2px solid;
 }
 
 #rightItemTemplate 
@@ -241,6 +242,7 @@ tr.even
     float: right;
     padding: 5px;
     width: 60%;
+	border: 2px solid;
 }
 
 #leftItemTemplate h2

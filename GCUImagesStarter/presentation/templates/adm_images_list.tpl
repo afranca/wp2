@@ -17,7 +17,7 @@
 				<tr {if $resultcond eq 0} class="odd_row"	 {else}  class="even_row" {/if}>
 					<td>
 						<p>								
-							<a href="?op=Details&image_id={$obj->mImages[i].image_id}">
+							<a href="?op=admImageEdit&image_id={$obj->mImages[i].image_id}">
 								{$obj->mImages[i].image_title} 
 							</a>
 							
@@ -31,7 +31,7 @@
 							</span>
 						</p>
 					</td>	
-					<td> <a href="">{$obj->mImages[i].image_contributor} </a></td>
+					<td> <a href="?op=admImageEdit&image_id={$obj->mImages[i].image_id}">{$obj->mImages[i].image_contributor} </a></td>
 					<td> <a href="?op=admImageEdit&image_id={$obj->mImages[i].image_id}"> edt </a></td>
 					<td> <a href="javascript:confirmDeletion({$obj->mImages[i].image_id});"> del </a></td>	
 				</tr>	

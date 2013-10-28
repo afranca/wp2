@@ -1,6 +1,32 @@
 {load_presentation_object filename="adm_image_edit" assign="obj"}
 
 
+<script>
+function showResult(str){
+	if (str.length==0)  { 
+	  document.getElementById("livesearch").innerHTML="";
+	  document.getElementById("livesearch").style.border="0px";
+	  return;
+	}
+	
+	if (window.XMLHttpRequest) {
+	  xmlhttp=new XMLHttpRequest();
+	}else  {
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)	{
+			document.getElementById("livesearch").innerHTML=xmlhttp.responseText;
+			document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+		}
+	}
+	xmlhttp.open("GET","presentation/livesearch.php?q="+str,true);
+	xmlhttp.send();
+}
+</script>
+
+
 <div>
     <div id="image">
 		<h2>{$obj->mImage.image_title} {if $obj->mImage}by {/if} {$obj->mImage.image_contributor} &nbsp; </h2>
@@ -14,7 +40,7 @@
 									<OPTION VALUE="{$obj->mCategories[i].category}" {if $obj->mCategories[i].category== $obj->mImage.category} SELECTED {/if}>{$obj->mCategories[i].category}</OPTION>
 								{/section} 
 							</SELECT>
-				Description: <textarea name="image_description" id="image_description" rows="5" cols="50"> {$obj->mImage.image_description} </textarea> <br>
+				Description: <textarea name="image_description" id="image_description" rows="5" cols="30"> {$obj->mImage.image_description} </textarea> <br>
 				
 				<p><img src='./images/{$obj->mImage.image_url}' alt='{$obj->mImage.image_title}' height='200' width='200' /></p>
 				New Image: <input type="file" name="new_image" id="name="new_image">
@@ -33,6 +59,10 @@
 					</ul>
 				</div>			
 			{/if}
+			<form>
+				<input type="text" size="30" onkeyup="javascript:showResult(this.value)">
+				<div id="livesearch"></div>
+			</form>
 			
 		</div>
 	</div>
