@@ -23,6 +23,7 @@
 		private $upload_ret_msg;
 		
 		public $mCategories;
+		public $mTags;
 	
 		
 
@@ -33,6 +34,7 @@
 			if (isset($_POST['image_id'])){
 				$this->image_id = $_POST['image_id'];
 				$this->update = true;
+				$this->mTags = Collection::GetImageTags($this->image_id);
 				
 			}						
 			if (isset ($_POST['image_title'])){

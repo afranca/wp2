@@ -1,5 +1,123 @@
 {load_presentation_object filename="adm_image_save" assign="obj"}
 
+<script>
+
+function showResult(str){
+	if (str.length==0)  { 
+	  document.getElementById("livesearch").innerHTML="";
+	  document.getElementById("livesearch").style.border="0px";
+	  return;
+	}
+	
+	if (window.XMLHttpRequest) {
+	  xmlhttp=new XMLHttpRequest();
+	}else  {
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)	{
+			document.getElementById("livesearch").innerHTML=xmlhttp.responseText;
+			document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+		}
+	}
+	xmlhttp.open("GET","presentation/livesearch.php?q="+str,true);
+	xmlhttp.send();
+}
+
+function assignTagFieldTag(tag_id,tag_name){
+	document.getElementById('tag_name').value = tag_name;
+	document.getElementById('tag_id').value = tag_id;	
+	document.getElementById("livesearch").innerHTML="";
+	document.getElementById("livesearch").style.border="0px";
+}
+
+
+function assignTag(){
+
+	var tag_name = document.getElementById('tag_name').value;
+	var tag_id =   document.getElementById('tag_id').value;
+	var image_id =   document.getElementById('image_id').value;
+	
+		
+	if (tag_name==""){
+		alert("tag name is mandatory");
+		return;
+	}
+	
+	if (window.XMLHttpRequest) {
+	  xmlhttp=new XMLHttpRequest();
+	}else  {
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+		
+	
+	/* CREATES NEW TAG BEFORE ASSIGNING */
+	if (tag_id==""){ 		
+		xmlhttp.onreadystatechange=function() {
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)	{
+				tag_id = xmlhttp.responseText;
+				document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+"<div id='"+tag_id+"'><b>["+tag_name+"]</b><a href='javascript:unassignTag("+tag_id+")'>x</a>" +"</div>";
+				document.getElementById('tag_name').value="";	
+
+			} 
+		}		
+		xmlhttp.open("GET","presentation/create_tag.php?tag_name="+tag_name+"&image_id="+image_id,true);
+		xmlhttp.send();
+		
+	} else {	
+	/* ASSIGN EXISTING TAG */	
+	
+
+		xmlhttp.onreadystatechange=function() {
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)	{
+				document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+"<div id='"+tag_id+"'><b>["+tag_name+"]</b><a href='javascript:unassignTag("+tag_id+")'>x</a>" +"</div>";
+				document.getElementById('tag_name').value="";	
+				document.getElementById('tag_id').value="";	
+			} else {
+				//alert("ajax error: xmlhttp.readyState="+xmlhttp.readyState+"  xmlhttp.status="+xmlhttp.status);
+			}
+		}	
+		
+		xmlhttp.open("GET","presentation/assign_tag.php?tag_id="+tag_id+"&image_id="+image_id,true);
+		xmlhttp.send();	
+	
+	}	
+	
+	
+
+}
+
+function unassignTag(tag_id){
+	
+	var image_id = {$obj->mImage.image_id};
+	var d = document.getElementById('tags');
+	var olddiv = document.getElementById(tag_id);
+	d.removeChild(olddiv);		
+
+		
+	if (window.XMLHttpRequest) {
+	  xmlhttp=new XMLHttpRequest();
+	}else  {
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)	{
+			//document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+"["+tag_name+"]<a href=''>x</a>" +"&nbsp;";
+			//document.getElementById('tag_name').value="";			
+		} else {
+			//alert("ajax error: xmlhttp.readyState="+xmlhttp.readyState+"  xmlhttp.status="+xmlhttp.status);
+		}
+	}	
+	
+	xmlhttp.open("GET","presentation/unassign_tag.php?tag_id="+tag_id+"&image_id="+image_id,true);
+	xmlhttp.send();
+}
+
+
+</script>
+
 <div>
     <div id="image">
 		<h2>{$obj->mImage.image_title} by {$obj->mImage.image_contributor} </h2>
@@ -23,15 +141,22 @@
 			<div class="ret_msg"> <b>{$obj->ret_msg}</b> </div>
 		</div>
 		<div id='rightItemTemplate'>
-			{*if $obj->mTags*}
+			{if $obj->mTags}
 				<div id="tags">
-					<ul>						
-						{*section name=i loop=$obj->mTags*}
-							<li> {*$obj->mTags[i].tag_name*} </li>
-						{*/section*}        
-					</ul>
+											
+						{section name=i loop=$obj->mTags}
+							<div id="{$obj->mTags[i].tag_id}"><b>[{$obj->mTags[i].tag_name}]</b><a href='javascript:unassignTag({$obj->mTags[i].tag_id})'>x</a> &nbsp;</div>
+						{/section}        
+					
 				</div>			
-			{*/if*}
+			{/if}
+			<form>
+				<input type="text"   id="tag_name" size="30" onkeyup="javascript:showResult(this.value)"> <input type="button" value="assign"  onclick="javascript:assignTag();">
+				<input type="hidden" id="tag_id">
+				<div id="livesearch"></div>
+				
+			</form>
+			
 		</div>
 		
 		

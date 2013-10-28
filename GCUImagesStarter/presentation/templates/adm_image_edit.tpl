@@ -2,6 +2,7 @@
 
 
 <script>
+
 function showResult(str){
 	if (str.length==0)  { 
 	  document.getElementById("livesearch").innerHTML="";
@@ -57,7 +58,7 @@ function assignTag(){
 		xmlhttp.onreadystatechange=function() {
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)	{
 				tag_id = xmlhttp.responseText;
-				document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+"<div id='"+tag_id+"'>["+tag_name+"]<a href='javascript:unassignTag("+tag_id+")'>x</a>" +"</div>";
+				document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+"<div id='"+tag_id+"'><b>["+tag_name+"]</b><a href='javascript:unassignTag("+tag_id+")'>x</a>" +"</div>";
 				document.getElementById('tag_name').value="";	
 
 			} 
@@ -71,7 +72,7 @@ function assignTag(){
 
 		xmlhttp.onreadystatechange=function() {
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)	{
-				document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+"<div id='"+tag_id+"'>["+tag_name+"]<a href='javascript:unassignTag("+tag_id+")'>x</a>" +"</div>";
+				document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+"<div id='"+tag_id+"'><b>["+tag_name+"]</b><a href='javascript:unassignTag("+tag_id+")'>x</a>" +"</div>";
 				document.getElementById('tag_name').value="";	
 				document.getElementById('tag_id').value="";	
 			} else {
@@ -116,9 +117,7 @@ function unassignTag(tag_id){
 }
 
 
-
 </script>
-
 
 <div>
     <div id="image">
@@ -147,7 +146,7 @@ function unassignTag(tag_id){
 				<div id="tags">
 											
 						{section name=i loop=$obj->mTags}
-							<div id="{$obj->mTags[i].tag_id}">[{$obj->mTags[i].tag_name}]<a href='javascript:unassignTag({$obj->mTags[i].tag_id})'>x</a> &nbsp;</div>
+							<div id="{$obj->mTags[i].tag_id}"><b>[{$obj->mTags[i].tag_name}]</b><a href='javascript:unassignTag({$obj->mTags[i].tag_id})'>x</a> &nbsp;</div>
 						{/section}        
 					
 				</div>			
