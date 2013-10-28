@@ -2,6 +2,7 @@
 	class AdmImageSave{
 		
 		public $mImage;
+		public $mOldImage;
 			
 		public $image_id;		
 		public $image_title;
@@ -43,31 +44,46 @@
 			if (isset($_POST['image_description'])){
 				$this->image_description = $_POST['image_description'];
 			}
-			if (isset($_POST['new_image'])){
-				$this->new_image = $_POST['new_image'];
-			}	
+
 			if (isset($_POST['image_category'])){
 				$this->category = $_POST['image_category'];
 			}		
 			
 			$this->mCategories = Collection::GetCategories();
 			
+			
+	
+			
 		}
 
 		public function init(){
-				
-			$this::uploadImage();
-			//echo ("id:".$_POST['image_id']." update:".$this->update."  isset?".isset($_POST['image_id']));
-			if (!$this->upload_error){		
-				if ($this->update){				
+		
+			if (empty($_FILES["new_image"]["name"])){
+				$this->mImage = Collection::GetImageDetails($this->image_id);				
+				$this->new_image = $this->mImage['image_url'];
+			} else {
+				$this::uploadImage();
+			}		
+
+			
+			if (!$this->upload_error){
+				//echo ("3");
+				$dateArr = getdate();
+				$dateTime = "<br>".$dateArr['hours'].":".$dateArr['minutes'].":".$dateArr['seconds']." - ".$dateArr['mday']."/".$dateArr['mon']."/".$dateArr['year'];
+				if ($this->update){			
+					//echo ("3.1");
+					if (empty($_FILES["new_image"])){
+						$this->new_image = $this->mOldImage.image_url;
+					}				
 					Collection::UpdateImage($this->image_id, $this->image_title, $this->image_contributor, $this->image_description, $this->new_image, 300 , 300, $this->category);
-					//$this->mImage = Collection::GetImageDetails($this->image_id);	
-					$this->ret_msg = "Update Successful";
+					$this->ret_msg = "Update Successful ".$dateTime;
 				} else {
+					//echo ("3.2");
 					$this->image_id = Collection::AddImage( $this->image_title, $this->image_contributor, $this->image_description, $this->new_image, 300 , 300, $this->category);
-					$this->ret_msg = "Create Successful ";
+					$this->ret_msg = "Create Successful ".$dateTime;
 				}
 				$this->mImage = Collection::GetImageDetails($this->image_id);
+				
 			} else {
 				$this->ret_msg = $this->upload_ret_msg;
 			}
@@ -80,20 +96,22 @@
 		private function uploadImage(){
 		
 			define("UPLOAD_DIR", "/Users/gauchoescoces/Documents/GitHub/wp2/GCUImagesStarter/images/");
-			
+			//echo ("1.1 ");
 			
 			if (!empty($_FILES["new_image"])) {
+				//echo ("1.2 ");
 				$myFile = $_FILES["new_image"];
-			 
+				//echo ("1.3  ");
 				if ($myFile["error"] !== UPLOAD_ERR_OK) {
+					//echo ("1.4  ");
 					$this->upload_error = true;
 					$this->upload_ret_msg = "Network Error: File has not been transferred";					
-					exit;
+					return;
 				}
 			 
-				
+				//echo ("1.5 ");
 				$name = preg_replace("/[^A-Z0-9._-]/i", "_", $myFile["name"]);
-			 
+				//echo ("1.6 ");
 			
 				$i = 0;
 				$parts = pathinfo($name);
