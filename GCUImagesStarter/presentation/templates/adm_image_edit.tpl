@@ -39,7 +39,62 @@ function assignTag(){
 	var tag_id =   document.getElementById('tag_id').value;
 	var image_id =   document.getElementById('image_id').value;
 	
-	//document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+tag_name+"&nbsp;";
+		
+	if (tag_name==""){
+		alert("tag name is mandatory");
+		return;
+	}
+	
+	if (window.XMLHttpRequest) {
+	  xmlhttp=new XMLHttpRequest();
+	}else  {
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+		
+	
+	/* CREATES NEW TAG BEFORE ASSIGNING */
+	if (tag_id==""){ 		
+		xmlhttp.onreadystatechange=function() {
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)	{
+				tag_id = xmlhttp.responseText;
+				document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+"<div id='"+tag_id+"'>["+tag_name+"]<a href='javascript:unassignTag("+tag_id+")'>x</a>" +"</div>";
+				document.getElementById('tag_name').value="";	
+
+			} 
+		}		
+		xmlhttp.open("GET","presentation/create_tag.php?tag_name="+tag_name+"&image_id="+image_id,true);
+		xmlhttp.send();
+		
+	} else {	
+	/* ASSIGN EXISTING TAG */	
+	
+
+		xmlhttp.onreadystatechange=function() {
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)	{
+				document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+"<div id='"+tag_id+"'>["+tag_name+"]<a href='javascript:unassignTag("+tag_id+")'>x</a>" +"</div>";
+				document.getElementById('tag_name').value="";	
+				document.getElementById('tag_id').value="";	
+			} else {
+				//alert("ajax error: xmlhttp.readyState="+xmlhttp.readyState+"  xmlhttp.status="+xmlhttp.status);
+			}
+		}	
+		
+		xmlhttp.open("GET","presentation/assign_tag.php?tag_id="+tag_id+"&image_id="+image_id,true);
+		xmlhttp.send();	
+	
+	}	
+	
+	
+
+}
+
+function unassignTag(tag_id){
+	
+	var image_id = {$obj->mImage.image_id};
+	var d = document.getElementById('tags');
+	var olddiv = document.getElementById(tag_id);
+	d.removeChild(olddiv);		
+
 		
 	if (window.XMLHttpRequest) {
 	  xmlhttp=new XMLHttpRequest();
@@ -49,16 +104,19 @@ function assignTag(){
 	
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)	{
-			document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+tag_name+"&nbsp;";
-			document.getElementById('tag_name').value="";			
+			//document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+"["+tag_name+"]<a href=''>x</a>" +"&nbsp;";
+			//document.getElementById('tag_name').value="";			
 		} else {
-			alert("ajax error: xmlhttp.readyState="+xmlhttp.readyState+"  xmlhttp.status="+xmlhttp.status);
+			//alert("ajax error: xmlhttp.readyState="+xmlhttp.readyState+"  xmlhttp.status="+xmlhttp.status);
 		}
 	}	
 	
-	xmlhttp.open("GET","presentation/assign_tag.php?tag_id="+tag_id+"&image_id="+image_id,true);
+	xmlhttp.open("GET","presentation/unassign_tag.php?tag_id="+tag_id+"&image_id="+image_id,true);
 	xmlhttp.send();
 }
+
+
+
 </script>
 
 
@@ -89,7 +147,7 @@ function assignTag(){
 				<div id="tags">
 											
 						{section name=i loop=$obj->mTags}
-							 {$obj->mTags[i].tag_name} &nbsp;
+							<div id="{$obj->mTags[i].tag_id}">[{$obj->mTags[i].tag_name}]<a href='javascript:unassignTag({$obj->mTags[i].tag_id})'>x</a> &nbsp;</div>
 						{/section}        
 					
 				</div>			

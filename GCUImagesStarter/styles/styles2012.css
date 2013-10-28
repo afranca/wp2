@@ -233,16 +233,17 @@ tr.even
 {
     float: left;
     padding: 5px;
-    width: 30%;
+    width: 50%;
 	border: 2px solid;
 }
 
 #rightItemTemplate 
 {
-    float: right;
+    float: left;
     padding: 5px;
-    width: 60%;
+    width:40%;
 	border: 2px solid;
+	margin-left: 30px;
 }
 
 #leftItemTemplate h2
