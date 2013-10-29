@@ -1,42 +1,45 @@
 <?php
-	class Admin	{
-		// Public variables to be read from Smarty template
-		public $mLoggedIn;
+class Admin {
+	// Define the template file for the page contents
+	public $mContentsCell;
+	public $mSideBar;
+
+	public $mTopMenu;
+	// Class constructor
+	public function __construct()	{	}
+
+	// Initialize presentation object
+	public function init()	{
+		// Load the database handler
+		require_once BUSINESS_DIR . 'database_handler.php';
+
+		// Load Business Tier
+		require_once BUSINESS_DIR . 'collection.php';
+
+
+		if($_SESSION['CurrentPage'] == 'admImageList'){
+			$this->mContentsCell = 'adm_images_list.tpl';
+			$this->mSideBar = 'adm_side_menu.tpl';			
 		
-		public $mContentsCell;
-		public $mSideBar;
-
-		public $mTopMenu;		
-
-		// Private members
-		private $mAction;
-
-		// Class constructor
-		public function __construct(){
-			$this->mLoggedIn = TRUE;
-
- 		}
-
-		public function init(){
+		}else if($_SESSION['CurrentPage'] == 'admImageEdit'){
+			$this->mContentsCell = 'adm_image_edit.tpl';
+			$this->mSideBar = 'adm_side_menu.tpl';	
 		
-		
-			if($_SESSION['CurrentPage'] == 'admImageList'){
-				$this->mContentsCell = 'adm_images_list.tpl';
-				$this->mSideBar = 'not_implemented.tpl';			
+		}else if($_SESSION['CurrentPage'] == 'admImageSave'){
+			$this->mContentsCell = 'adm_image_save.tpl';
+			$this->mSideBar = 'adm_side_menu.tpl';
 			
-			}else if($_SESSION['CurrentPage'] == 'admImageEdit'){
-				$this->mContentsCell = 'adm_image_edit.tpl';
-				$this->mSideBar = 'not_implemented.tpl';	
-			
-			}else if($_SESSION['CurrentPage'] == 'admImageSave'){
-				$this->mContentsCell = 'adm_image_save.tpl';
-				$this->mSideBar = 'not_implemented.tpl';				
-						
-			}else{
-				$this->mContentsCell = 'not_implemented.tpl';
-				$this->mSideBar = 'not_implemented.tpl';
-			}		
-
+		}else if($_SESSION['CurrentPage'] == 'admImageCreate'){
+			$this->mContentsCell = 'adm_image_create.tpl';
+			$this->mSideBar = 'adm_side_menu.tpl';					
+					
+		}else{
+			$this->mContentsCell = 'not_implemented.tpl';
+			$this->mSideBar = 'not_implemented.tpl';
 		}
+		
+	
+		
 	}
+}
 ?>

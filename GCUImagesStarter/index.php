@@ -21,7 +21,7 @@
 
 
 
-	echo "The previous session name was $previous_name<br />".session_id();
+	echo "$previous_name:".session_id()."::".$_SESSION['admin_logged'];
 
 	$application->display('master.tpl');
 

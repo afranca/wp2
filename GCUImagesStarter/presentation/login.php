@@ -9,8 +9,8 @@
 		public function __construct(){
 			// Verify if the correct username and password have been supplied
 			if (isset ($_POST['submit'])){
-				//if ($_POST['username'] == ADMIN_USERNAME && $_POST['password'] == ADMIN_PASSWORD){
-				if (true) {
+				if ($_POST['username'] == ADMIN_USERNAME && $_POST['password'] == ADMIN_PASSWORD){ 
+				//if (true) {
 					$_SESSION['admin_logged'] = true;			
 					header('Location: index.php?op=admImageList');
 									
@@ -18,7 +18,9 @@
 					$this->mLoginMessage = 'Login failed. Please try again:';
 				}
 				
-			}			
+			} else if (isset ($_SESSION['admin_logged']) && $_SESSION['admin_logged'] == true){
+				header('Location: index.php?op=admImageList');			
+			}		
 		}
 	}
 ?>
