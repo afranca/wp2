@@ -10,7 +10,7 @@
 			// Verify if the correct username and password have been supplied
 			if (isset ($_SESSION['admin_logged'])){
 					$_SESSION['admin_logged']=false;
-					header('Location: index.php');
+					header('Location: index.php?op=Login');
 			}			
 		}
 	}

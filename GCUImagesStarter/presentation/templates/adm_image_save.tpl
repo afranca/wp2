@@ -141,15 +141,14 @@ function unassignTag(tag_id){
 			<div class="ret_msg"> <b>{$obj->ret_msg}</b> </div>
 		</div>
 		<div id='rightItemTemplate'>
-			{if $obj->mTags}
-				<div id="tags">
-											
-						{section name=i loop=$obj->mTags}
-							<div id="{$obj->mTags[i].tag_id}"><b>[{$obj->mTags[i].tag_name}]</b><a href='javascript:unassignTag({$obj->mTags[i].tag_id})'>x</a> &nbsp;</div>
-						{/section}        
-					
-				</div>			
-			{/if}
+			TAGS
+			<div id="tags">
+				{if $obj->mTags}															
+					{section name=i loop=$obj->mTags}
+						<div id="{$obj->mTags[i].tag_id}"><b>[{$obj->mTags[i].tag_name}]</b><a href='javascript:unassignTag({$obj->mTags[i].tag_id})'>x</a> &nbsp;</div>
+					{/section} 												
+				{/if}
+			</div>
 			<form>
 				<input type="text"   id="tag_name" size="30" onkeyup="javascript:showResult(this.value)"> <input type="button" value="assign"  onclick="javascript:assignTag();">
 				<input type="hidden" id="tag_id">

@@ -20,6 +20,7 @@
 
 		</div>
 		<div id='rightItemTemplate'>
+				<h2>Tags</h2>
 			
 				<div id="tags">
 
@@ -27,9 +28,8 @@
 				<form>
 					<input type="text"   id="tag_name" size="30" onkeyup="javascript:showResult(this.value)"> <input type="button" value="assign"  onclick="javascript:alert('Before assigning tags, fill in image details and save it');">
 					<input type="hidden" id="tag_id">
-				<div id="livesearch"></div>
-				
-			</form>
+					<div id="livesearch"></div>				
+				</form>
 			
 		</div>
 	</div>

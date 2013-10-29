@@ -142,6 +142,7 @@ function unassignTag(tag_id){
 
 		</div>
 		<div id='rightItemTemplate'>
+			<h2>Tags</h2>
 			{if $obj->mTags}
 				<div id="tags">
 											

@@ -22,12 +22,12 @@ class Master {
 			if ($_SESSION['CurrentPage'] == 'Home'){
 				$this->mSideBar = 'categories_list.tpl';
 			}else{
-				$this->mSideBar = 'tags_list.tpl';
+				$this->mSideBar = 'categories_list.tpl';
 			}
 			
 		}else if($_SESSION['CurrentPage'] == 'Details'){
 			$this->mContentsCell = 'image_details.tpl';
-			$this->mSideBar = 'tags_list.tpl';	
+			$this->mSideBar = 'categories_list.tpl';	
 			
 		}else if($_SESSION['CurrentPage'] == 'Search'){
 			$this->mContentsCell = 'images_list.tpl';
@@ -96,8 +96,8 @@ class Master {
 		}
 		
 		
-		//if (isset($_SESSION['admin_logged']) && $_SESSION['admin_logged']==true){
-			//$this->mTopMenu="adm_menu.tpl";		
+        //if (isset($_SESSION['admin_logged']) && $_SESSION['admin_logged']==true){
+		//	$this->mTopMenu="adm_menu.tpl";		
 		//} else {
 			$this->mTopMenu="menu.tpl";
 		//}

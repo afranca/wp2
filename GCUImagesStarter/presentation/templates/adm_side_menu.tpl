@@ -9,17 +9,9 @@
 			<a href="?op=admImageCreate"> Create Images </a>&nbsp; 
 		</li>
 		<li>
-			<a href="?op=admTagList"> List Tags </a>&nbsp; 
-		</li>
-		<li>
-			<a href="?op=admTagCreate"> Create Tags </a>&nbsp; 
-		</li>
-		<li>
-			<a href="?op=admTagCreate"> Create Tags </a>&nbsp; 
-		</li>
-		<li>
-			<a href="index.php?op=Logout"> Logout </a>&nbsp; 
-		</li>		
+			<a href="?op=Logout">Logout</a>
+		</li> 		
+				
 	</ul>
 </div>
 
