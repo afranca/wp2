@@ -31,6 +31,11 @@
 		{/section}
 	</div>
 	
+{else}	
+	<div id="galleryThumbnail">	
+		Your search generated no results.
+	</div>
+	
 {/if}
 <div>
 {if count($obj->mImageListPages) > 0}

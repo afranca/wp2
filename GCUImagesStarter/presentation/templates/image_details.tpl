@@ -3,8 +3,10 @@
 {if $obj->mImage}
 <div>
     <div id="image">
-		<h2>{$obj->mImage.image_title} by {$obj->mImage.image_contributor} </h2>
+		
 		<div id='leftItemTemplate'>
+			<h3>{$obj->mImage.image_title}</h3>
+			<div id="image_cont"><b>Contributor:</b>{$obj->mImage.image_contributor}</div>  
         	<div id="image_cat"><b>Category:</b>{$obj->mImage.category}</div>   
             <div id="image_desc"><b>Description:</b>{$obj->mImage.image_description}</div>
 			<p><img src='./images/{$obj->mImage.image_url}' alt='{$obj->mImage.image_title}' height='200' width='200' /></p>
@@ -17,15 +19,18 @@
 			</div>
 		</div>
 		<div id='rightItemTemplate'>
+			<h2>Tags</h2>
 			{if $obj->mTags}
 				<div id="tags">
-                	<h2>Tags</h2>
+                	
 					<ul>						
 						{section name=i loop=$obj->mTags}
 							<li> {$obj->mTags[i].tag_name} </li>
 						{/section}        
 					</ul>
-				</div>			
+				</div>	
+			{else}
+				<br>No tags associated with this image
 			{/if}
 		</div>
 	</div>

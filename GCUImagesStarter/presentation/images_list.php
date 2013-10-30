@@ -40,8 +40,15 @@
 			if ( $this->mCurrentPage == 'Images' || $this->mCurrentPage == 'Search' || $this->mCurrentPage == 'SearchCategory' || $this->mCurrentPage == 'SearchTag'){
 				$basicURL = '?op=' . $_SESSION['CurrentPage'];
 			 
-				if (isset($this->searchText)){					 
-					$this->mImages = Collection::Search($this->searchText,$this->mPage,$this->mrTotalPages)['images'];
+				if (isset($this->searchText)){	
+					$imgArray = Collection::Search($this->searchText,$this->mPage,$this->mrTotalPages);
+					if (isset($imgArray['images'])){	
+						$this->mImages = $imgArray['images'];
+					} else {
+						//echo(" imgArray[images] not defined");
+					}
+					//$this->mImages = Collection::Search($this->searchText,$this->mPage,$this->mrTotalPages)['images'];
+					//echo (Collection::Search($this->searchText,$this->mPage,$this->mrTotalPages));
 				}elseif(isset($this->searchCategory)){
 					$this->mImages = Collection::GetImagesByCategory($this->searchCategory,$this->mPage,$this->mrTotalPages);
 					//echo(count($this->mImages));
