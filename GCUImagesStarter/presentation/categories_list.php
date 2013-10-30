@@ -13,8 +13,14 @@
  		}
 
 		public function init(){
-		
+			
+			if (isset ($this->searchText))	{
+				$this->mCategories = Collection::GetSearchResultCategories($this->searchText);			
+			}else{
 				$this->mCategories = Collection::GetCategories();
+			}			
+		
+				
 		}
 	}
 ?>
