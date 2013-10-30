@@ -8,7 +8,7 @@
 		{section name=i loop=$obj->mCategories}
 			<li>
 				{* Generate a new category in the list *}
-        			<a href="?op=SearchCategory&searchParam={$obj->mCategories[i].category}"> {$obj->mCategories[i].category}</a>&nbsp; ({$obj->mCategories[i].kount})
+        			<a href="?op=SearchCategory&searchParam={$obj->mCategories[i].category}{if $obj->searchText}&searchText={$obj->searchText}{/if}"> {$obj->mCategories[i].category}</a>&nbsp; ({$obj->mCategories[i].kount})
         
 			</li>
 		{/section}
