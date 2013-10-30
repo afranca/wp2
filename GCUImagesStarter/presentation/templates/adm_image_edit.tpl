@@ -58,7 +58,7 @@ function assignTag(){
 		xmlhttp.onreadystatechange=function() {
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)	{
 				tag_id = xmlhttp.responseText;
-				document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+"<div id='"+tag_id+"'><b>["+tag_name+"]</b><a href='javascript:unassignTag("+tag_id+")'>x</a>" +"</div>";
+				document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+"<div id='"+tag_id+"'><b>[</b>"+tag_name+"<b>]</b><a href='javascript:unassignTag("+tag_id+")'>x</a>" +"</div>";
 				document.getElementById('tag_name').value="";	
 
 			} 
@@ -72,7 +72,7 @@ function assignTag(){
 
 		xmlhttp.onreadystatechange=function() {
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)	{
-				document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+"<div id='"+tag_id+"'><b>["+tag_name+"]</b><a href='javascript:unassignTag("+tag_id+")'>x</a>" +"</div>";
+				document.getElementById("tags").innerHTML=document.getElementById("tags").innerHTML+"<div id='"+tag_id+"'><b>[</b>"+tag_name+"<b>]</b><a href='javascript:unassignTag("+tag_id+")'>x</a>" +"</div>";
 				document.getElementById('tag_name').value="";	
 				document.getElementById('tag_id').value="";	
 			} else {
@@ -133,7 +133,7 @@ function unassignTag(tag_id){
 								{/section} 
 							</SELECT>
 				<br>			
-				Description: <br><textarea name="image_description" id="image_description" rows="5" cols="30"> {$obj->mImage.image_description} </textarea> <br>
+				Description: <br><textarea name="image_description" id="image_description" rows="5" cols="30">{$obj->mImage.image_description}</textarea> <br>
 				
 				<p><img src='./images/{$obj->mImage.image_url}' alt='{$obj->mImage.image_title}' height='200' width='200' /></p>
 				New Image: <input type="file" name="new_image" id="name="new_image">
@@ -144,21 +144,22 @@ function unassignTag(tag_id){
 		</div>
 		<div id='rightItemTemplate'>
 			<h2>Tags</h2>
-			{if $obj->mTags}
-				<div id="tags">
-											
-						{section name=i loop=$obj->mTags}
-							<div id="{$obj->mTags[i].tag_id}"><b>[{$obj->mTags[i].tag_name}]</b><a href='javascript:unassignTag({$obj->mTags[i].tag_id})'>x</a> &nbsp;</div>
-						{/section}        
-					
-				</div>			
-			{/if}
 			<form>
 				<input type="text"   id="tag_name" size="30" onkeyup="javascript:showResult(this.value)"> <input type="button" value="assign"  onclick="javascript:assignTag();">
 				<input type="hidden" id="tag_id">
 				<div id="livesearch"></div>
 				
-			</form>
+			</form>			
+			{if $obj->mTags}
+				<div id="tags">
+											
+						{section name=i loop=$obj->mTags}
+							<div id="{$obj->mTags[i].tag_id}"><b>[</b>{$obj->mTags[i].tag_name}<b>]</b><a href='javascript:unassignTag({$obj->mTags[i].tag_id})'>x</a> &nbsp;</div>
+						{/section}        
+					
+				</div>			
+			{/if}
+
 			
 		</div>
 	</div>

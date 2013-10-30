@@ -234,7 +234,7 @@ tr.even
     float: left;
     padding: 5px;
     width: 50%;
-	border: 2px solid;
+	border: 0px solid;
 }
 
 #rightItemTemplate 
@@ -242,7 +242,7 @@ tr.even
     float: left;
     padding: 5px;
     width:40%;
-	border: 2px solid;
+	border: 0px solid;
 	margin-left: 30px;
 }
 
@@ -331,5 +331,49 @@ ul#tags li:last-child {
    border:medium solid white;
    height: 30px;
    width: 200px;
+}
+
+#admin_leftItemTemplate,#admin_rightItemTemplate 
+{
+    padding: 0 0px;
+    margin: 0;
+}
+
+#admin_leftItemTemplate 
+{
+    float: left;
+    padding: 5px;
+    width: 50%;
+	border: 2px solid;
+}
+
+#admin_rightItemTemplate 
+{
+    float: left;
+    padding: 5px;
+    width:40%;
+	border: 2px solid;
+	margin-left: 30px;
+}
+
+#admin_leftItemTemplate h2
+{
+    text-align: left;
+    font: italic normal bold 2.1em "New Century Schoolbook", georgia, sans-serif;
+    color: Purple;
+}
+
+#admin_leftItemTemplate h3
+{
+    text-align: left;
+    font: italic normal bold 1.7em  "New Century Schoolbook", georgia, sans-serif;
+    color: Green;    
+}
+
+#admin_rightItemTemplate h3
+{
+    text-align: left;
+    font: italic normal bold 1.7em  "New Century Schoolbook", georgia, sans-serif;
+    color: Green;    
 }
 
