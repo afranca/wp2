@@ -1,14 +1,23 @@
 {load_presentation_object filename="adm_images_list" assign="obj"}
+<script>
+function confirmDeletion(image_id){
 
+	if(confirm("Confirm permanent deletion?")){
+		//alert("http://localhost/GCUImagesStarter/index.php?op=admImageDelete&image_id="+image_id);
+		
+		window.location = "http://localhost/GCUImagesStarter/index.php?op=admImageDelete&image_id="+image_id;
+	}
+}
+</script>
 {if $obj->mImages}
 
-	<div id="galleryThumbnail">
-		<table>
+	<div id="admin_galleryThumbnail" >
+		<table width="600" border=0>
 			<tr class="header_row">	
 				<td> Name </td>
 				<td> Author </td>
-				<td> Edit </td>
-				<td> Delete </td>
+				<td width="40"> Edit </td>
+				<td  width="40"> Delete </td>
 			</tr>	
 			
 			{section name=i loop=$obj->mImages} 
@@ -32,8 +41,8 @@
 						</p>
 					</td>	
 					<td> <a href="?op=admImageEdit&image_id={$obj->mImages[i].image_id}">{$obj->mImages[i].image_contributor} </a></td>
-					<td> <a href="?op=admImageEdit&image_id={$obj->mImages[i].image_id}"> edt </a></td>
-					<td> <a href="javascript:confirmDeletion({$obj->mImages[i].image_id});"> del </a></td>	
+					<td> <a href="?op=admImageEdit&image_id={$obj->mImages[i].image_id}"> <img src="./include/edit_icon.png" height="20"> </a></td>
+					<td> <a href="javascript:confirmDeletion({$obj->mImages[i].image_id});"> <img src="./include/delete_icon.png" height="20"> </a></td>	
 				</tr>	
 			{/section}
 		</table>

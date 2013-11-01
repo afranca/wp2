@@ -28,7 +28,7 @@ class Master {
 			}
 			*/
 			
-		}else if($_SESSION['CurrentPage'] == 'Details'){
+		}else if($_SESSION['CurrentPage'] == 'Details' || $_SESSION['CurrentPage'] == 'Rate'){
 			$this->mContentsCell = 'image_details.tpl';
 			$this->mSideBar = 'categories_list.tpl';	
 			
@@ -92,7 +92,14 @@ class Master {
 				$this->mContentsCell = 'login.tpl';
 				$this->mSideBar = 'blank.tpl';
 			}			
-					
+		}else if($_SESSION['CurrentPage'] == 'admImageDelete'){
+			if (isset($_SESSION['admin_logged']) && $_SESSION['admin_logged']==true ){
+				$this->mContentsCell = 'adm_image_delete.tpl';
+				$this->mSideBar = 'adm_side_menu.tpl';		
+			} else {
+				$this->mContentsCell = 'login.tpl';
+				$this->mSideBar = 'blank.tpl';
+			}					
 		}else{
 			$this->mContentsCell = 'not_implemented.tpl';
 			$this->mSideBar = 'not_implemented.tpl';

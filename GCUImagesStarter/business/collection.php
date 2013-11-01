@@ -483,5 +483,33 @@ class Collection
     DatabaseHandler::Execute($sql, $params);
   }
 
+  
+   // delete an image tag
+  public static function DeleteImage($image_id)
+  {
+	//echo("1");
+	/*********************************************************************/
+    /* TODO:This should be in a transaction but I cant be bother just now*/	
+	/*********************************************************************/
+    $sql1 = "DELETE FROM image_tag WHERE image_id=".$image_id;
+	$sql2 = "DELETE FROM image WHERE image_id=".$image_id;
+	//echo("2");
+    // Execute the query
+    DatabaseHandler::Execute($sql1,null);
+	//echo("3");
+	DatabaseHandler::Execute($sql2,null);
+  } 
+  
+
+  public static function UpdateRating($imageId, $newRating){  
+    $sql = 'CALL collection_rate_image(:image_id, :new_rating)';
+    $params = array (':image_id' => $imageId,':new_rating' => $newRating);
+    DatabaseHandler::Execute($sql, $params);
+  }  
+  
 }
+
+
+
+
 ?>
