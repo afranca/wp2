@@ -150,9 +150,9 @@ function submitForm(){
 								{/section} 
 							</SELECT>
 				<br>			
-				Description: <br><textarea name="image_description" id="image_description" rows="5" cols="30">{$obj->mImage.image_description}</textarea> <br>
+				Description: <br><textarea name="image_description" id="image_description" rows="5" cols="46">{$obj->mImage.image_description}</textarea> <br>
 				
-				<p><img src='./images/{$obj->mImage.image_url}' alt='{$obj->mImage.image_title}' height='200' width='200' /></p>
+				<p><img src='./images/{$obj->mImage.image_url}' alt='{$obj->mImage.image_title}' height='200' /></p>
 				New Image: <input type="file" name="new_image" id="name="new_image">
 				<br>
 				<input type="button" value="Save" onclick="javascript:submitForm()">

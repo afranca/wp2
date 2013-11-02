@@ -37,7 +37,7 @@ function submitForm(){
 								{/section} 
 							</SELECT>
 				<br>			
-				Description: <br><textarea name="image_description" id="image_description" rows="5" cols="30"></textarea> <br>
+				Description: <br><textarea name="image_description" id="image_description" rows="5" cols="46"></textarea> <br>
 				
 				
 				New Image: <input type="file" name="new_image" id="new_image">
