@@ -21,7 +21,7 @@
 
 
 
-	echo "$previous_name:".session_id()."::".$_SESSION['admin_logged'];
+	//echo "$previous_name:".session_id()."::".$_SESSION['admin_logged'];
 
 	$application->display('master.tpl');
 

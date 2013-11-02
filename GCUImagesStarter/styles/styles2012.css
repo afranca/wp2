@@ -69,6 +69,16 @@ border-left: 1px #9966CC solid;
 	margin-right: 180px;
 	line-height: 18px;	
 }
+#adm_content {
+	margin-right: 180px;
+	line-height: 1px;	
+}
+
+#span_thumbnail {
+	
+	line-height: 18px;	
+}
+
 
 #footer {
 	clear: both;

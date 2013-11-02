@@ -356,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `image` (
   `image_title` varchar(50) NOT NULL,
   `image_description` text NOT NULL,
   `image_contributor` varchar(50) NOT NULL,
-  `image_url` varchar(250) NOT NULL,
+  `image_url` varchar(250) NOT NULL DEFAULT 'image_missing.png',
   `width` smallint(6) NOT NULL,
   `height` smallint(6) NOT NULL,
   `category` varchar(15) NOT NULL,

@@ -60,13 +60,20 @@
 
 		public function init(){
 		
-			if (empty($_FILES["new_image"]["name"])){
+			if (empty($_FILES["new_image"]["name"]) && $this->update){
 				$this->mImage = Collection::GetImageDetails($this->image_id);				
 				$this->new_image = $this->mImage['image_url'];
-			} else {
+				//echo("1");
+			}elseif (empty($_FILES["new_image"]["name"]) && !$this->update) {				
+				$this->new_image = 'image_missing.png';
+				//echo("2");
+			
+			} else  {			
 				$this::uploadImage();
-			}		
-
+				//echo("3");
+			}	
+		
+			//return;
 			
 			if (!$this->upload_error){
 				//echo ("3");

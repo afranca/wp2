@@ -115,14 +115,32 @@ function unassignTag(tag_id){
 	xmlhttp.send();
 }
 
+function submitForm(){
+	
+	
+	var image_title = document.getElementById('image_title').value;
+	var image_contributor = document.getElementById('image_contributor').value;
 
+	if (image_title.trim()==""){
+		alert("Ttitle is a mandatory field");
+		return;
+	}
+	
+	if (image_contributor.trim()==""){
+		alert("Contributor is a mandatory field");
+		return;
+	}
+		
+	document.getElementById("form1").submit();
+
+}
 </script>
 
 <div>
     <div id="image">
 		<h3>{$obj->mImage.image_title} {if $obj->mImage}by {/if} {$obj->mImage.image_contributor} &nbsp; </h3>
 		<div id='leftItemTemplate'>
-			<form action="?op=admImageSave" method="post" enctype="multipart/form-data"> 
+			<form action="?op=admImageSave" id="form1" method="post" enctype="multipart/form-data"> 
 				<input type="hidden" name="image_id" id="image_id" value="{$obj->mImage.image_id}" />
 				Title: <input type="text" name="image_title" id="image_title" value="{$obj->mImage.image_title}" size="60"/> <br>
 				Contributor: <input type="text" name="image_contributor" id="image_contributor" value="{$obj->mImage.image_contributor}"  size="60"/> <br>
@@ -137,7 +155,7 @@ function unassignTag(tag_id){
 				<p><img src='./images/{$obj->mImage.image_url}' alt='{$obj->mImage.image_title}' height='200' width='200' /></p>
 				New Image: <input type="file" name="new_image" id="name="new_image">
 				<br>
-				<input type="submit" value="Save">
+				<input type="button" value="Save" onclick="javascript:submitForm()">
 			</form>
 			
 			<div class="ret_msg"> <b>{$obj->ret_msg}</b> </div>	 			
@@ -151,15 +169,15 @@ function unassignTag(tag_id){
 				<div id="livesearch"></div>
 				
 			</form>			
-			{if $obj->mTags}
-				<div id="tags">
-											
-						{section name=i loop=$obj->mTags}
-							<div id="{$obj->mTags[i].tag_id}"><b>[</b>{$obj->mTags[i].tag_name}<b>]</b><a href='javascript:unassignTag({$obj->mTags[i].tag_id})'>x</a> &nbsp;</div>
-						{/section}        
-					
-				</div>			
-			{/if}
+			
+			<div id="tags">
+				{if $obj->mTags}										
+					{section name=i loop=$obj->mTags}
+						<div id="{$obj->mTags[i].tag_id}"><b>[</b>{$obj->mTags[i].tag_name}<b>]</b><a href='javascript:unassignTag({$obj->mTags[i].tag_id})'>x</a> &nbsp;</div>
+					{/section}        
+				{/if}	
+			</div>			
+			
 
 			
 		</div>
