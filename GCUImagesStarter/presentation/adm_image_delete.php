@@ -1,7 +1,7 @@
 <?php
 	class AdmImageDelete{
 		
-		
+		public $mPage = 1;
 		public $image_id;	
 
 		// Class constructor
@@ -10,7 +10,10 @@
 			
 			if (isset($_GET['image_id'])){
 				$this->image_id = $_GET['image_id'];			
-			}						
+			}
+			if (isset ($_GET['Page'])){
+				$this->mPage = (int)$_GET['Page'];
+			}			
 
 		}
 
@@ -23,7 +26,7 @@
 				 Collection::DeleteImage($this->image_id);
 			}
 			
-			header( 'Location: http://localhost/GCUImagesStarter/index.php?op=admImageList' ) ;
+			header( 'Location: http://localhost/GCUImagesStarter/index.php?op=admImageList&Page='.$this->mPage ) ;
 					
 		}
 		

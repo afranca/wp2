@@ -50,11 +50,11 @@ class Master {
 			
 		}else if($_SESSION['CurrentPage'] == 'Login'){
 			$this->mContentsCell = 'login.tpl';
-			$this->mSideBar = 'not_implemented.tpl';
+			$this->mSideBar = 'blank.tpl';
 			
 		}else if($_SESSION['CurrentPage'] == 'Logout'){
 			$this->mContentsCell = 'logout.tpl';
-			$this->mSideBar = 'not_implemented.tpl';			
+			$this->mSideBar = 'blank.tpl';			
 			
 		}else if($_SESSION['CurrentPage'] == 'admImageList'){
 			if (isset($_SESSION['admin_logged']) && $_SESSION['admin_logged']==true ){

@@ -4,8 +4,10 @@ function confirmDeletion(image_id){
 
 	if(confirm("Confirm permanent deletion?")){
 		//alert("http://localhost/GCUImagesStarter/index.php?op=admImageDelete&image_id="+image_id);
-		
-		window.location = "http://localhost/GCUImagesStarter/index.php?op=admImageDelete&image_id="+image_id;
+
+			//window.location = "http://localhost/GCUImagesStarter/index.php?op=admImageDelete&image_id="+image_id;
+			window.location = "http://localhost/GCUImagesStarter/index.php?op=admImageDelete&Page={$obj->mPage}&image_id="+image_id;
+	
 	}
 }
 </script>
