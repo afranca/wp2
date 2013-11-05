@@ -1,40 +1,39 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2013-10-21 18:28:43
-         compiled from "C:\Users\gauchoescoces\Documents\GitHub\wp2\MusicSample\presentation\templates\albumsrelated_list.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:18775254205b423047-02198712%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.14, created on 2013-11-05 19:25:44
+         compiled from "C:\Users\gauchoescoces\Documents\GitHub\wp2\GCUImagesStarter\presentation\templates\imageratings_list.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:1462652793828bf4477-01203018%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '54161c800ecfcc3588ec9e9568c6e83d53ed03fa' => 
+    '32c52d1c35a838aec5e008b401306be3e57bdd94' => 
     array (
-      0 => 'C:\\Users\\gauchoescoces\\Documents\\GitHub\\wp2\\MusicSample\\presentation\\templates\\albumsrelated_list.tpl',
-      1 => 1381241550,
+      0 => 'C:\\Users\\gauchoescoces\\Documents\\GitHub\\wp2\\GCUImagesStarter\\presentation\\templates\\imageratings_list.tpl',
+      1 => 1383675942,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '18775254205b423047-02198712',
+  'nocache_hash' => '1462652793828bf4477-01203018',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_5254205b487a51_16634129',
   'variables' => 
   array (
     'obj' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_52793828c56f74_10071991',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5254205b487a51_16634129')) {function content_5254205b487a51_16634129($_smarty_tpl) {?><?php if (!is_callable('smarty_function_load_presentation_object')) include 'C:\\Users\\gauchoescoces\\Documents\\GitHub\\wp2\\MusicSample/presentation/smarty_plugins\\function.load_presentation_object.php';
-?>
-<?php echo smarty_function_load_presentation_object(array('filename'=>"albumratings_list",'assign'=>"obj"),$_smarty_tpl);?>
+<?php if ($_valid && !is_callable('content_52793828c56f74_10071991')) {function content_52793828c56f74_10071991($_smarty_tpl) {?><?php if (!is_callable('smarty_function_load_presentation_object')) include 'C:\\Users\\gauchoescoces\\Documents\\GitHub\\wp2\\GCUImagesStarter/presentation/smarty_plugins\\function.load_presentation_object.php';
+?><?php echo smarty_function_load_presentation_object(array('filename'=>"imageratings_list",'assign'=>"obj"),$_smarty_tpl);?>
 
 <div>
-    <h2>Related Albums</h2>
-	<?php if ($_smarty_tpl->tpl_vars['obj']->value->mAlbums){?>
+    <h2>Rated Images</h2>
+	<?php if ($_smarty_tpl->tpl_vars['obj']->value->mImages){?>
 		<ul>
-		
+
 		<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
-$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['obj']->value->mAlbums) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['obj']->value->mImages) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['show'] = true;
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['max'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'];
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['step'] = 1;
@@ -58,32 +57,29 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 ?>
 			<li>
 				
-                <?php if ($_smarty_tpl->tpl_vars['obj']->value->mAlbums[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['album_id']!=$_smarty_tpl->tpl_vars['obj']->value->mAlbumID){?>
-                    <?php if ($_smarty_tpl->tpl_vars['obj']->value->mAlbums[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['image']!=''){?>
-                        <a href="?op=Details&album_id=<?php echo $_smarty_tpl->tpl_vars['obj']->value->mAlbums[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['album_id'];?>
-">      
-                            <img src="./images/<?php echo $_smarty_tpl->tpl_vars['obj']->value->mAlbums[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['image'];?>
-" alt="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mAlbums[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['album_title'];?>
-"
-                                height="30" width="30" /></a>
-                        
+                <?php if ($_smarty_tpl->tpl_vars['obj']->value->mImages[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['image_id']!=$_smarty_tpl->tpl_vars['obj']->value->mImageID){?>
+                    <?php if ($_smarty_tpl->tpl_vars['obj']->value->mImages[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['image_url']!=''){?>
+                        <a href="?op=Details&image_id=<?php echo $_smarty_tpl->tpl_vars['obj']->value->mImages[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['image_id'];?>
+">  
+							<img src="./images/<?php echo $_smarty_tpl->tpl_vars['obj']->value->mImages[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['image_url'];?>
+" alt="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mImages[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['image_title'];?>
+"  height="30" width="30" />
+						</a>                        
                     <?php }?> 
                     &nbsp;
-                    <?php if ($_smarty_tpl->tpl_vars['obj']->value->mAlbums[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['average_rating']!=0){?>
-                        <img src="./images/rated<?php echo $_smarty_tpl->tpl_vars['obj']->value->mAlbums[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['average_rating'];?>
-.png" alt="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mAlbums[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['average_rating'];?>
- stars"
-                            height="10" />
+                    <?php if ($_smarty_tpl->tpl_vars['obj']->value->mImages[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['average_rating']!=0){?>
+                        <img src="./include/rated<?php echo $_smarty_tpl->tpl_vars['obj']->value->mImages[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['average_rating'];?>
+.png" alt="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mImages[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['average_rating'];?>
+ stars"  height="10" />
                     <?php }else{ ?>
-                        <img src="./images/rated0.png" alt="not rated"
-                            height="10"	/>
+                        <img src="./include/rated0.png" alt="not rated"  height="10"	/>
                     <?php }?><br />
-                    <?php echo $_smarty_tpl->tpl_vars['obj']->value->mAlbums[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['album_title'];?>
+                    <?php echo $_smarty_tpl->tpl_vars['obj']->value->mImages[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['image_title'];?>
 
                 <?php }?>
 		<?php endfor; endif; ?>
     	</ul>
-	
+
 	<?php }?>
 </div>
 

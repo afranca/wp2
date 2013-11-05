@@ -1,31 +1,31 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2013-10-30 15:49:08
-         compiled from "C:\Users\gauchoescoces\Documents\GitHub\wp2\GCUImagesStarter\presentation\templates\images_list.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:18597526535e6aaa4a8-09723126%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.14, created on 2013-10-30 13:34:51
+         compiled from "C:\Apps\xampp\htdocs\GCUImagesStarter\presentation\templates\images_list.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:246385270fcebf38a05-53819501%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'e75b58d37e9d3ec8cb7917825e820cf76d7ec62b' => 
+    '3300381c8bb7dadf19bd4724163d04ea069eafc6' => 
     array (
-      0 => 'C:\\Users\\gauchoescoces\\Documents\\GitHub\\wp2\\GCUImagesStarter\\presentation\\templates\\images_list.tpl',
-      1 => 1383144527,
+      0 => 'C:\\Apps\\xampp\\htdocs\\GCUImagesStarter\\presentation\\templates\\images_list.tpl',
+      1 => 1382374872,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '18597526535e6aaa4a8-09723126',
+  'nocache_hash' => '246385270fcebf38a05-53819501',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_526535e6b97942_99036084',
   'variables' => 
   array (
     'obj' => 0,
     'resultcond' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5270fcec0615d2_68171350',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_526535e6b97942_99036084')) {function content_526535e6b97942_99036084($_smarty_tpl) {?><?php if (!is_callable('smarty_function_load_presentation_object')) include 'C:\\Users\\gauchoescoces\\Documents\\GitHub\\wp2\\GCUImagesStarter/presentation/smarty_plugins\\function.load_presentation_object.php';
-if (!is_callable('smarty_function_math')) include 'C:\\Users\\gauchoescoces\\Documents\\GitHub\\wp2\\GCUImagesStarter/libs/smarty/plugins\\function.math.php';
+<?php if ($_valid && !is_callable('content_5270fcec0615d2_68171350')) {function content_5270fcec0615d2_68171350($_smarty_tpl) {?><?php if (!is_callable('smarty_function_load_presentation_object')) include 'C:\\Apps\\xampp\\htdocs\\GCUImagesStarter/presentation/smarty_plugins\\function.load_presentation_object.php';
+if (!is_callable('smarty_function_math')) include 'C:\\Apps\\xampp\\htdocs\\GCUImagesStarter/libs/smarty/plugins\\function.math.php';
 ?>
 <?php echo smarty_function_load_presentation_object(array('filename'=>"images_list",'assign'=>"obj"),$_smarty_tpl);?>
 
@@ -90,11 +90,6 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
         	<?php if ($_smarty_tpl->tpl_vars['resultcond']->value==0){?> </div>    	<?php }?>            
 		
 		<?php endfor; endif; ?>
-	</div>
-	
-<?php }else{ ?>	
-	<div id="galleryThumbnail">	
-		Your search generated no results.
 	</div>
 	
 <?php }?>

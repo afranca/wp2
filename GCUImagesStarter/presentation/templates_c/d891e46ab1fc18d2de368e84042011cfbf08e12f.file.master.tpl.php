@@ -1,29 +1,29 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2013-10-30 15:22:43
-         compiled from "C:\Users\gauchoescoces\Documents\GitHub\wp2\GCUImagesStarter\presentation\templates\master.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:22722526535a8091be5-94802922%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.14, created on 2013-10-30 13:34:51
+         compiled from "C:\Apps\xampp\htdocs\GCUImagesStarter\presentation\templates\master.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:189415270fcebd63e87-96710780%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'c8a0002e9cd79c681dab661727004a0388fe8f2d' => 
+    'd891e46ab1fc18d2de368e84042011cfbf08e12f' => 
     array (
-      0 => 'C:\\Users\\gauchoescoces\\Documents\\GitHub\\wp2\\GCUImagesStarter\\presentation\\templates\\master.tpl',
+      0 => 'C:\\Apps\\xampp\\htdocs\\GCUImagesStarter\\presentation\\templates\\master.tpl',
       1 => 1382978282,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '22722526535a8091be5-94802922',
+  'nocache_hash' => '189415270fcebd63e87-96710780',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_526535a830c902_79434310',
   'variables' => 
   array (
     'obj' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5270fcebdf60a0_10803446',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_526535a830c902_79434310')) {function content_526535a830c902_79434310($_smarty_tpl) {?><?php if (!is_callable('smarty_function_load_presentation_object')) include 'C:\\Users\\gauchoescoces\\Documents\\GitHub\\wp2\\GCUImagesStarter/presentation/smarty_plugins\\function.load_presentation_object.php';
+<?php if ($_valid && !is_callable('content_5270fcebdf60a0_10803446')) {function content_5270fcebdf60a0_10803446($_smarty_tpl) {?><?php if (!is_callable('smarty_function_load_presentation_object')) include 'C:\\Apps\\xampp\\htdocs\\GCUImagesStarter/presentation/smarty_plugins\\function.load_presentation_object.php';
 ?><?php  $_config = new Smarty_Internal_Config("site.conf", $_smarty_tpl->smarty, $_smarty_tpl);$_config->loadConfigVars(null, 'local'); ?>
 <?php echo smarty_function_load_presentation_object(array('filename'=>"master",'assign'=>"obj"),$_smarty_tpl);?>
 

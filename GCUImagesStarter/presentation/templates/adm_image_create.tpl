@@ -41,8 +41,9 @@ function submitForm(){
 				
 				
 				New Image: <input type="file" name="new_image" id="new_image">
-				<br>
-				<input type="button" value="Save" onclick="javascript:submitForm()">
+				<br><br>
+				<input type="button" value="Save" onclick="javascript:submitForm()"> 
+				&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="Cancel" onclick="javascript:location.href='http://localhost/GCUImagesStarter/index.php?op=admImageList'"> 
 			</form>
 
 		</div>
