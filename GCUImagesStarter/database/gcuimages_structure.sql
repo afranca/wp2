@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2013 at 06:13 PM
+-- Generation Time: Nov 05, 2013 at 07:45 PM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.3
 
@@ -154,6 +154,23 @@ PREPARE statement FROM
        ORDER BY image_id";
 SET @p1 = inContributor;
 EXECUTE statement USING @p1;
+END$$
+
+DROP PROCEDURE IF EXISTS `collection_get_highest_rated_contributors`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `collection_get_highest_rated_contributors`()
+BEGIN
+
+ SELECT image_contributor, round(sum(sum_ratings)/sum(no_ratings),0) as average_rating
+  FROM image
+	GROUP BY image_contributor
+	ORDER BY average_rating desc limit 20;
+END$$
+
+DROP PROCEDURE IF EXISTS `collection_get_highest_rated_images`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `collection_get_highest_rated_images`()
+BEGIN
+
+ SELECT image_id, image_title, image_contributor, image_description, image_url, width,height,category, round(sum_ratings/no_ratings, 0) as average_rating, no_ratings FROM image ORDER BY average_rating desc limit 10;
 END$$
 
 DROP PROCEDURE IF EXISTS `collection_get_images_by_category`$$
@@ -363,8 +380,8 @@ CREATE TABLE IF NOT EXISTS `image` (
   `sum_ratings` int(10) NOT NULL DEFAULT '0',
   `no_ratings` int(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`image_id`),
-  FULLTEXT KEY `idx_ft_image_title_contributor` (`image_title`,`image_contributor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=170 ;
+  KEY `idx_ft_image_title_contributor` (`image_title`,`image_contributor`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=192 ;
 
 -- --------------------------------------------------------
 
@@ -390,7 +407,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `tag_id` int(11) NOT NULL AUTO_INCREMENT,
   `tag_name` varchar(30) NOT NULL,
   PRIMARY KEY (`tag_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=650 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=683 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -65,7 +65,7 @@
 				$this->new_image = $this->mImage['image_url'];
 				//echo("1");
 			}elseif (empty($_FILES["new_image"]["name"]) && !$this->update) {				
-				$this->new_image = 'image_missing.png';
+				$this->new_image = 'missing_object.jpg';
 				//echo("2");
 			
 			} else  {			
@@ -104,7 +104,8 @@
 		
 		private function uploadImage(){
 		
-			define("UPLOAD_DIR", "/Users/gauchoescoces/Documents/GitHub/wp2/GCUImagesStarter/images/");
+			//define("UPLOAD_DIR", "/Users/gauchoescoces/Documents/GitHub/wp2/GCUImagesStarter/images/");
+			define("UPLOAD_DIR", "images/");
 			//echo ("1.1 ");
 			
 			if (!empty($_FILES["new_image"])) {

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2013 at 03:30 PM
+-- Generation Time: Nov 05, 2013 at 07:48 PM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.3
 
@@ -154,6 +154,23 @@ PREPARE statement FROM
        ORDER BY image_id";
 SET @p1 = inContributor;
 EXECUTE statement USING @p1;
+END$$
+
+DROP PROCEDURE IF EXISTS `collection_get_highest_rated_contributors`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `collection_get_highest_rated_contributors`()
+BEGIN
+
+ SELECT image_contributor, round(sum(sum_ratings)/sum(no_ratings),0) as average_rating
+  FROM image
+	GROUP BY image_contributor
+	ORDER BY average_rating desc limit 20;
+END$$
+
+DROP PROCEDURE IF EXISTS `collection_get_highest_rated_images`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `collection_get_highest_rated_images`()
+BEGIN
+
+ SELECT image_id, image_title, image_contributor, image_description, image_url, width,height,category, round(sum_ratings/no_ratings, 0) as average_rating, no_ratings FROM image ORDER BY average_rating desc limit 10;
 END$$
 
 DROP PROCEDURE IF EXISTS `collection_get_images_by_category`$$
@@ -364,7 +381,7 @@ CREATE TABLE IF NOT EXISTS `image` (
   `no_ratings` int(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`image_id`),
   FULLTEXT KEY `idx_ft_image_title_contributor` (`image_title`,`image_contributor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=187 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=192 ;
 
 --
 -- Dumping data for table `image`
@@ -374,7 +391,7 @@ INSERT INTO `image` (`image_id`, `image_title`, `image_description`, `image_cont
 (3, 'Nigerian Grave Diggers, 6 Feet', 'The men standing in the picture are all hired grave diggers, that''s what they are called in western part of Africa and they are mostly hired whenever someone is dead and needs to be buried. They are professionally trained in digging down 6ft the ground whenever someone is been pronounced dead, though this style ought to have been improved as we ought to have taken a lot of steps after our colonial masters (British) but that isn''t happening yet, I just look at the picture most times and think it is not an interesting experience at all and I intend to keep it just for the memories and also for the fact that I may end up being buried like this one day, God knows the best.', 'Adedamola Oladebo', 'ao_nigeriangravediggers.jpg', 300, 300, 'Culture', 0, 0),
 (4, 'One World Trade Centre, New York', 'The new Trade Centre/Memorial being built in down town New York last year. This is being built as a memorial for the 9/11 terrorist attacks that took so many lives years ago.', 'Alex Jarvie', 'aj_oneworldtradecentreNY.jpg', 300, 300, 'Travel', 0, 0),
 (5, 'View From Central Park, New York', 'A walk through Central Park in New York Last summer thought I would take a picture to show the contrast between the park and all these massive sky scrapers that surrounded it.', 'Alex Jarvie', 'aj_viewfromcentralparkNY.jpg', 640, 480, 'Travel', 0, 0),
-(7, 'New York City From The Empire State Building', 'A wonderful overview of New York City from the top of the Empire State Building. A staggering view and can see for miles around and see many different landmarks around the city', 'Alex Murray', 'am_nycfromempirestatebuilding.jpg', 640, 480, 'Travel', 0, 0),
+(7, 'New York City From The Empire State Building', 'A wonderful overview of New York City from the top of the Empire State Building. A staggering view and can see for miles around and see many different landmarks around the city', 'Alex Murray', 'am_nycfromempirestatebuilding.jpg', 640, 480, 'Travel', 8, 2),
 (8, 'Statue Of Liberty', 'The famous Statue of Liberty in New York City. Built in 1875 it is a symbol of freedom in the USA. It is certainly one of the most iconic landmarks in the world.', 'Alex Murray', 'am_statueofliberty.jpg', 640, 480, 'Travel', 0, 0),
 (9, 'City Hall, Marienplatz, Munich', 'This is the wonderfully constructed city hall in Munich''s main square, the Marienplatz. It draws millions of tourists a year and can be seen for miles around the city. It was built to celebrate the end of Swedish occupation.', 'Alex Murray', 'am_cityhallmarienplatzmunich.jpg', 640, 480, 'Travel', 0, 0),
 (10, 'Chamonix, France', 'This photo was taken in 2009 during my ski trip to Chamonix, in the French Alps.  It was taken at dusk that''s the reason the snow is reflecting reddish light, giving us a very colourful and interesting view of the summit.', 'Alexandre Franca', 'af_chamonixfrance.jpg', 640, 480, 'Travel', 0, 0),
@@ -506,22 +523,16 @@ INSERT INTO `image` (`image_id`, `image_title`, `image_description`, `image_cont
 (138, 'International Docking Unit, Smithsonian', 'The International Docking Unit test, allowing American Apollo and Russian Soyuz capsules to dock in preparation for the International Space Station in the Smithsonian Air and Space museum in Washington DC.', 'Thomas McCarthy', 'tmcc_internationaldockingunitsmithsonianwashingtondc.jpg', 640, 480, 'Transport', 0, 0),
 (139, 'Dunure Beach', 'This is an image taken at Dunure beach on a summer evening. Dunure beach is situated on the coast and at certain points of the beach, if the weather is clear enough, you can see Ireland in the distance.  The beach is also situated along from the electric brae.', 'Stuart Milne', 'sm_dunurebeach.png', 640, 480, 'Travel', 0, 0),
 (141, 'Ben Nevis', 'This is an image taken about three quarters of the way up Ben Nevis. There was a lake just towards the bottom left of the image above, there were a few boats in the lake that looked like they were used for fishing. Cloudy weather and very windy at the time made the last quarter of climbing feel like eternity to reach the top.', 'Stuart Milne', 'sm_bennevis.png', 640, 480, 'Travel', 0, 0),
-(142, 'George & The Dragon', 'Statue of George and the Dragon', 'Ross Cook', 'rc_georgeandthedragon.jpg', 480, 640, 'Travel', 0, 0),
+(142, 'George & The Dragon', 'Statue of George and the Dragon', 'Ross Cook', 'rc_georgeandthedragon.jpg', 480, 640, 'Travel', 2, 1),
 (143, 'Peacock Metalwork', 'Metalwork shaped to be a peacock', 'Ross Cook', 'rc_peacockmetalwork.jpg', 640, 480, 'Travel', 0, 0),
 (144, 'Artistic Bridge, Glasgow', 'Artistic bridge in Glasgow', 'Ross Cook', 'rc_artisticbridgeglasgow.jpg', 640, 480, 'Travel', 0, 0),
 (145, 'Iraq At A Glance', 'Iraq is one of the Arabic states which located in the west south of the Asian continent, to the north of Kuwait & Saudi Arabia, to the south of Turkey, to the east of Syria and Jordan and to the west of Iran. Iraq has more than one seaport on the Arabian Gulf but the most important is Umm Qasr. The two rivers "Tigris" and "Euphrates" passes from the north of country to the south where the merge together to form Shatt al-Arab.', 'Shatha Hameed', 'sh_iraqataglance.gif', 480, 526, 'Travel', 0, 0),
 (146, 'Baghdad', 'Baghdad is the capital of Iraq, with an estimated population between 7 and 7.5 million, it is the largest city in Iraq. \r\nThe name of Baghdad used to evoke images of Arabian Nights. The fairytale city it once was, capital of the Abbasid Caliphate, was destroyed by the Mongol invaders in 1258. Baghdad did recover and has always played an important role in Arab cultural life and has been the home of noted writers, musicians and visual artists.\r\nThere are still a lot of impressive monuments in Baghdad are worth a visit.', 'Shatha Hameed', 'sh_baghdad.gif', 640, 480, 'Travel', 0, 0),
 (147, 'Mosul', 'Mosul, 400 km north of Baghdad, is Iraq''s 2nd largest city, a center for the tourist resorts of northern Iraq. It is called Um Al-Rabi''ain (The City of Two Springs), because autumn and spring are very much alike there.\r\nThe original city stands on the west bank of the Tigris River, opposite the ancient Assyrian city of Nineveh on the east bank, but it has now grown to encompass substantial areas on both banks, with five bridges linking the two sides', 'Shatha Hameed', 'sh_mosul.gif', 640, 480, 'Travel', 0, 0),
 (176, 'Nikola Telsa', 'Celebration of rthe 157th birthday of Nikola Tesla, Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current electricity supply system.', 'Alexandre Franca', 'Nikola-Tesla-2.jpg', 300, 300, 'Celebration', 0, 0),
-(179, 'Gremio Football  Club', 'Gremio was founded by English and German immigrants on September 15, 1903. Major titles captured by Gremio include one Intercontinental Cup, two Copa Libertadores de America, two national championships and four national cups. Gremio plays in a tricolor (blue, white and black) striped shirt, black shorts and white socks (first kit).', 'Alexandre Franca', 'Gremio.png', 300, 300, 'Travel', 0, 0);
+(179, 'Gremio Football  Club', 'Gremio was founded by English and German immigrants on September 15, 1903. Major titles captured by Gremio include one Intercontinental Cup, two Copa Libertadores de America, two national championships and four national cups. Gremio plays in a tricolor (blue, white and black) striped shirt, black shorts and white socks (first kit).', 'Alexandre Franca', 'Gremio.png', 300, 300, 'Travel', 5, 1);
 INSERT INTO `image` (`image_id`, `image_title`, `image_description`, `image_contributor`, `image_url`, `width`, `height`, `category`, `sum_ratings`, `no_ratings`) VALUES
-(180, 'Solo Climbing', 'Alexander J. Honnold (born August 17, 1985) is an American rock climber best known for his free solo ascents of big walls. He has broken a number of speed records, most notably the only known solo climb (95% free climbing with a few points of aid) of the Yosemite Triple crown, an 18 hour 50 minute link up of Mount Watkins, The Nose, and the Regular Northwest Face of Half Dome.[1]', 'Alexander Honnold', 'alex_honnold.jpg', 300, 300, 'Sports', 0, 0),
-(181, 'Snowboarding', 'Snowboarding is a winter sport that involves descending a slope that is covered with snow while standing on a board attached to a riders feet, using a special boot set onto a mounted binding.', 'Travis Rice', 'snowboard-1.jpg', 300, 300, 'Sports', 0, 0),
-(182, 'Nazca Lines', 'The Nazca Lines are a series of ancient geoglyphs located in the Nazca Desert in southern Peru. They were designated as a UNESCO World Heritage Site in 199', 'Cinthya Ventocilla', 'nascar_lines.jpg', 300, 300, 'Travel', 0, 0),
-(183, 'Icelandic Horse', 'The Icelandic horse is a breed of horse developed in Iceland. Although the horses are small, at times pony-sized, most registries for the Icelandic refer to it as a horse. Icelandic horses are long-lived and hardy. ', 'Wikipedia', 'Icelandic_Horse.jpg', 300, 300, 'Travel', 0, 0),
-(184, 'Pampa horse', 'The Pampa horse is a breed of horses from Brazil. It is an extremely obedient horse which is suitable for all uses. The Associacao de Cavalo Pampa (Association of the Pampa horse) is located in Belo Horizonte. The minimum height is 1.50m for males and 1.45m for females', 'Wikipedia', 'pampa_horse.jpg', 300, 300, 'Travel', 0, 0),
-(185, 'Aurora Borealis', 'An aurora is a natural light display in the sky particularly in the high latitude regions, caused by the collision of energetic charged particles with atoms in the high altitude atmosphere', 'Wikipedia', 'aurora_borealis.jpg', 300, 300, 'Nature', 0, 0),
-(186, 'Helicoter Jump', 'Helicopter jump performed by Travis Rice in a documentary in Alaska', 'Travis Rice', 'helicopter.jpg', 300, 300, 'Sports', 0, 0);
+(180, 'Solo Climbing', 'Alexander J. Honnold (born August 17, 1985) is an American rock climber best known for his free solo ascents of big walls. He has broken a number of speed records, most notably the only known solo climb (95% free climbing with a few points of aid) of the Yosemite Triple crown, an 18 hour 50 minute link up of Mount Watkins, The Nose, and the Regular Northwest Face of Half Dome.[1]', 'Alexander Honnold', 'alex_honnold.jpg', 300, 300, 'Sports', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1636,27 +1647,7 @@ INSERT INTO `image_tag` (`image_id`, `tag_id`) VALUES
 (180, 8),
 (180, 51),
 (180, 58),
-(180, 672),
-(181, 44),
-(181, 45),
-(181, 673),
-(182, 674),
-(182, 675),
-(183, 676),
-(183, 677),
-(184, 175),
-(184, 676),
-(184, 678),
-(185, 20),
-(185, 53),
-(185, 302),
-(185, 679),
-(185, 680),
-(186, 28),
-(186, 44),
-(186, 537),
-(186, 681),
-(186, 682);
+(180, 672);
 
 -- --------------------------------------------------------
 

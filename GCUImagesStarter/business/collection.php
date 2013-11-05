@@ -101,18 +101,18 @@ class Collection
 	private static function HowManyPages($countSql, $countSqlParams)
 	{
 		// Create a hash for the sql query
-		$queryHashCode = md5($countSql . var_export($countSqlParams, true));
+		//$queryHashCode = md5($countSql . var_export($countSqlParams, true));
 
 		// Verify if we have the query results in cache
-		if (isset ($_SESSION['last_count_hash']) &&
-			isset ($_SESSION['how_many_pages']) &&
-			$_SESSION['last_count_hash'] === $queryHashCode)
-		{
+		//if (isset ($_SESSION['last_count_hash']) &&
+		//	isset ($_SESSION['how_many_pages']) &&
+		//	$_SESSION['last_count_hash'] === $queryHashCode)
+		//{
 			// Retrieve the the cached value
-			$how_many_pages = $_SESSION['how_many_pages'];
-		}
-		else
-		{
+		//	$how_many_pages = $_SESSION['how_many_pages'];
+		//}
+		//else
+		//{
 			// Execute the query
 			$items_count = DatabaseHandler::GetOne($countSql, $countSqlParams);
 
@@ -120,9 +120,9 @@ class Collection
 			$how_many_pages = ceil($items_count / IMAGES_PER_PAGE);
 
 			// Save the query and its count result in the session
-			$_SESSION['last_count_hash'] = $queryHashCode;
-			$_SESSION['how_many_pages'] = $how_many_pages;
-		}
+		//	$_SESSION['last_count_hash'] = $queryHashCode;
+		//	$_SESSION['how_many_pages'] = $how_many_pages;
+		//}
 
 		// Return the number of pages
 		return $how_many_pages;
@@ -505,7 +505,25 @@ class Collection
     $sql = 'CALL collection_rate_image(:image_id, :new_rating)';
     $params = array (':image_id' => $imageId,':new_rating' => $newRating);
     DatabaseHandler::Execute($sql, $params);
-  }  
+  } 
+
+
+	public static function GetHighestRatedImages(){
+
+		$sql = 'CALL collection_get_highest_rated_images()';
+
+
+		return DatabaseHandler::GetAll($sql);
+	}
+
+
+	public static function GetHighestRatedContributors()	{
+
+		$sql = 'CALL collection_get_highest_rated_contributors()';
+
+
+		return DatabaseHandler::GetAll($sql);
+	}  
   
 }
 
