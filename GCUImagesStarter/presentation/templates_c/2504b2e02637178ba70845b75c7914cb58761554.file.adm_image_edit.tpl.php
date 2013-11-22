@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2013-11-05 23:13:50
+<?php /* Smarty version Smarty-3.1.14, created on 2013-11-06 10:35:47
          compiled from "C:\Users\gauchoescoces\Documents\GitHub\wp2\GCUImagesStarter\presentation\templates\adm_image_edit.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20179526b91db4390f2-40312686%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2504b2e02637178ba70845b75c7914cb58761554' => 
     array (
       0 => 'C:\\Users\\gauchoescoces\\Documents\\GitHub\\wp2\\GCUImagesStarter\\presentation\\templates\\adm_image_edit.tpl',
-      1 => 1383689628,
+      1 => 1383730545,
       2 => 'file',
     ),
   ),
@@ -165,21 +165,35 @@ function submitForm(){
 }
 </script>
 
-<div>
-    <div id="image">
-		<h3><?php echo $_smarty_tpl->tpl_vars['obj']->value->mImage['image_title'];?>
+<?php if ($_smarty_tpl->tpl_vars['obj']->value->mErrorMessage){?>
+
+	<div>
+		<div id="image">
+			
+			<h3><?php echo $_smarty_tpl->tpl_vars['obj']->value->mErrorMessage;?>
+  </h3>
+			
+			 <input type="button" value="Go Back" onclick="javascript:location.href='http://localhost/GCUImagesStarter/index.php?op=admImageList'">
+		</div>
+	</div>
+
+<?php }else{ ?>
+
+	<div>
+		<div id="image">
+			<h3><?php echo $_smarty_tpl->tpl_vars['obj']->value->mImage['image_title'];?>
  <?php if ($_smarty_tpl->tpl_vars['obj']->value->mImage){?>by <?php }?> <?php echo $_smarty_tpl->tpl_vars['obj']->value->mImage['image_contributor'];?>
  &nbsp; </h3>
-		<div id='leftItemTemplate'>
-			<form action="?op=admImageSave" id="form1"  method="post" enctype="multipart/form-data"> 
-				<input type="hidden" name="image_id" id="image_id" value="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mImage['image_id'];?>
+			<div id='leftItemTemplate'>
+				<form action="?op=admImageSave" id="form1"  method="post" enctype="multipart/form-data"> 
+					<input type="hidden" name="image_id" id="image_id" value="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mImage['image_id'];?>
 " />
-				Title: <input type="text" name="image_title" id="image_title" value="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mImage['image_title'];?>
+					Title: <input type="text" name="image_title" id="image_title" value="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mImage['image_title'];?>
 " size="60"/> <br>
-				Contributor: <input type="text" name="image_contributor" id="image_contributor" value="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mImage['image_contributor'];?>
+					Contributor: <input type="text" name="image_contributor" id="image_contributor" value="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mImage['image_contributor'];?>
 "  size="60"/> <br>
-				Category:<br>   <SELECT name="image_category">
-								<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
+					Category:<br>   <SELECT name="image_category">
+									<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['obj']->value->mCategories) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['show'] = true;
@@ -203,37 +217,37 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index_next'] = $_smarty
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == 1);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
-									<OPTION VALUE="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mCategories[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['category'];?>
+										<OPTION VALUE="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mCategories[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['category'];?>
 " <?php if ($_smarty_tpl->tpl_vars['obj']->value->mCategories[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['category']==$_smarty_tpl->tpl_vars['obj']->value->mImage['category']){?> SELECTED <?php }?>><?php echo $_smarty_tpl->tpl_vars['obj']->value->mCategories[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['category'];?>
 </OPTION>
-								<?php endfor; endif; ?> 
-							</SELECT>
-				<br>			
-				Description: <br><textarea name="image_description" id="image_description" rows="5" cols="46"><?php echo $_smarty_tpl->tpl_vars['obj']->value->mImage['image_description'];?>
+									<?php endfor; endif; ?> 
+								</SELECT>
+					<br>			
+					Description: <br><textarea name="image_description" id="image_description" rows="5" cols="46"><?php echo $_smarty_tpl->tpl_vars['obj']->value->mImage['image_description'];?>
 </textarea> <br>
-				
-				<p><img src='./images/<?php echo $_smarty_tpl->tpl_vars['obj']->value->mImage['image_url'];?>
+					
+					<p><img src='./images/<?php echo $_smarty_tpl->tpl_vars['obj']->value->mImage['image_url'];?>
 ' alt='<?php echo $_smarty_tpl->tpl_vars['obj']->value->mImage['image_title'];?>
 ' height='200' /></p>
-				New Image: <input type="file" name="new_image" id="name="new_image">
-				<br><br>
-				<input type="button" value="Save" onclick="javascript:submitForm()">
-				&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="Cancel" onclick="javascript:location.href='http://localhost/GCUImagesStarter/index.php?op=admImageList'"> 
-			</form>
+					New Image: <input type="file" name="new_image" id="name="new_image">
+					<br><br>
+					<input type="button" value="Save" onclick="javascript:submitForm()">
+					&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="Cancel" onclick="javascript:location.href='http://localhost/GCUImagesStarter/index.php?op=admImageList'"> 
+				</form>
 
-		</div>
-		<div id='rightItemTemplate'>
-			<h2>Tags</h2>
-			<form>
-				<input type="text"   id="tag_name" size="30" onkeyup="javascript:showResult(this.value)"> <input type="button" value="assign"  onclick="javascript:assignTag();">
-				<input type="hidden" id="tag_id">
-				<div id="livesearch"></div>
-				
-			</form>			
-			<?php if ($_smarty_tpl->tpl_vars['obj']->value->mTags){?>
-				<div id="tags">
-											
-						<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
+			</div>
+			<div id='rightItemTemplate'>
+				<h2>Tags</h2>
+				<form>
+					<input type="text"   id="tag_name" size="30" onkeyup="javascript:showResult(this.value)"> <input type="button" value="assign"  onclick="javascript:assignTag();">
+					<input type="hidden" id="tag_id">
+					<div id="livesearch"></div>
+					
+				</form>			
+				<?php if ($_smarty_tpl->tpl_vars['obj']->value->mTags){?>
+					<div id="tags">
+												
+							<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['obj']->value->mTags) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['show'] = true;
@@ -257,18 +271,19 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index_next'] = $_smarty
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == 1);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
-							<div id="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mTags[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['tag_id'];?>
+								<div id="<?php echo $_smarty_tpl->tpl_vars['obj']->value->mTags[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['tag_id'];?>
 "><b>[</b><?php echo $_smarty_tpl->tpl_vars['obj']->value->mTags[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['tag_name'];?>
 <b>]</b><a href='javascript:unassignTag(<?php echo $_smarty_tpl->tpl_vars['obj']->value->mTags[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['tag_id'];?>
 )'>x</a> &nbsp;</div>
-						<?php endfor; endif; ?>        
-					
-				</div>			
-			<?php }?>
+							<?php endfor; endif; ?>        
+						
+					</div>			
+				<?php }?>
 
-			
+				
+			</div>
 		</div>
 	</div>
-</div>
-       
+
+<?php }?> 
  <?php }} ?>

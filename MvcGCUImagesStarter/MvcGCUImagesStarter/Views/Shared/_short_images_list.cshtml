@@ -1,0 +1,19 @@
+﻿@model IEnumerable<MvcGCUImagesStarter.Models.Image>
+
+<div>
+    <h2>Images</h2>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                @{ string imageURL = "../../Images/" + Html.Encode(item.ImageURL);}
+                <a href="@Url.Action("Details", "Image", new { id = item.ImageId })">
+                    <img src="@Html.Encode(imageURL)" alt="@Html.Encode(item.ImageTitle) Cover"
+                        height="30" width="30" /></a>     
+                <br />
+                @Html.DisplayFor(modelItem => item.ImageTitle)
+            </li>
+        }
+
+    </ul>
+</div>

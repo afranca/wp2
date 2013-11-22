@@ -1,6 +1,6 @@
 {* logo_menu.tpl *}
 <div id="main-nav">
-	{include file="searchbox.tpl"}
+	{include file="searchbox_disabled.tpl"}
     <ul id="menu">
 		
 		<li>
@@ -15,7 +15,7 @@
 		</li>  
 
 		<li>
-			<a id="Menu_AdminLogout" href="?op=Logout">Logout</a>
+			<a id="Menu_AdminLink" href="?op=Login">Admin</a>
 		</li> 		
 		
 	</ul>

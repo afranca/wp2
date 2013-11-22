@@ -53,5 +53,7 @@
 		</div>
 	</div>
 </div>
+{else} 
+		The Image you have chosen does not exist in our Database
 {/if}       
  

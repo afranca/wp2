@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GCUImagesModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="GCUImagesEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Images" EntityType="GCUImagesModel.Image" />
+    <EntitySet Name="Tags" EntityType="GCUImagesModel.Tag" />
+    <AssociationSet Name="ImageTag" Association="GCUImagesModel.ImageTag">
+      <End Role="Image" EntitySet="Images" />
+      <End Role="Tag" EntitySet="Tags" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="ImageId" />
+    </Key>
+    <Property Name="ImageId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ImageTitle" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ImageDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="ImageContributor" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ImageURL" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="ImageWidth" Type="Int16" Nullable="false" />
+    <Property Name="ImageHeight" Type="Int16" Nullable="false" />
+    <Property Name="Category" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Tags" Relationship="GCUImagesModel.ImageTag" FromRole="Image" ToRole="Tag" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="TagId" />
+    </Key>
+    <Property Name="TagId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="TagName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Images" Relationship="GCUImagesModel.ImageTag" FromRole="Tag" ToRole="Image" />
+  </EntityType>
+  <Association Name="ImageTag">
+    <End Role="Image" Type="GCUImagesModel.Image" Multiplicity="*" />
+    <End Role="Tag" Type="GCUImagesModel.Tag" Multiplicity="*" />
+  </Association>
+</Schema>

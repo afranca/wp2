@@ -1,0 +1,12 @@
+﻿@model IEnumerable<MvcGCUImagesStarter.Models.Category>
+    <h2>Categories</h2>
+<ul>
+
+@foreach (var item in Model) {
+    <li>
+        @Html.DisplayFor(modelItem => item.category)
+        (@Html.DisplayFor(modelItem => item.kount))
+    </li>
+}
+</ul>
+

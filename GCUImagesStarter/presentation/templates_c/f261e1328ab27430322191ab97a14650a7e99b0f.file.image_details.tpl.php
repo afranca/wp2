@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2013-11-01 17:55:10
+<?php /* Smarty version Smarty-3.1.14, created on 2013-11-06 13:15:39
          compiled from "C:\Users\gauchoescoces\Documents\GitHub\wp2\GCUImagesStarter\presentation\templates\image_details.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1275252655fc74dc4f3-10046812%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f261e1328ab27430322191ab97a14650a7e99b0f' => 
     array (
       0 => 'C:\\Users\\gauchoescoces\\Documents\\GitHub\\wp2\\GCUImagesStarter\\presentation\\templates\\image_details.tpl',
-      1 => 1383324908,
+      1 => 1383740135,
       2 => 'file',
     ),
   ),
@@ -115,5 +115,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 		</div>
 	</div>
 </div>
+<?php }else{ ?> 
+		The Image you have chosen does not exist in our Database
 <?php }?>       
  <?php }} ?>

@@ -1,0 +1,8 @@
+﻿@model IEnumerable<MvcGCUImagesStarter.Models.Contributor>
+
+@{
+    ViewBag.Title = "Contributors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_contributors_list", Model)

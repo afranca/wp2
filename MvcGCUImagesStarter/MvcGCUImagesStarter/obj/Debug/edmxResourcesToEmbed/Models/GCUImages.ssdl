@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GCUImagesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="GCUImagesModelStoreContainer">
+    <EntitySet Name="Image" EntityType="GCUImagesModel.Store.Image" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ImageTag" EntityType="GCUImagesModel.Store.ImageTag" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tag" EntityType="GCUImagesModel.Store.Tag" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ImageTag_Image" Association="GCUImagesModel.Store.FK_ImageTag_Image">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="ImageTag" EntitySet="ImageTag" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImageTag_Tag" Association="GCUImagesModel.Store.FK_ImageTag_Tag">
+      <End Role="Tag" EntitySet="Tag" />
+      <End Role="ImageTag" EntitySet="ImageTag" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="ImageId" />
+    </Key>
+    <Property Name="ImageId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ImageTitle" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ImageDescription" Type="text" Nullable="false" />
+    <Property Name="ImageContributor" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ImageURL" Type="varchar" Nullable="false" MaxLength="250" />
+    <Property Name="ImageWidth" Type="smallint" Nullable="false" />
+    <Property Name="ImageHeight" Type="smallint" Nullable="false" />
+    <Property Name="Category" Type="varchar" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="ImageTag">
+    <Key>
+      <PropertyRef Name="ImageId" />
+      <PropertyRef Name="TagId" />
+    </Key>
+    <Property Name="ImageId" Type="int" Nullable="false" />
+    <Property Name="TagId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="TagId" />
+    </Key>
+    <Property Name="TagId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TagName" Type="varchar" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <Association Name="FK_ImageTag_Image">
+    <End Role="Image" Type="GCUImagesModel.Store.Image" Multiplicity="1" />
+    <End Role="ImageTag" Type="GCUImagesModel.Store.ImageTag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="ImageId" />
+      </Principal>
+      <Dependent Role="ImageTag">
+        <PropertyRef Name="ImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImageTag_Tag">
+    <End Role="Tag" Type="GCUImagesModel.Store.Tag" Multiplicity="1" />
+    <End Role="ImageTag" Type="GCUImagesModel.Store.ImageTag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tag">
+        <PropertyRef Name="TagId" />
+      </Principal>
+      <Dependent Role="ImageTag">
+        <PropertyRef Name="TagId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

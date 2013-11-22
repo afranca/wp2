@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2013-10-29 18:16:01
+<?php /* Smarty version Smarty-3.1.14, created on 2013-11-06 13:10:06
          compiled from "C:\Users\gauchoescoces\Documents\GitHub\wp2\GCUImagesStarter\presentation\templates\adm_menu.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5755526d0211a55ee2-73486657%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '973c502137eca8ef65d4ed6da23990e168edbfd4' => 
     array (
       0 => 'C:\\Users\\gauchoescoces\\Documents\\GitHub\\wp2\\GCUImagesStarter\\presentation\\templates\\adm_menu.tpl',
-      1 => 1383066959,
+      1 => 1383739715,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_526d0211a5b5f2_20019299')) {function content_526d0211a5b5f2_20019299($_smarty_tpl) {?>
 <div id="main-nav">
-	<?php echo $_smarty_tpl->getSubTemplate ("searchbox.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+	<?php echo $_smarty_tpl->getSubTemplate ("searchbox_disabled.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
     <ul id="menu">
 		
@@ -37,7 +37,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</li>  
 
 		<li>
-			<a id="Menu_AdminLogout" href="?op=Logout">Logout</a>
+			<a id="Menu_AdminLink" href="?op=Login">Admin</a>
 		</li> 		
 		
 	</ul>

@@ -16,6 +16,7 @@ class Master {
 		// Load Business Tier
 		require_once BUSINESS_DIR . 'collection.php';
 
+		$this->mTopMenu="menu.tpl";
 
  		if ($_SESSION['CurrentPage'] == 'Home' || $_SESSION['CurrentPage'] == 'Images')	{
 			$this->mContentsCell = 'images_list.tpl';
@@ -57,6 +58,7 @@ class Master {
 			$this->mSideBar = 'blank.tpl';			
 			
 		}else if($_SESSION['CurrentPage'] == 'admImageList'){
+			$this->mTopMenu="adm_menu.tpl";	
 			if (isset($_SESSION['admin_logged']) && $_SESSION['admin_logged']==true ){
 				$this->mContentsCell = 'adm_images_list.tpl';
 				$this->mSideBar = 'adm_side_menu.tpl';			
@@ -66,6 +68,7 @@ class Master {
 			}
 			
 		}else if($_SESSION['CurrentPage'] == 'admImageEdit'){
+			$this->mTopMenu="adm_menu.tpl";	
 			if (isset($_SESSION['admin_logged']) && $_SESSION['admin_logged']==true ){
 				$this->mContentsCell = 'adm_image_edit.tpl';
 				$this->mSideBar = 'adm_side_menu.tpl';			
@@ -75,6 +78,7 @@ class Master {
 			}		
 			
 		}else if($_SESSION['CurrentPage'] == 'admImageSave'){
+			$this->mTopMenu="adm_menu.tpl";	
 			if (isset($_SESSION['admin_logged']) && $_SESSION['admin_logged']==true ){
 				$this->mContentsCell = 'adm_image_save.tpl';
 				$this->mSideBar = 'adm_side_menu.tpl';		
@@ -85,6 +89,7 @@ class Master {
 
 			
 		}else if($_SESSION['CurrentPage'] == 'admImageCreate'){
+			$this->mTopMenu="adm_menu.tpl";	
 			if (isset($_SESSION['admin_logged']) && $_SESSION['admin_logged']==true ){
 				$this->mContentsCell = 'adm_image_create.tpl';
 				$this->mSideBar = 'adm_side_menu.tpl';		
@@ -93,6 +98,7 @@ class Master {
 				$this->mSideBar = 'blank.tpl';
 			}			
 		}else if($_SESSION['CurrentPage'] == 'admImageDelete'){
+			$this->mTopMenu="adm_menu.tpl";	
 			if (isset($_SESSION['admin_logged']) && $_SESSION['admin_logged']==true ){
 				$this->mContentsCell = 'adm_image_delete.tpl';
 				$this->mSideBar = 'adm_side_menu.tpl';		
@@ -105,13 +111,13 @@ class Master {
 			$this->mSideBar = 'not_implemented.tpl';
 		}
 		
-		
-        //if (isset($_SESSION['admin_logged']) && $_SESSION['admin_logged']==true){
-		//	$this->mTopMenu="adm_menu.tpl";		
-		//} else {
+		/*
+        if (isset($_SESSION['admin_logged']) && $_SESSION['admin_logged']==true){
+			$this->mTopMenu="adm_menu.tpl";		
+		} else {
 			$this->mTopMenu="menu.tpl";
-		//}
-	
+		}
+		*/
 		
 	}
 }

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MvcGCUImagesStarter.Models.Image>
+
+<div id="galleryThumbnail">
+    @{ int x = 0; }
+    @foreach (var item in Model)
+    {
+        if (x == 0)
+        {
+            @:<div class="row">
+            x = 1;
+        } 
+        <div class="cell">
+            <p>
+                @{ string imageURL = "../../Images/" + Html.Encode(item.ImageURL);}
+                <a href="@Url.Action("Details", "Image", new { id = item.ImageId })">
+                    <img src="@Html.Encode(imageURL)" alt="@Html.Encode(item.ImageTitle)"
+                        height="100" width="100" />
+                </a>                
+                <span>
+                    @Html.DisplayFor(modelItem => item.ImageTitle)<br />
+                    @Html.DisplayFor(modelItem => item.ImageContributor)
+                </span>
+            </p>
+        </div>
+        if (x == 4)
+        {         
+            @:</div>
+            x = 0;
+        }
+        else
+        {
+            x++;
+        }
+    }
+</div>

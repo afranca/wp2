@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MvcGCUImagesStarter.Models.Contributor>
+
+<table>
+    <thead>
+    <tr>
+        <th>Contributor</th>
+        <th>Images</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+            @Html.DisplayFor(modelItem => item.contributorName)
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        @foreach (var image in item.contributorImages) {
+                            <td>
+                                @{ string imageURL = "../../Images/" + Html.Encode(image.ImageURL);}
+                                <a href="@Url.Action("Details", "Image", new { id = image.ImageId })">
+                                    <img src="@Html.Encode(imageURL)" alt="@Html.Encode(image.ImageTitle)" height="50" width="50" />
+                                </a>
+                               </td>   
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

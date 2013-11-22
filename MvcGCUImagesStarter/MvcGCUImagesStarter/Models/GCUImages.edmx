@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GCUImagesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="GCUImagesModelStoreContainer">
+          <EntitySet Name="Image" EntityType="GCUImagesModel.Store.Image" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ImageTag" EntityType="GCUImagesModel.Store.ImageTag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tag" EntityType="GCUImagesModel.Store.Tag" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ImageTag_Image" Association="GCUImagesModel.Store.FK_ImageTag_Image">
+            <End Role="Image" EntitySet="Image" />
+            <End Role="ImageTag" EntitySet="ImageTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageTag_Tag" Association="GCUImagesModel.Store.FK_ImageTag_Tag">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="ImageTag" EntitySet="ImageTag" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ImageTitle" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ImageDescription" Type="text" Nullable="false" />
+          <Property Name="ImageContributor" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ImageURL" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="ImageWidth" Type="smallint" Nullable="false" />
+          <Property Name="ImageHeight" Type="smallint" Nullable="false" />
+          <Property Name="Category" Type="varchar" Nullable="false" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="ImageTag">
+          <Key>
+            <PropertyRef Name="ImageId" />
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="ImageId" Type="int" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TagName" Type="varchar" Nullable="false" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK_ImageTag_Image">
+          <End Role="Image" Type="GCUImagesModel.Store.Image" Multiplicity="1" />
+          <End Role="ImageTag" Type="GCUImagesModel.Store.ImageTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="ImageId" />
+            </Principal>
+            <Dependent Role="ImageTag">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageTag_Tag">
+          <End Role="Tag" Type="GCUImagesModel.Store.Tag" Multiplicity="1" />
+          <End Role="ImageTag" Type="GCUImagesModel.Store.ImageTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="ImageTag">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GCUImagesModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GCUImagesEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Images" EntityType="GCUImagesModel.Image" />
+          <EntitySet Name="Tags" EntityType="GCUImagesModel.Tag" />
+          <AssociationSet Name="ImageTag" Association="GCUImagesModel.ImageTag">
+            <End Role="Image" EntitySet="Images" />
+            <End Role="Tag" EntitySet="Tags" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageTitle" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ImageDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="ImageContributor" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ImageURL" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="ImageWidth" Type="Int16" Nullable="false" />
+          <Property Name="ImageHeight" Type="Int16" Nullable="false" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Tags" Relationship="GCUImagesModel.ImageTag" FromRole="Image" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TagName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Images" Relationship="GCUImagesModel.ImageTag" FromRole="Tag" ToRole="Image" />
+        </EntityType>
+        <Association Name="ImageTag">
+          <End Role="Image" Type="GCUImagesModel.Image" Multiplicity="*" />
+          <End Role="Tag" Type="GCUImagesModel.Tag" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GCUImagesModelStoreContainer" CdmEntityContainer="GCUImagesEntities">
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="GCUImagesModel.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="ImageTitle" ColumnName="ImageTitle" />
+                <ScalarProperty Name="ImageDescription" ColumnName="ImageDescription" />
+                <ScalarProperty Name="ImageContributor" ColumnName="ImageContributor" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="ImageWidth" ColumnName="ImageWidth" />
+                <ScalarProperty Name="ImageHeight" ColumnName="ImageHeight" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="GCUImagesModel.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ImageTag" TypeName="GCUImagesModel.ImageTag" StoreEntitySet="ImageTag">
+            <EndProperty Name="Image">
+              <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+            </EndProperty>
+            <EndProperty Name="Tag">
+              <ScalarProperty Name="TagId" ColumnName="TagId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
