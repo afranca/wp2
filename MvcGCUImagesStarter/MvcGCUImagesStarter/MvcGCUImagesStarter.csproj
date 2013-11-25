@@ -352,6 +352,7 @@
     <Content Include="Views\Shared\_short_images_list.cshtml" />
     <Content Include="Views\Shared\_tags_list.cshtml" />
     <Content Include="Views\Shared\_images_list_paginated.cshtml" />
+    <Content Include="Views\Image\Search.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

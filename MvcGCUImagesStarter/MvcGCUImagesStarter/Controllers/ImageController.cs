@@ -75,7 +75,21 @@ namespace MvcGCUImagesStarter.Controllers
 
         public ActionResult Search(int? page, string search_string)
         {
-            return View("NotYetImplemented");
+            const int pageSize = 12;
+        
+            ImagesViewModel imagesViewModel = new ImagesViewModel();
+            IQueryable<Tag> tags = imagesRepository.GetTags(search_string);
+            imagesViewModel.tags = tags;
+
+            IQueryable<Image> images = imagesRepository.Search(search_string);
+
+            Func<Image, IComparable> func = null;
+            func = (Image a) => a.ImageId;
+
+            var paginateList = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
+            imagesViewModel.images = paginateList;
+            ViewBag.search_string = search_string;
+            return View(imagesViewModel);
         }
 
         //
