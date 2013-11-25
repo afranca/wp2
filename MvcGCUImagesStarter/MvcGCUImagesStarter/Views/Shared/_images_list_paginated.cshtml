@@ -1,0 +1,115 @@
+﻿@model MvcGCUImagesStarter.Helpers.PaginatedList<MvcGCUImagesStarter.Models.Image>
+
+<div id="galleryThumbnail">
+    @{ int x = 0; }
+    @foreach (var item in Model)
+    {
+        if (x == 0)
+        {
+            @:<div class="row">
+            x = 1;
+        }
+        <div class="cell">
+            <p>
+                @{ string imageURL = "../../Images/" + Html.Encode(item.ImageURL);}
+                <a href="@Url.Action("Details", "Image", new { id = item.ImageId })">
+                    <img src="@Html.Encode(imageURL)" alt="@Html.Encode(item.ImageTitle)"
+                         height="100" width="100" />
+                </a>
+                <span>
+                    @Html.DisplayFor(modelItem => item.ImageTitle)<br />
+                    @Html.DisplayFor(modelItem => item.ImageContributor)
+                </span>
+            </p>
+        </div>
+        if (x == 4)
+        {
+            @:</div>
+            x = 0;
+        }
+        else
+        {
+            x++;
+        }
+    }
+</div>
+
+<div class="pagination">
+
+    @if (Model.HasPreviousPage)
+    {
+        if (ViewBag.category != null && ViewBag.search_string != null)
+        {
+            @Html.ActionLink("Previous", "Filter",
+             new
+             {
+                 page = (Model.PageIndex - 1),
+                 category = ViewBag.category,
+                 search_string = ViewBag.search_string
+             })
+        }
+        else if (ViewBag.category != null)
+        {
+            @Html.ActionLink("Previous", "Filter",
+            new
+            {
+                page = (Model.PageIndex - 1),
+                category = ViewBag.category
+            })
+        }
+        else if (ViewBag.search_string != null)
+        {
+            @Html.ActionLink("Previous", "Search",
+            new
+            {
+                page = (Model.PageIndex - 1),
+                search_string = ViewBag.search_string
+            })
+        }
+        else
+        {
+            @Html.ActionLink("Previous", "Index",
+            new { page = (Model.PageIndex - 1) })
+        }
+    }
+
+
+    @if (Model.HasNextPage)
+    {
+        if (ViewBag.category != null && ViewBag.search_string != null)
+        {
+            @Html.ActionLink("Next", "Filter",
+            new
+            {
+                page = (Model.PageIndex + 1),
+                category = ViewBag.category,
+                search_string = ViewBag.search_string
+            })
+        }
+        else if (ViewBag.category != null)
+        {
+            @Html.ActionLink("Next", "Filter",
+            new
+            {
+                page = (Model.PageIndex + 1),
+                category = ViewBag.category
+            })
+        }
+        else if (ViewBag.search_string != null)
+        {
+            @Html.ActionLink("Next", "Search",
+            new
+            {
+                page = (Model.PageIndex + 1),
+                search_string = ViewBag.search_string
+            })
+        }
+        else
+        {
+            @Html.ActionLink("Next", "Index",
+            new { page = (Model.PageIndex + 1) })
+        }
+    }
+
+</div>
+

@@ -8,34 +8,40 @@ using System.Web.Mvc;
 using MvcGCUImagesStarter.Models;
 using MvcGCUImagesStarter.Repository;
 using MvcGCUImagesStarter.ViewModels;
+using MvcGCUImagesStarter.Helpers;
 
 namespace MvcGCUImagesStarter.Controllers
 {
     public class ImageController : Controller
     {
-        private GCUImagesEntities db = new GCUImagesEntities();
+        
 
-        #region Private member variables ...
+
         private IGCUImagesRepository imagesRepository;
-        #endregion
-
-        #region Public constructor ...
-        public ImageController()
-        {
-            this.imagesRepository = new GCUImagesRepository(new GCUImagesEntities());
+        private GCUImagesEntities db = new GCUImagesEntities();
+ 
+        public ImageController() {
+            this.imagesRepository = new GCUImagesRepository(db);
         }
-        #endregion
+        
 
         //
         // GET: /Image/
 
-        public ActionResult Index()
-        {
-            var images = imagesRepository.GetAllImages();
-            var tags = imagesRepository.GetTags();
+        public ActionResult Index(int? page){
+
+            const int pageSize = 12;
 
             ImagesViewModel imagesViewModel = new ImagesViewModel();
-            imagesViewModel.images = images;
+            IQueryable<Tag> tags = imagesRepository.GetTags();
+            IQueryable<Image> images = imagesRepository.GetAllImages();
+
+            Func<Image, IComparable> func = null;
+            func = (Image a) => a.ImageId;
+
+            var paginatedList = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
+            
+            imagesViewModel.images = paginatedList;
             imagesViewModel.tags = tags;
 
             return View(imagesViewModel);
@@ -78,7 +84,24 @@ namespace MvcGCUImagesStarter.Controllers
         [HttpPost]
         public ActionResult Search(FormCollection formValues)
         {
-            return View("NotYetImplemented");
+            const int pageSize = 12;
+            int page = 0;
+            string search_string = Request.Form["searchText"];
+            ViewBag.category = null;
+            ImagesViewModel imagesViewModel = new ImagesViewModel();
+            IQueryable<Tag> tags =  imagesRepository.GetTags(search_string);
+            imagesViewModel.tags = tags;
+
+            IQueryable<Image> images = imagesRepository.Search(search_string);
+
+            Func<Image, IComparable> func = null;
+            func = (Image a) => a.ImageId;
+
+            var paginateList = new PaginatedList<Image>(images, page, func,pageSize);
+            imagesViewModel.images = paginateList;
+            ViewBag.search_string = search_string;
+            return View(imagesViewModel);
+
         }
 
         //
