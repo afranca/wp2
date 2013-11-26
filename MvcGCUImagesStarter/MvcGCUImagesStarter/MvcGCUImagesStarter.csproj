@@ -354,6 +354,7 @@
     <Content Include="Views\Shared\_images_list_paginated.cshtml" />
     <Content Include="Views\Image\Search.cshtml" />
     <Content Include="Views\Image\FilterByCategory.cshtml" />
+    <Content Include="Views\Image\FilterByTag.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

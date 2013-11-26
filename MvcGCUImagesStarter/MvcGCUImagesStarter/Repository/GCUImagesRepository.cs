@@ -116,7 +116,7 @@ namespace MvcGCUImagesStarter.Repository
             return Result;
         }
 
-        public IQueryable<Image> Filter(string tag, string search_string = null)
+        public IQueryable<Image> FilterByTag(string tag, string search_string = null)
         {
             if (search_string != null)
             {

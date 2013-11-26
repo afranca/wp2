@@ -18,7 +18,7 @@ namespace MvcGCUImagesStarter.Repository
         IQueryable<Tag> GetTags(string search_string = null);
         IQueryable<Contributor> GetContributors();
         IQueryable<Image> Search(string search_string);
-        IQueryable<Image> Filter(string tag, string search_string = null);
+        IQueryable<Image> FilterByTag(string tag, string search_string = null);
 
         IQueryable<Image> FilterByCategory(string cat, string search_string = null);
         void AddImage(Image image);

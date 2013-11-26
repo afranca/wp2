@@ -1,0 +1,11 @@
+﻿@model MvcGCUImagesStarter.ViewModels.ImagesViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("_images_list_paginated", Model.images)
+
+@section SideBar {
+    @Html.Partial("_tags_list", Model.tags)
+}

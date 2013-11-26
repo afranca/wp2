@@ -141,8 +141,8 @@ namespace MvcGCUImagesStarter.Controllers
             Func<Image, IComparable> func = null;
             func = (Image a) => a.ImageId;
 
-            var paginatedAlbums = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
-            homeViewModel.images = paginatedAlbums;
+            var paginatedList = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
+            homeViewModel.images = paginatedList;
             ViewBag.category = category;
             return View(homeViewModel);
         }
@@ -157,19 +157,19 @@ namespace MvcGCUImagesStarter.Controllers
             if (search_string != null)  {
                 IQueryable<Tag> tags = imagesRepository.GetTags(search_string);
                 imagesViewModel.tags = tags;
-                images = imagesRepository.Filter(tag, search_string);
+                images = imagesRepository.FilterByTag(tag, search_string);
                 ViewBag.search_string = search_string;
             } else {
                 IQueryable<Tag> tags = imagesRepository.GetTags();
                 imagesViewModel.tags = tags;
-                images = imagesRepository.Filter(tag);
+                images = imagesRepository.FilterByTag(tag);
             }
 
             Func<Image, IComparable> func = null;
             func = (Image a) => a.ImageId;
 
-            var paginatedAlbums = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
-            imagesViewModel.images = paginatedAlbums;
+            var paginatedList = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
+            imagesViewModel.images = paginatedList;
             ViewBag.category = tag;
             return View(imagesViewModel);
         }

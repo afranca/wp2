@@ -6,19 +6,20 @@
 @foreach (var item in Model) {
     int tagCount;
     <li>
-@*        @if (ViewBag.search_string != null)
+        @if (ViewBag.search_string != null)
         {
-            <a href="@Url.Action("Filter", "Image", new { tag = item.TagName, search_string = ViewBag.search_string })">
-                @Html.DisplayFor(modelItem => item.TagName)</a>
+            <a href="@Url.Action("FilterByTag", "Image", new { tag = item.TagName, search_string = ViewBag.search_string })">
+                @Html.DisplayFor(modelItem => item.TagName)
+            </a>
             tagCount = item.Images.Count(i => i.ImageTitle.ToUpper().Contains(ViewBag.search_string.ToUpper()) || i.ImageContributor.ToUpper().Contains(ViewBag.search_string.ToUpper()));  
         }
         else
         {
-            <a href="@Url.Action("Filter", "Image", new { tag = item.TagName })">
-            @Html.DisplayFor(modelItem => item.TagName)</a>
+            <a href="@Url.Action("FilterByTag", "Image", new { tag = item.TagName })">
+                @Html.DisplayFor(modelItem => item.TagName)
+            </a>
             tagCount = item.Images.Count();
-        }*@
-        @Html.DisplayFor(modelItem => item.TagName)
+        }
         (@Html.Encode(item.Images.Count().ToString()))
     </li>
 }
