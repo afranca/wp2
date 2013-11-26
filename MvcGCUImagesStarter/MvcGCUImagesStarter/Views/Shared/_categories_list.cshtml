@@ -4,7 +4,17 @@
 
 @foreach (var item in Model) {
     <li>
-        @Html.DisplayFor(modelItem => item.category)
+        @if (ViewBag.search_string != null) {
+            <a href="@Url.Action("Filter", "Image", new { category = item.category, search_string = ViewBag.search_string })">
+                @Html.DisplayFor(modelItem => item.category)
+            </a>
+        } else  {
+            <a href="@Url.Action("Filter", "Image", new { category = item.category })">
+                @Html.DisplayFor(modelItem => item.category)
+            </a>
+        }
+
+        
         (@Html.DisplayFor(modelItem => item.kount))
     </li>
 }

@@ -179,5 +179,27 @@ namespace MvcGCUImagesStarter.Repository
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+
+        public IQueryable<Image> FilterByCategory(string cat, string search_string = null) {
+            if (search_string != null){
+                string searchterm = search_string.ToString().ToUpper();
+                IQueryable<Image> Result =
+                    (from c in context.Images
+                     where c.Category.Contains(cat) && (c.ImageTitle.ToUpper().Contains(searchterm) || c.ImageContributor.ToUpper().Contains(searchterm))
+                     orderby c.ImageId
+                     select c).Distinct();
+                return Result;
+            } else {
+                IQueryable<Image> Result =
+                  (from c in context.Images
+                   where c.Category.Contains(cat)
+                   orderby c.ImageId
+                   select c).Distinct();
+                return Result;
+            }
+        }
+
+
     }
 }

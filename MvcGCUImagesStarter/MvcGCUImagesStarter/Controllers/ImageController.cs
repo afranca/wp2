@@ -121,9 +121,31 @@ namespace MvcGCUImagesStarter.Controllers
         //
         // GET: /Image/Filter/1
 
-        public ActionResult Filter(int? page, string tag, string search_string = null)
+        public ActionResult Filter(int? page, string category, string search_string = null)
         {
-            return View("NotYetImplemented");
+
+            const int pageSize = 12;
+            IQueryable<Image> images;
+
+            HomeViewModel homeViewModel = new HomeViewModel();
+            if (search_string != null) {
+                IQueryable<Category> categories = imagesRepository.GetCategories(search_string);
+                homeViewModel.categories = categories;
+                images = imagesRepository.FilterByCategory(category, search_string);
+                ViewBag.search_string = search_string;
+            } else  {
+                IQueryable<Category> categories = imagesRepository.GetCategories();
+                homeViewModel.categories = categories;
+                images = imagesRepository.FilterByCategory(category);
+            }
+
+            Func<Image, IComparable> func = null;
+            func = (Image a) => a.ImageId;
+
+            var paginatedAlbums = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
+            homeViewModel.images = paginatedAlbums;
+            ViewBag.category = category;
+            return View(homeViewModel);
         }
 
         public ActionResult Admin()
