@@ -353,7 +353,7 @@
     <Content Include="Views\Shared\_tags_list.cshtml" />
     <Content Include="Views\Shared\_images_list_paginated.cshtml" />
     <Content Include="Views\Image\Search.cshtml" />
-    <Content Include="Views\Image\Filter.cshtml" />
+    <Content Include="Views\Image\FilterByCategory.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

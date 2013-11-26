@@ -5,11 +5,11 @@
 @foreach (var item in Model) {
     <li>
         @if (ViewBag.search_string != null) {
-            <a href="@Url.Action("Filter", "Image", new { category = item.category, search_string = ViewBag.search_string })">
+            <a href="@Url.Action("FilterByCategory", "Image", new { category = item.category, search_string = ViewBag.search_string })">
                 @Html.DisplayFor(modelItem => item.category)
             </a>
         } else  {
-            <a href="@Url.Action("Filter", "Image", new { category = item.category })">
+            <a href="@Url.Action("FilterByCategory", "Image", new { category = item.category })">
                 @Html.DisplayFor(modelItem => item.category)
             </a>
         }

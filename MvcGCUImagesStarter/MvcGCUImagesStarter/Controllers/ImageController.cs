@@ -121,8 +121,7 @@ namespace MvcGCUImagesStarter.Controllers
         //
         // GET: /Image/Filter/1
 
-        public ActionResult Filter(int? page, string category, string search_string = null)
-        {
+        public ActionResult FilterByCategory(int? page, string category, string search_string = null)  {
 
             const int pageSize = 12;
             IQueryable<Image> images;
@@ -148,6 +147,32 @@ namespace MvcGCUImagesStarter.Controllers
             return View(homeViewModel);
         }
 
+
+        public ActionResult FilterByTag(int? page, string tag, string search_string = null) {
+
+            const int pageSize = 12;
+            IQueryable<Image> images;
+
+            ImagesViewModel imagesViewModel = new ImagesViewModel();
+            if (search_string != null)  {
+                IQueryable<Tag> tags = imagesRepository.GetTags(search_string);
+                imagesViewModel.tags = tags;
+                images = imagesRepository.Filter(tag, search_string);
+                ViewBag.search_string = search_string;
+            } else {
+                IQueryable<Tag> tags = imagesRepository.GetTags();
+                imagesViewModel.tags = tags;
+                images = imagesRepository.Filter(tag);
+            }
+
+            Func<Image, IComparable> func = null;
+            func = (Image a) => a.ImageId;
+
+            var paginatedAlbums = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
+            imagesViewModel.images = paginatedAlbums;
+            ViewBag.category = tag;
+            return View(imagesViewModel);
+        }
         public ActionResult Admin()
         {
             return View("NotYetImplemented");
