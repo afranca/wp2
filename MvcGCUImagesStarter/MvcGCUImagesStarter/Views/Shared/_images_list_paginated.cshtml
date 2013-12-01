@@ -40,7 +40,7 @@
     {
         if (ViewBag.category != null && ViewBag.search_string != null)
         {
-            @Html.ActionLink("Previous", "Filter",
+            @Html.ActionLink("Previous", "FilterByCategory",
              new
              {
                  page = (Model.PageIndex - 1),
@@ -50,7 +50,7 @@
         }
         else if (ViewBag.category != null)
         {
-            @Html.ActionLink("Previous", "Filter",
+            @Html.ActionLink("Previous", "FilterByCategory",
             new
             {
                 page = (Model.PageIndex - 1),
@@ -78,7 +78,7 @@
     {
         if (ViewBag.category != null && ViewBag.search_string != null)
         {
-            @Html.ActionLink("Next", "Filter",
+            @Html.ActionLink("Next", "FilterByCategory",
             new
             {
                 page = (Model.PageIndex + 1),
@@ -88,7 +88,7 @@
         }
         else if (ViewBag.category != null)
         {
-            @Html.ActionLink("Next", "Filter",
+            @Html.ActionLink("Next", "FilterByCategory",
             new
             {
                 page = (Model.PageIndex + 1),

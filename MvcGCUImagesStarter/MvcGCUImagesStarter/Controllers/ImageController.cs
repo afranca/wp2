@@ -170,7 +170,7 @@ namespace MvcGCUImagesStarter.Controllers
 
             var paginatedList = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
             imagesViewModel.images = paginatedList;
-            ViewBag.category = tag;
+            ViewBag.tag = tag;
             return View(imagesViewModel);
         }
         public ActionResult Admin()
