@@ -48,6 +48,26 @@
                  search_string = ViewBag.search_string
              })
         }
+        else if (ViewBag.tag != null && ViewBag.search_string != null)
+        {
+            @Html.ActionLink("Previous", "FilterByTag",
+             new
+             {
+                 page = (Model.PageIndex - 1),
+                 tag = ViewBag.tag,
+                 search_string = ViewBag.search_string
+             })
+        }       
+       
+        else if (ViewBag.tag != null)
+        {
+            @Html.ActionLink("Previous", "FilterByTag",
+            new
+            {
+                page = (Model.PageIndex - 1),
+                tag = ViewBag.tag
+            })
+        }        
         else if (ViewBag.category != null)
         {
             @Html.ActionLink("Previous", "FilterByCategory",
@@ -86,6 +106,25 @@
                 search_string = ViewBag.search_string
             })
         }
+        else if (ViewBag.tag != null && ViewBag.search_string != null)
+        {
+            @Html.ActionLink("Next", "FilterByTag",
+            new
+            {
+                page = (Model.PageIndex + 1),
+                tag = ViewBag.tag,
+                search_string = ViewBag.search_string
+            })           
+        }
+        else if (ViewBag.tag != null)
+        {
+            @Html.ActionLink("Next", "FilterByTag",
+            new
+            {
+                page = (Model.PageIndex + 1),
+                tag = ViewBag.tag
+            })
+        }                
         else if (ViewBag.category != null)
         {
             @Html.ActionLink("Next", "FilterByCategory",
