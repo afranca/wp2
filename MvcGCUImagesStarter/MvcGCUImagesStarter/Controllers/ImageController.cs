@@ -44,9 +44,20 @@ namespace MvcGCUImagesStarter.Controllers
             imagesViewModel.images = paginatedList;
             imagesViewModel.tags = tags;
 
+            calculateNumberOfPages(pageSize,images);
+
             return View(imagesViewModel);
         }
 
+
+        private double calculateNumberOfPages(int itemsPerPage, IEnumerable<Image> source)
+        {
+
+            int listSize = source.Count();
+            double result = (double)listSize / (double)itemsPerPage;
+            return Math.Ceiling(result);
+
+        }
         //
         // GET: /Image/Details/5
 
@@ -144,6 +155,8 @@ namespace MvcGCUImagesStarter.Controllers
             var paginatedList = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
             homeViewModel.images = paginatedList;
             ViewBag.category = category;
+
+            ViewBag.noPages = calculateNumberOfPages(pageSize, images);
             return View(homeViewModel);
         }
 
@@ -171,6 +184,7 @@ namespace MvcGCUImagesStarter.Controllers
             var paginatedList = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
             imagesViewModel.images = paginatedList;
             ViewBag.tag = tag;
+            calculateNumberOfPages(pageSize, images);
             return View(imagesViewModel);
         }
         public ActionResult Admin()
@@ -260,5 +274,7 @@ namespace MvcGCUImagesStarter.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+
     }
 }

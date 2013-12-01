@@ -4,6 +4,8 @@
     ViewBag.Title = "Index";
 }
 
+@ViewBag.noPages
+
 @Html.Partial("_images_list_paginated", Model.images)
 
 @section SideBar {
