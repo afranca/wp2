@@ -144,6 +144,6 @@ C:\Users\gauchoescoces\Documents\GitHub\wp2\MvcGCUImagesStarter\MvcGCUImagesStar
 C:\Users\gauchoescoces\Documents\GitHub\wp2\MvcGCUImagesStarter\MvcGCUImagesStarter\bin\DotNetOpenAuth.OAuth.xml
 C:\Users\gauchoescoces\Documents\GitHub\wp2\MvcGCUImagesStarter\MvcGCUImagesStarter\bin\DotNetOpenAuth.OpenId.xml
 C:\Users\gauchoescoces\Documents\GitHub\wp2\MvcGCUImagesStarter\MvcGCUImagesStarter\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
-C:\Users\gauchoescoces\Documents\GitHub\wp2\MvcGCUImagesStarter\MvcGCUImagesStarter\obj\Debug\MvcGCUImagesStarter.csprojResolveAssemblyReference.cache
 C:\Users\gauchoescoces\Documents\GitHub\wp2\MvcGCUImagesStarter\MvcGCUImagesStarter\obj\Debug\MvcGCUImagesStarter.dll
 C:\Users\gauchoescoces\Documents\GitHub\wp2\MvcGCUImagesStarter\MvcGCUImagesStarter\obj\Debug\MvcGCUImagesStarter.pdb
+C:\Users\gauchoescoces\Documents\GitHub\wp2\MvcGCUImagesStarter\MvcGCUImagesStarter\obj\Debug\MvcGCUImagesStarter.csprojResolveAssemblyReference.cache

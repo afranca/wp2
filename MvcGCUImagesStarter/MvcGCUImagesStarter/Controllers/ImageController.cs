@@ -44,7 +44,7 @@ namespace MvcGCUImagesStarter.Controllers
             imagesViewModel.images = paginatedList;
             imagesViewModel.tags = tags;
 
-            calculateNumberOfPages(pageSize,images);
+            ViewBag.noPages = calculateNumberOfPages(pageSize, images);
 
             return View(imagesViewModel);
         }
@@ -100,6 +100,7 @@ namespace MvcGCUImagesStarter.Controllers
             var paginateList = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
             imagesViewModel.images = paginateList;
             ViewBag.search_string = search_string;
+            ViewBag.noPages = calculateNumberOfPages(pageSize, images);
             return View(imagesViewModel);
         }
 
@@ -125,6 +126,7 @@ namespace MvcGCUImagesStarter.Controllers
             var paginateList = new PaginatedList<Image>(images, page, func,pageSize);
             imagesViewModel.images = paginateList;
             ViewBag.search_string = search_string;
+            ViewBag.noPages = calculateNumberOfPages(pageSize, images);
             return View(imagesViewModel);
 
         }
@@ -184,7 +186,7 @@ namespace MvcGCUImagesStarter.Controllers
             var paginatedList = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
             imagesViewModel.images = paginatedList;
             ViewBag.tag = tag;
-            calculateNumberOfPages(pageSize, images);
+            ViewBag.noPages = calculateNumberOfPages(pageSize, images);
             return View(imagesViewModel);
         }
         public ActionResult Admin()

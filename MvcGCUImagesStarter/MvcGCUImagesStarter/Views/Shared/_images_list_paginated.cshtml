@@ -94,14 +94,69 @@
     }
 
 
-    @for (int i = 0; i < ViewBag.noPages; i++) { 
-            @Html.ActionLink(i+"", "FilterByCategory",
-            new
+    @for (int i = 0; i < ViewBag.noPages; i++)
+    {
+
+        if (Model.PageIndex != i)
+        {   
+                 
+            if (ViewBag.category != null && ViewBag.search_string != null)
             {
-                page = (i+1),
-                category = ViewBag.category,
-                search_string = ViewBag.search_string
-            })  
+                @Html.ActionLink((i+1)+"", "FilterByCategory",
+                new
+                {
+                    page = i,
+                    category = ViewBag.category,
+                    search_string = ViewBag.search_string
+                })  
+            } else if (ViewBag.tag != null && ViewBag.search_string != null) {
+                @Html.ActionLink((i + 1) + "" , "FilterByTag",
+                new
+                {
+                    page = i,
+                    tag = ViewBag.tag,
+                    search_string = ViewBag.search_string
+                }) 
+
+            }
+            else if (ViewBag.tag != null)
+            {
+                @Html.ActionLink((i + 1) + "", "FilterByTag",
+                new
+                {
+                    page = i,
+                    tag = ViewBag.tag
+                
+                }) 
+            }
+            else if (ViewBag.category != null)
+            {
+                @Html.ActionLink((i + 1) + "", "FilterByCategory",
+                new
+                {
+                    page = i,
+                    category = ViewBag.category
+                }) 
+            }
+            else if (ViewBag.search_string != null)
+            { 
+               @Html.ActionLink((i + 1) + "", "Search",
+                            new { page = i, search_string = ViewBag.search_string })          
+        
+            }        
+            else 
+            { 
+               @Html.ActionLink((i + 1) + "", "Index",
+                            new { page = i })          
+        
+            }
+        }
+        else
+        {
+            
+            @Html.Raw("<b>"+(i+1)+"</b>")
+        }
+        
         @Html.Encode(" ");  
         
     }
