@@ -1,0 +1,106 @@
+﻿@model MvcGCUImagesStarter.Helpers.PaginatedList<MvcGCUImagesStarter.Models.Image>
+@{
+    ViewBag.Title = "Admin";
+}
+
+<script>
+    function confirmDeletion(image_id) {
+
+        if (confirm("Confirm permanent deletion?")) {  
+
+            window.location = "http://localhost:49628/Image/Delete?id=" + image_id;
+
+        }
+    }
+</script>
+
+<h2>Admin</h2>
+
+<div id="admin_galleryThumbnail">
+    <table width="600" border=0>
+        <tr class="header_row">
+            <td> Name </td>
+            <td> Author </td>
+            <td width="40"> Edit </td>
+            <td width="40"> Delete </td>
+        </tr>
+
+        @{ int x = 0; }
+        @{ string row_style="odd_row"; }
+        @foreach (var item in Model)
+        {
+            
+            if (x%2 == 0){ 
+                row_style = "even_row";
+            }else{
+                row_style = "odd_row";
+            }
+
+            <tr class="@Html.Encode(row_style)">
+                <td>
+                    <p>
+                        <a href="?op=admImageEdit&image_id=@Html.Encode(item.ImageId)">
+                            @Html.Encode(item.ImageTitle)
+                        </a>
+
+                        <span id="span_thumbnail">
+                            <!--
+                            @Html.Encode(item.ImageDescription)... <br>
+
+                             <img src="./images/@Html.Encode(item.ImageURL)" alt="@Html.Encode(item.ImageTitle)" height="100" />
+                            -->
+                        </span>
+                    </p>
+                </td>
+                <td> <a href="?op=admImageEdit&image_id=@Html.Encode(item.ImageId)">@Html.Encode(item.ImageContributor) </a></td>
+                <td> <a href="?op=admImageEdit&image_id=@Html.Encode(item.ImageId)"><img src="../../Images/edit_icon.png" height="20"> </a></td>
+                <td> <a href="javascript:confirmDeletion(@Html.Encode(item.ImageId));"><img src="../../Images/delete_icon.png" height="20"> </a></td>
+            </tr>
+            x++;
+        }
+
+    </table>
+</div>
+
+
+
+<div class="pagination">
+
+    @if (Model.HasPreviousPage)
+    {
+
+        @Html.ActionLink("Previous", "Admin",
+            new { page = (Model.PageIndex - 1) })
+
+    }
+
+
+    @for (int i = 0; i < ViewBag.noPages; i++)
+    {
+
+        if (Model.PageIndex != i)
+        {
+
+            @Html.ActionLink((i + 1) + "", "Admin",  new { page = i })
+
+        }
+        else
+        {
+
+            @Html.Raw("<b>" + (i + 1) + "</b>")
+        }
+
+        @Html.Encode(" ");
+
+    }
+
+
+    @if (Model.HasNextPage)
+    {
+
+        @Html.ActionLink("Next", "Admin",
+            new { page = (Model.PageIndex + 1) })
+
+    }
+
+</div>

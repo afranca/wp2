@@ -189,9 +189,41 @@ namespace MvcGCUImagesStarter.Controllers
             ViewBag.noPages = calculateNumberOfPages(pageSize, images);
             return View(imagesViewModel);
         }
-        public ActionResult Admin()
+        public ActionResult Admin(int? page, string op = null, int image_id = 0)
         {
-            return View("NotYetImplemented");
+            if (op != null && op == "admImageDelete")
+            {
+
+                //imagesRepository.DeleteImage(image_id);
+
+/*
+
+                try
+                {
+
+                    imagesRepository.Save();
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException e) {
+
+                    Console.WriteLine("{0} Exception caught.", e);
+                    Console.WriteLine("{0} Exception caught.", e);
+                
+                }
+ */                    
+            }
+
+
+            const int pageSize = 12;
+            IQueryable<Image> images = imagesRepository.GetAllImages();
+
+            Func<Image, IComparable> func = null;
+            func = (Image a) => a.ImageId;
+
+            var paginatedList = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
+
+            ViewBag.noPages = calculateNumberOfPages(pageSize, images);
+
+            return View(paginatedList);
         }
 
         //
@@ -251,12 +283,22 @@ namespace MvcGCUImagesStarter.Controllers
 
         public ActionResult Delete(int id = 0)
         {
+
+            /*
             Image image = db.Images.Find(id);
             if (image == null)
             {
                 return HttpNotFound();
             }
             return View(image);
+             */
+            Image image = db.Images.Find(id);
+            image.Tags = null;
+            imagesRepository.UpdateImage(image);
+            //db.SaveChanges();
+            db.Images.Remove(image);
+            db.SaveChanges();
+            return RedirectToAction("Admin");
         }
 
         //
@@ -265,10 +307,12 @@ namespace MvcGCUImagesStarter.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Image image = db.Images.Find(id);
-            db.Images.Remove(image);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+        // not being used
+
+         //   Image image = db.Images.Find(id);
+         //   db.Images.Remove(image);
+        //    db.SaveChanges();
+            return RedirectToAction("Admin");
         }
 
         protected override void Dispose(bool disposing)
