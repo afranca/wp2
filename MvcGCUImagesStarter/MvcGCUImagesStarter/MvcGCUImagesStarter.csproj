@@ -355,6 +355,7 @@
     <Content Include="Views\Image\Search.cshtml" />
     <Content Include="Views\Image\FilterByCategory.cshtml" />
     <Content Include="Views\Image\FilterByTag.cshtml" />
+    <Content Include="Views\Shared\_homeview.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

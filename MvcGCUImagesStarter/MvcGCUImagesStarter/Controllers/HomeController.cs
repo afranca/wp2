@@ -25,11 +25,26 @@ namespace MvcGCUImagesStarter.Controllers
 
         public ActionResult Index()
         {
-            var images = imagesRepository.GetLast12Images();
+            IEnumerable<Image> images = imagesRepository.GetAllImages();
+
+            List<Image> list = new List<Image>(images);
+            Random rnd = new Random(/* Eventually provide some random seed here. */);
+            for (int i = list.Count - 1; i > 0; --i)
+            {
+                int j = rnd.Next(i + 1);
+                Image tmp = list[i];
+                list[i] = list[j];
+                list[j] = tmp;
+            }
+
+            Image img = list[1];
+            IEnumerable<Image> random = list.Take(12);
+
+
             var categories = imagesRepository.GetCategories();
 
             HomeViewModel homeViewModel = new HomeViewModel();
-            homeViewModel.images = images;
+            homeViewModel.images = random;
             homeViewModel.categories = categories;
 
             return View(homeViewModel);

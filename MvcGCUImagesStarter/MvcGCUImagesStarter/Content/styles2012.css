@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 #container {
@@ -304,4 +304,105 @@ ul#tags li
 
 ul#tags li:last-child {
   border-right: none;
+}
+
+
+#home_container {
+	width: 768px;
+	height: 576px;
+	//border: 1px #9966CC solid;
+	//background-color: black;
+	margin: auto;
+}
+
+
+
+
+
+#first_line {
+	width: 768px;
+	height: 480px;
+	
+	//background-color: red;
+	//border: 1px red solid;
+}
+
+
+
+#main_image {
+	width: 640px;
+	height: 480px;
+	background-color: #CAD1DE;
+	float: left;
+	//border: 1px red solid;
+}
+
+#5_images_vertical_container {
+	width: 128px;
+	height: 480px;
+	background-color: black;
+	
+	//border: 1px red solid;
+}
+
+
+
+
+
+
+
+#second_line {
+	width: 768px;
+	height: 96px;
+	background-color: green;
+	//border: 1px green solid;
+}
+
+
+#image_1 {
+	width: 128px;
+	height: 96px;
+	background-color: #a6e2a6;
+	//border: 1px #a6e2a6 solid;
+	float: right;
+	
+}
+#image_2 {
+	width: 128px;
+	height: 96px;
+	background-color: #a7b2b7;
+	//border: 1px #a6e2a6 solid;
+	float: right;
+	
+}
+#image_3 {
+	width: 128px;
+	height: 96px;
+	background-color: #B043AB;
+	//border: 1px #a6e2a6 solid;
+	float: right;
+}
+#image_4 {
+	width: 128px;
+	height: 96px;
+	background-color: #B08643;
+	//border: 1px #a6e2a6 solid;
+	float: right;
+	
+}
+#image_5 {
+	width: 128px;
+	height: 96px;
+	background-color: #5543B0;
+	//border: 1px #a6e2a6 solid;
+	float: right;
+	
+}
+#image_6 {
+	width: 128px;
+	height: 96px;
+	background-color: #436DB0;
+	//border: 1px #a6e2a6 solid;
+	float: right;
+	
 }

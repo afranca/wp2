@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MvcGCUImagesStarter.Models.Image>
+
+@{
+    ViewBag.Title = "_homeview";
+}
+
+
+<div id="home_container">
+
+    <div id="first_line">
+        @{ string mainImageURL = "../../Images/" + Html.Encode(Model.ElementAt(0).ImageURL);}
+        <div id="main_image">  <img src="@Html.Encode(mainImageURL)" alt="@Html.Encode(Model.ElementAt(0).ImageTitle)" height="480"  />  </div>
+            
+
+        <div id="5_images_vertical_container">
+
+            <div id="image_1"> <img src="@Html.Encode("../../Images/" + Html.Encode(Model.ElementAt(1).ImageURL))" alt="@Html.Encode(Model.ElementAt(1).ImageTitle)" width="128px" height="96px" /> </div>
+            <div id="image_2"> <img src="@Html.Encode("../../Images/" + Html.Encode(Model.ElementAt(2).ImageURL))" alt="@Html.Encode(Model.ElementAt(2).ImageTitle)" width="128px" height="96px" /> </div>
+            <div id="image_3"> <img src="@Html.Encode("../../Images/" + Html.Encode(Model.ElementAt(3).ImageURL))" alt="@Html.Encode(Model.ElementAt(3).ImageTitle)" width="128px" height="96px" /> </div>
+            <div id="image_4"> <img src="@Html.Encode("../../Images/" + Html.Encode(Model.ElementAt(4).ImageURL))" alt="@Html.Encode(Model.ElementAt(4).ImageTitle)" width="128px" height="96px" /> </div>
+            <div id="image_5"> <img src="@Html.Encode("../../Images/" + Html.Encode(Model.ElementAt(5).ImageURL))" alt="@Html.Encode(Model.ElementAt(5).ImageTitle)" width="128px" height="96px" /> </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="second_line">
+        <div id="6_images_horizontal_container">
+            <div id="image_1">  <img src="@Html.Encode("../../Images/" + Html.Encode(Model.ElementAt(6).ImageURL))" alt="@Html.Encode(Model.ElementAt(6).ImageTitle)" width="128px" height="96px" /></div>
+            <div id="image_2">  <img src="@Html.Encode("../../Images/" + Html.Encode(Model.ElementAt(7).ImageURL))" alt="@Html.Encode(Model.ElementAt(7).ImageTitle)" width="128px" height="96px" /></div>
+            <div id="image_3">  <img src="@Html.Encode("../../Images/" + Html.Encode(Model.ElementAt(8).ImageURL))" alt="@Html.Encode(Model.ElementAt(8).ImageTitle)" width="128px" height="96px" /></div>
+            <div id="image_4">  <img src="@Html.Encode("../../Images/" + Html.Encode(Model.ElementAt(9).ImageURL))" alt="@Html.Encode(Model.ElementAt(9).ImageTitle)" width="128px" height="96px" /></div>
+            <div id="image_5">  <img src="@Html.Encode("../../Images/" + Html.Encode(Model.ElementAt(10).ImageURL))" alt="@Html.Encode(Model.ElementAt(10).ImageTitle)" width="128px" height="96px" /></div>
+            <div id="image_6">  <img src="@Html.Encode("../../Images/" + Html.Encode(Model.ElementAt(11).ImageURL))" alt="@Html.Encode(Model.ElementAt(11).ImageTitle)" width="128px" height="96px" /></div>
+        </div>
+    </div>
+
+</div>
+
