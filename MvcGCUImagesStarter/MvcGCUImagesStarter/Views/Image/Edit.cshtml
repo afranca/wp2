@@ -31,104 +31,112 @@
 <div>
     <div id="image">
         <h3> @Html.Encode(Model.image.ImageTitle) &nbsp; </h3>
-        <div id='admin_leftItemTemplate'>
+ 
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div id='admin_leftItemTemplate'>
+                   
+            @Html.ValidationSummary(true)
 
-            @using (Html.BeginForm())
-            {
-                @Html.ValidationSummary(true)
+            <fieldset>
+                <legend>Image</legend>
 
-                <fieldset>
-                    <legend>Image</legend>
+                @Html.HiddenFor(model => model.image.ImageId)
+                @Html.HiddenFor(model => model.image.ImageWidth)
+                @Html.HiddenFor(model => model.image.ImageHeight)
+                <input type="hidden" name="image_old" id="image_old" value="@Html.Encode(Model.image.ImageURL)">
+                <div class="editor-label">
+                    Title
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.image.ImageTitle)
+                    @Html.ValidationMessageFor(model => model.image.ImageTitle)
+                </div>
 
-                    @Html.HiddenFor(model => model.image.ImageId)
-                    @Html.HiddenFor(model => model.image.ImageWidth)
-                    @Html.HiddenFor(model => model.image.ImageHeight)
+                <div class="editor-label">
+                    Description
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.image.ImageDescription)
+                    @Html.ValidationMessageFor(model => model.image.ImageDescription)
+                </div>
 
-                    <div class="editor-label">
-                        Title
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.image.ImageTitle)
-                        @Html.ValidationMessageFor(model => model.image.ImageTitle)
-                    </div>
+                <div class="editor-label">
+                    Contributor
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.image.ImageContributor)
+                    @Html.ValidationMessageFor(model => model.image.ImageContributor)
+                </div>
 
-                    <div class="editor-label">
-                       Description
-                    </div>
-                    <div class="editor-field">
-                        @Html.TextAreaFor(model => model.image.ImageDescription)
-                        @Html.ValidationMessageFor(model => model.image.ImageDescription)
-                    </div>
-
-                    <div class="editor-label">
-                        Contributor
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.image.ImageContributor)
-                        @Html.ValidationMessageFor(model => model.image.ImageContributor)
-                    </div>
-
-                    <div class="editor-label">
-                       Image
-                    </div>
-                    <div class="editor-field">
-                        <p><img src='/Images/@Html.Encode(Model.image.ImageURL)' alt='@Html.Encode(Model.image.ImageTitle)' height='200' /></p>
-                        @Html.EditorFor(model => model.image.ImageURL)
+                <div class="editor-label">
+                    Image
+                </div>
+                <div class="editor-field">
+                    <p><img src='/Images/@Html.Encode(Model.image.ImageURL)' alt='@Html.Encode(Model.image.ImageTitle)' height='200' /></p>
+                        
+                    <!-- 
+                        Html.EditorFor(model => model.image.ImageURL)
                         New Image: <input type="file" name="new_image" id="name="new_image">
-                        @Html.ValidationMessageFor(model => model.image.ImageURL)
-                    </div>
+                        Html.ValidationMessageFor(model => model.image.ImageURL)
+                        -->
+                        
+                    @Html.TextBoxFor(x => x.File, new { type = "file" })
+                    @Html.ValidationMessageFor(x => x.File)
 
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.image.Category)
-                    </div>
-                    <div class="editor-field">
-                        <select id="image_Category" name="image.Category">
-                            @foreach (var item in Model.categories)
+                        
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.image.Category)
+                </div>
+                <div class="editor-field">
+                    <select id="image_Category" name="image.Category">
+                        @foreach (var item in Model.categories)
+                        {
+                            if (item.category == Model.image.Category)
                             {
-                                if (item.category == Model.image.Category)
-                                {
-                                    <option value="@Html.DisplayFor(modelItem => item.category)" selected>@Html.DisplayFor(modelItem => item.category)</option>
-                                }
-                                else
-                                {
-                                    <option value="@Html.DisplayFor(modelItem => item.category)">@Html.DisplayFor(modelItem => item.category)</option>
-
-                                }
+                                <option value="@Html.DisplayFor(modelItem => item.category)" selected>@Html.DisplayFor(modelItem => item.category)</option>
                             }
-                        </select>
+                            else
+                            {
+                                <option value="@Html.DisplayFor(modelItem => item.category)">@Html.DisplayFor(modelItem => item.category)</option>
 
-                        @Html.ValidationMessageFor(model => model.image.Category)
-                    </div>
+                            }
+                        }
+                    </select>
 
-                    <p>
-                        <input type="submit" value="Save" />
-                    </p>
-                </fieldset>
-            }
+                    @Html.ValidationMessageFor(model => model.image.Category)
+                </div>
 
-        </div>
-        <div id='admin_rightItemTemplate'>
-            <h2>Tags</h2>
-            <form>
-                <input type="text" id="tag_name" size="30" onkeyup="javascript:showResult(this.value)"> <input type="button" value="assign" onclick="javascript:assignTag();">
-                <input type="hidden" id="tag_id">
-                <div id="livesearch"></div>
-
-            </form>
-
-            <div id="tags">
-
-                @foreach (var item in Model.image.Tags)
-                {
-
-                    <div id="@Html.DisplayFor(modelItem => item.TagId)"><b>[</b>@Html.DisplayFor(modelItem => item.TagName)<b>]</b><a href='javascript:unassignTag(@Html.DisplayFor(modelItem => item.TagId))'>x</a> &nbsp;</div>
-                }
-
+                <p>
+                    <input type="submit" value="Save" />
+                    &nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="Cancel" onclick="javascript: location.href = '/Image/Admin'">
+                </p>
+            </fieldset>
             </div>
+            <div id='admin_rightItemTemplate'>
+                <h2>Tags</h2> <br>
+                <!--
+                <form>
+                    <input type="text" id="tag_name" size="30" onkeyup="javascript:showResult(this.value)"> <input type="button" value="assign" onclick="javascript:assignTag();">
+                    <input type="hidden" id="tag_id">
+                    <div id="livesearch"></div>
 
+                </form>
+                -->
+                <div id="tags">
+                    @{ string tags = "";}
+                    @foreach (var item in Model.image.Tags)
+                    {
+                        tags=tags+item.TagName+";";
+                        <!-- <div id="@Html.DisplayFor(modelItem => item.TagId)"><b>[</b>@Html.DisplayFor(modelItem => item.TagName)<b>]</b><a href='javascript:unassignTag(@Html.DisplayFor(modelItem => item.TagId))'>x</a> &nbsp;</div> -->
+                    }
+                    <textarea name="tags_list" id="tags_list"cols="38" rows="10">@Html.Encode(tags)</textarea>                    
+                </div>
+            </div>
+        }
 
-
-        </div>
     </div>
 </div>
 

@@ -9,6 +9,7 @@ using MvcGCUImagesStarter.Models;
 using MvcGCUImagesStarter.Repository;
 using MvcGCUImagesStarter.ViewModels;
 using MvcGCUImagesStarter.Helpers;
+using System.IO;
 
 namespace MvcGCUImagesStarter.Controllers
 {
@@ -251,15 +252,45 @@ namespace MvcGCUImagesStarter.Controllers
         // POST: /Image/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(Image image)
+        public ActionResult Edit(AdmImageEdtViewModel model)
         {
+
+            string comma_separeted = Request.Form["tags_list"];
+            string[] arr = comma_separeted.Split(';');
+
+            //imagesRepository.GetTagByName();
+
+
+
+
+
+            if (model.File != null && model.File.ContentLength > 0)
+            {
+                /* if an image is uploaded */
+                var imageFolder = Server.MapPath("~/Images");
+                var ext = Path.GetExtension(model.File.FileName);
+                var file = Path.ChangeExtension(Guid.NewGuid().ToString(), ext);
+                var fullPath = Path.Combine(imageFolder, file);
+                model.File.SaveAs(fullPath);
+
+                model.image.ImageURL = file;
+            }
+            else {
+                /* if image is not uploaded, keep the one we already have */
+                //Image imageOld = imagesRepository.GetImage(model.image.ImageId);
+                model.image.ImageURL = Request.Form["image_old"];
+            }
+
+
             if (ModelState.IsValid)
             {
-                db.Entry(image).State = EntityState.Modified;
+                db.Entry(model.image).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
-            return View(image);
+
+
+            return View(model.image);
         }
 
         //

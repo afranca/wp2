@@ -25,5 +25,7 @@ namespace MvcGCUImagesStarter.Repository
         void DeleteImage(int imageId);
         void UpdateImage(Image image);
         void Save();
+
+        Tag GetTagByName(string tagName);
     }
 }

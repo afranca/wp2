@@ -200,6 +200,15 @@ namespace MvcGCUImagesStarter.Repository
             }
         }
 
+        public Tag GetTagByName(string tagName) {
+
+            IQueryable<Tag> Result =
+                      (from c in context.Tags
+                       where c.TagName == tagName  select c).Distinct();
+
+            return null;
+        }
 
     }
+ 
 }
