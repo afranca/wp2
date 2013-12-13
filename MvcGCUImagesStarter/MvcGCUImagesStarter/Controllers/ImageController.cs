@@ -191,28 +191,6 @@ namespace MvcGCUImagesStarter.Controllers
         }
         public ActionResult Admin(int? page, string op = null, int image_id = 0)
         {
-            if (op != null && op == "admImageDelete")
-            {
-
-                //imagesRepository.DeleteImage(image_id);
-
-/*
-
-                try
-                {
-
-                    imagesRepository.Save();
-                }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException e) {
-
-                    Console.WriteLine("{0} Exception caught.", e);
-                    Console.WriteLine("{0} Exception caught.", e);
-                
-                }
- */                    
-            }
-
-
             const int pageSize = 12;
             IQueryable<Image> images = imagesRepository.GetAllImages();
 
@@ -255,12 +233,18 @@ namespace MvcGCUImagesStarter.Controllers
 
         public ActionResult Edit(int id = 0)
         {
+            IQueryable<Category> categories = imagesRepository.GetCategories();
+
             Image image = db.Images.Find(id);
             if (image == null)
             {
                 return HttpNotFound();
             }
-            return View(image);
+            AdmImageEdtViewModel wrappingView = new AdmImageEdtViewModel();
+            wrappingView.image = image;
+            wrappingView.categories = categories;
+
+            return View(wrappingView);
         }
 
         //

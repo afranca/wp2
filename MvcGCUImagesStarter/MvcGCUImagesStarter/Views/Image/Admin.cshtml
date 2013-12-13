@@ -39,7 +39,7 @@
             <tr class="@Html.Encode(row_style)">
                 <td>
                     <p>
-                        <a href="?op=admImageEdit&image_id=@Html.Encode(item.ImageId)">
+                        <a href="/Image/Edit?id=@Html.Encode(item.ImageId)">
                             @Html.Encode(item.ImageTitle)
                         </a>
 
@@ -52,8 +52,8 @@
                         </span>
                     </p>
                 </td>
-                <td> <a href="?op=admImageEdit&image_id=@Html.Encode(item.ImageId)">@Html.Encode(item.ImageContributor) </a></td>
-                <td> <a href="?op=admImageEdit&image_id=@Html.Encode(item.ImageId)"><img src="../../Images/edit_icon.png" height="20"> </a></td>
+                <td> <a href="/Image/Edit?id=@Html.Encode(item.ImageId)">@Html.Encode(item.ImageContributor) </a></td>
+                <td> <a href="/Image/Edit?id=@Html.Encode(item.ImageId)"><img src="../../Images/edit_icon.png" height="20"> </a></td>
                 <td> <a href="javascript:confirmDeletion(@Html.Encode(item.ImageId));"><img src="../../Images/delete_icon.png" height="20"> </a></td>
             </tr>
             x++;

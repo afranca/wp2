@@ -1,85 +1,135 @@
-﻿@model MvcGCUImagesStarter.Models.Image
+﻿@model MvcGCUImagesStarter.ViewModels.AdmImageEdtViewModel
 
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<script>
 
-@using (Html.BeginForm()) {
-    @Html.ValidationSummary(true)
+    function submitForm(){
 
-    <fieldset>
-        <legend>Image</legend>
 
-        @Html.HiddenFor(model => model.ImageId)
+        var image_title = document.getElementById('image_title').value;
+        var image_contributor = document.getElementById('image_contributor').value;
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ImageTitle)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ImageTitle)
-            @Html.ValidationMessageFor(model => model.ImageTitle)
-        </div>
+        if (image_title.trim()==""){
+            alert("Title is a mandatory field");
+            return;
+        }
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ImageDescription)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ImageDescription)
-            @Html.ValidationMessageFor(model => model.ImageDescription)
-        </div>
+        if (image_contributor.trim()==""){
+            alert("Contributor is a mandatory field");
+            return;
+        }
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ImageContributor)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ImageContributor)
-            @Html.ValidationMessageFor(model => model.ImageContributor)
-        </div>
+        document.getElementById("form1").submit();
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ImageURL)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ImageURL)
-            @Html.ValidationMessageFor(model => model.ImageURL)
-        </div>
+    }
+</script>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ImageWidth)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ImageWidth)
-            @Html.ValidationMessageFor(model => model.ImageWidth)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ImageHeight)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ImageHeight)
-            @Html.ValidationMessageFor(model => model.ImageHeight)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Category)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Category)
-            @Html.ValidationMessageFor(model => model.Category)
-        </div>
-
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-}
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <div id="image">
+        <h3> @Html.Encode(Model.image.ImageTitle) &nbsp; </h3>
+        <div id='admin_leftItemTemplate'>
+
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+
+                <fieldset>
+                    <legend>Image</legend>
+
+                    @Html.HiddenFor(model => model.image.ImageId)
+                    @Html.HiddenFor(model => model.image.ImageWidth)
+                    @Html.HiddenFor(model => model.image.ImageHeight)
+
+                    <div class="editor-label">
+                        Title
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.image.ImageTitle)
+                        @Html.ValidationMessageFor(model => model.image.ImageTitle)
+                    </div>
+
+                    <div class="editor-label">
+                       Description
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.image.ImageDescription)
+                        @Html.ValidationMessageFor(model => model.image.ImageDescription)
+                    </div>
+
+                    <div class="editor-label">
+                        Contributor
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.image.ImageContributor)
+                        @Html.ValidationMessageFor(model => model.image.ImageContributor)
+                    </div>
+
+                    <div class="editor-label">
+                       Image
+                    </div>
+                    <div class="editor-field">
+                        <p><img src='/Images/@Html.Encode(Model.image.ImageURL)' alt='@Html.Encode(Model.image.ImageTitle)' height='200' /></p>
+                        @Html.EditorFor(model => model.image.ImageURL)
+                        New Image: <input type="file" name="new_image" id="name="new_image">
+                        @Html.ValidationMessageFor(model => model.image.ImageURL)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.image.Category)
+                    </div>
+                    <div class="editor-field">
+                        <select id="image_Category" name="image.Category">
+                            @foreach (var item in Model.categories)
+                            {
+                                if (item.category == Model.image.Category)
+                                {
+                                    <option value="@Html.DisplayFor(modelItem => item.category)" selected>@Html.DisplayFor(modelItem => item.category)</option>
+                                }
+                                else
+                                {
+                                    <option value="@Html.DisplayFor(modelItem => item.category)">@Html.DisplayFor(modelItem => item.category)</option>
+
+                                }
+                            }
+                        </select>
+
+                        @Html.ValidationMessageFor(model => model.image.Category)
+                    </div>
+
+                    <p>
+                        <input type="submit" value="Save" />
+                    </p>
+                </fieldset>
+            }
+
+        </div>
+        <div id='admin_rightItemTemplate'>
+            <h2>Tags</h2>
+            <form>
+                <input type="text" id="tag_name" size="30" onkeyup="javascript:showResult(this.value)"> <input type="button" value="assign" onclick="javascript:assignTag();">
+                <input type="hidden" id="tag_id">
+                <div id="livesearch"></div>
+
+            </form>
+
+            <div id="tags">
+
+                @foreach (var item in Model.image.Tags)
+                {
+
+                    <div id="@Html.DisplayFor(modelItem => item.TagId)"><b>[</b>@Html.DisplayFor(modelItem => item.TagName)<b>]</b><a href='javascript:unassignTag(@Html.DisplayFor(modelItem => item.TagId))'>x</a> &nbsp;</div>
+                }
+
+            </div>
+
+
+
+        </div>
+    </div>
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
