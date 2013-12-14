@@ -1,0 +1,55 @@
+﻿@model MvcGCUImagesStarter.Models.Image
+
+@{
+    ViewBag.Title = "_details";
+}
+
+
+
+<div>
+    <div id="image">
+
+        <div id='leftItemTemplate'>
+            <h3>@Html.DisplayFor(model => model.ImageTitle)</h3>
+            <div id="image_cont"><b>Contributor:</b> @Html.DisplayFor(model => model.ImageContributor)</div>
+            <div id="image_cat"><b>Category:</b> @Html.DisplayFor(model => model.Category)</div>
+            <div id="image_desc"><b>Description:</b> @Html.DisplayFor(model => model.ImageDescription)</div>
+            <p><img src='/Images/@Html.DisplayFor(model => model.ImageURL)' alt='@Html.DisplayFor(model => model.ImageTitle)' width='400' /></p>
+
+
+            <div id="ratingDiv">
+                <p>
+
+                    <img src="/Images/rated0.png" alt="not rated" height="10" />
+                  
+                </p>
+            </div>
+            <div id="ratingFormDiv">
+                <form id="ratingForm" method="post" action="?op=Rate">
+                    <input name="rating" type="radio" value="1" checked="checked" />1
+                    <input name="rating" type="radio" value="2" />2
+                    <input name="rating" type="radio" value="3" />3
+                    <input name="rating" type="radio" value="4" />4
+                    <input name="rating" type="radio" value="5" />5
+                    <input type="hidden" name="image_id" id="image_id" value="@Html.DisplayFor(model => model.ImageId)}" />
+                    <input type="submit" value="Rate" />
+                </form>
+            </div>
+        </div>
+        <div id='rightItemTemplate'>
+            <h3>Asssocitated Tags</h3>
+         
+            <div id="tags">
+                
+                <ul>
+                     @foreach (var item in Model.Tags)
+                    {
+                        <li>@Html.Encode(item.TagName) </li>
+                    }
+                </ul>
+               
+            </div>
+        
+        </div>
+    </div>
+</div>

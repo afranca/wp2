@@ -1,59 +1,12 @@
-﻿@model MvcGCUImagesStarter.Models.Image
+﻿@model MvcGCUImagesStarter.ViewModels.DetailsViewModel
 
 @{
     ViewBag.Title = "Details";
 }
 
-<div>
-     @{ string imageURL = "../../Images/" + Html.Encode(Model.ImageURL);}
-    <img src="@Html.Encode(imageURL)" alt="@Html.Encode(Model.ImageTitle)" height="@Html.Encode(Model.ImageHeight)" width="@Html.Encode(Model.ImageWidth)" />
-</div>
-<fieldset>
-    <legend>Image</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ImageTitle)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ImageTitle)
-    </div>
+@Html.Partial("_details", Model.image)
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ImageDescription)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ImageDescription)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ImageContributor)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ImageContributor)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ImageWidth)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ImageWidth)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ImageHeight)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ImageHeight)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Category)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Category)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.ImageId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@section SideBar {
+    @Html.Partial("_short_images_list", Model.relatedImages)
+}

@@ -200,6 +200,7 @@
     <Compile Include="Repository\GCUImagesRepository.cs" />
     <Compile Include="Repository\IGCUImagesRepository.cs" />
     <Compile Include="ViewModels\AdmImageEdtViewModel.cs" />
+    <Compile Include="ViewModels\DetailsViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ImagesViewModel.cs" />
   </ItemGroup>
@@ -361,6 +362,7 @@
     <Content Include="Views\Shared\_filters.cshtml" />
     <Content Include="Views\Image\Filters.cshtml" />
     <Content Include="Views\Image\_filters_paginated.cshtml" />
+    <Content Include="Views\Image\_details.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

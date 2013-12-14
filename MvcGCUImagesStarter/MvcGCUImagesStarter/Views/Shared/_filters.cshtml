@@ -13,8 +13,8 @@
 
 <form name="form_filter" id="form_filter" action="/Image/Filters" method="post">
 
-    Category:<br> <select name="filter_category" id="filter_category" >
-        <option value="">choose</option>
+    <b>Category:</b><br> <select name="filter_category" id="filter_category" >
+        <option value=""></option>
         @foreach (var item in Model.categories)
         {
 
@@ -34,8 +34,8 @@
     </select>
     <br>
 
-    Contributor:<br><select name="filter_contributor" id="filter_contributor" >
-    <option value="">choose</option>
+    <b>Contributor:</b><br><select name="filter_contributor" id="filter_contributor" >
+    <option value=""></option>
     @foreach (var item in Model.contributors)
     {
 
@@ -57,9 +57,9 @@
 
     <br>
 
-    Tag:<br>
+    <b>Tag</b>:<br>
     <select name="filter_tag" id="filter_tag" >
-        <option value="">choose</option>
+        <option value=""></option>
         @foreach (var item in Model.tags)
         {
 
@@ -79,8 +79,8 @@
 
     </select>
 
-    Title: <input type="text" name="filter_title" id="filter_title" value="@ViewBag.filter_title">
-    <br>
+    <b>Title:</b> <input type="text" name="filter_title" id="filter_title" value="@ViewBag.filter_title">
+    <br><br>
     <input type="submit" value="filter">
 
 </form>

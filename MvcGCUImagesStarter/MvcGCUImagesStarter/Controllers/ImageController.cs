@@ -68,13 +68,18 @@ namespace MvcGCUImagesStarter.Controllers
 
         public ActionResult Details(int id = 0)
         {
+
+            DetailsViewModel model = new DetailsViewModel();
+           
             Image image = imagesRepository.GetImage(id);
             if (image == null)
                 return View("NotFound");
-            else
-            {
-                return View(image);
-            }
+
+            model.image = image;
+            model.relatedImages = imagesRepository.GetContributorImages(image.ImageContributor);
+
+            return View(model);
+           
         }
 
         //
