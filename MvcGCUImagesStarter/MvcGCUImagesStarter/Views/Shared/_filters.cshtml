@@ -1,0 +1,85 @@
+﻿@model MvcGCUImagesStarter.ViewModels.ImagesViewModel
+
+
+<script>
+    function filter() {
+       
+        //alert(document.getElementById('form_filter').action);
+        document.getElementById('form_filter').submit();
+    }
+
+
+</script>
+
+<form name="form_filter" id="form_filter" action="/Image/Filters" method="post">
+
+    Category:<br> <select name="filter_category" id="filter_category" >
+        <option value="">choose</option>
+        @foreach (var item in Model.categories)
+        {
+
+            if (ViewBag.filter_category == item.category)
+            {
+                <option value="@Html.DisplayFor(modelItem => item.category)" selected>@Html.DisplayFor(modelItem => item.category)</option>
+
+            }
+            else
+            {
+                <option value="@Html.DisplayFor(modelItem => item.category)">@Html.DisplayFor(modelItem => item.category)</option>
+            }
+
+
+        }
+
+    </select>
+    <br>
+
+    Contributor:<br><select name="filter_contributor" id="filter_contributor" >
+    <option value="">choose</option>
+    @foreach (var item in Model.contributors)
+    {
+
+        if (ViewBag.filter_contributor == item.contributorName)
+        {
+            <option value="@Html.DisplayFor(modelItem => item.contributorName)" selected>@Html.DisplayFor(modelItem => item.contributorName)</option>
+
+        }
+        else
+        {
+            <option value="@Html.DisplayFor(modelItem => item.contributorName)">@Html.DisplayFor(modelItem => item.contributorName)</option>
+        }
+
+
+    }
+   
+
+</select>
+
+    <br>
+
+    Tag:<br>
+    <select name="filter_tag" id="filter_tag" >
+        <option value="">choose</option>
+        @foreach (var item in Model.tags)
+        {
+
+            if (ViewBag.filter_tag == item.TagName)
+            {
+                <option value="@Html.DisplayFor(modelItem => item.TagName)" selected>@Html.DisplayFor(modelItem => item.TagName)</option>
+
+            }
+            else
+            {
+                <option value="@Html.DisplayFor(modelItem => item.TagName)">@Html.DisplayFor(modelItem => item.TagName)</option>
+            }
+
+
+        }
+    
+
+    </select>
+
+    <br>
+    <input type="submit" value="filter">
+
+</form>

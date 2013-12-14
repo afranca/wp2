@@ -11,5 +11,7 @@ namespace MvcGCUImagesStarter.ViewModels
     {
         public PaginatedList<Image> images { get; set; }
         public IEnumerable<Tag> tags { get; set; }
+        public IEnumerable<Category> categories { get; set; }
+        public IEnumerable<Contributor> contributors { get; set; }
     }
 }

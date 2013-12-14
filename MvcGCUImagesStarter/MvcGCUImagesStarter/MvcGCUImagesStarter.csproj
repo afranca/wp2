@@ -358,6 +358,8 @@
     <Content Include="Views\Image\FilterByTag.cshtml" />
     <Content Include="Views\Shared\_homeview.cshtml" />
     <Content Include="Views\Image\Admin.cshtml" />
+    <Content Include="Views\Shared\_filters.cshtml" />
+    <Content Include="Views\Image\Filters.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

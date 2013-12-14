@@ -36,6 +36,8 @@ namespace MvcGCUImagesStarter.Controllers
             ImagesViewModel imagesViewModel = new ImagesViewModel();
             IQueryable<Tag> tags = imagesRepository.GetTags();
             IQueryable<Image> images = imagesRepository.GetAllImages();
+            IQueryable<Category> categories = imagesRepository.GetCategories();
+            IQueryable<Contributor> contributors = imagesRepository.GetContributors();
 
             Func<Image, IComparable> func = null;
             func = (Image a) => a.ImageId;
@@ -44,6 +46,8 @@ namespace MvcGCUImagesStarter.Controllers
             
             imagesViewModel.images = paginatedList;
             imagesViewModel.tags = tags;
+            imagesViewModel.categories = categories;
+            imagesViewModel.contributors = contributors;
 
             ViewBag.noPages = calculateNumberOfPages(pageSize, images);
 
@@ -254,16 +258,7 @@ namespace MvcGCUImagesStarter.Controllers
         [HttpPost]
         public ActionResult Edit(AdmImageEdtViewModel model)
         {
-
-            string comma_separeted = Request.Form["tags_list"];
-            string[] arr = comma_separeted.Split(';');
-
-            //imagesRepository.GetTagByName();
-
-
-
-
-
+           
             if (model.File != null && model.File.ContentLength > 0)
             {
                 /* if an image is uploaded */
@@ -284,8 +279,34 @@ namespace MvcGCUImagesStarter.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Entry(model.image).State = EntityState.Modified;
-                db.SaveChanges();
+                /* save with an empty list of tags */
+                //imagesRepository.UpdateImage(model.image);
+                //imagesRepository.Save();
+
+
+                /* sorts out the tags and saves again */
+                string comma_separeted = Request.Form["tags_list"];
+                string[] arr = comma_separeted.Split(';');
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    Tag tag = imagesRepository.GetTagByName(arr[i]);
+                    if (tag != null)
+                    {
+                        //model.image.Tags.Add(tag);
+                    }
+                    else
+                    {
+                        //TODO ad Tag to database and assign to model
+
+                    }
+                }
+
+                /* save with an empty list of tags */
+                imagesRepository.UpdateImage(model.image);
+                imagesRepository.Save();
+
+                //db.Entry(model.image).State = EntityState.Modified;
+                //db.SaveChanges();
                 return RedirectToAction("Admin");
             }
 
@@ -299,20 +320,18 @@ namespace MvcGCUImagesStarter.Controllers
         public ActionResult Delete(int id = 0)
         {
 
+            imagesRepository.DeleteImage(id);
+            imagesRepository.Save();
+
+
             /*
-            Image image = db.Images.Find(id);
-            if (image == null)
-            {
-                return HttpNotFound();
-            }
-            return View(image);
-             */
             Image image = db.Images.Find(id);
             image.Tags = null;
             imagesRepository.UpdateImage(image);
-            //db.SaveChanges();
+
             db.Images.Remove(image);
             db.SaveChanges();
+            */
             return RedirectToAction("Admin");
         }
 
@@ -336,6 +355,74 @@ namespace MvcGCUImagesStarter.Controllers
             base.Dispose(disposing);
         }
 
+        //FormCollection formValues
+        [HttpPost]
+        public ActionResult Filters()
+        {
+            int page = 0;
+            const int pageSize = 12;
+            IQueryable<Image> images;
+           
+            IQueryable<Tag> tags = imagesRepository.GetTags();            
+            IQueryable<Category> categories = imagesRepository.GetCategories();
+            IQueryable<Contributor> contributors = imagesRepository.GetContributors();
+
+            string tagName = Request.Form["filter_tag"];
+            string categoryName = Request.Form["filter_category"];
+            string contributorName = Request.Form["filter_contributor"];
+
+            ViewBag.filter_category = categoryName;
+            ViewBag.filter_contributor = contributorName;
+            ViewBag.filter_tag = tagName;
+
+            images = imagesRepository.Filters(tagName, categoryName, contributorName);
+            if (images == null){
+                //TODO Return Empty List!!!!!!
+                images = imagesRepository.GetAllImages();
+            }
+
+
+            ImagesViewModel imagesViewModel = new ImagesViewModel();
+            imagesViewModel.categories = categories;
+            imagesViewModel.tags = tags;
+            imagesViewModel.contributors = contributors;
+           
+
+            Func<Image, IComparable> func = null;
+            func = (Image a) => a.ImageId;
+
+            var paginatedList = new PaginatedList<Image>(images, page, func, pageSize);
+            ViewBag.noPages = calculateNumberOfPages(pageSize, images);
+
+            imagesViewModel.images = paginatedList;
+
+            /*
+            HomeViewModel homeViewModel = new HomeViewModel();
+            if (search_string != null)
+            {
+                IQueryable<Category> categories = imagesRepository.GetCategories(search_string);
+                homeViewModel.categories = categories;
+                images = imagesRepository.FilterByCategory(category, search_string);
+                ViewBag.search_string = search_string;
+            }
+            else
+            {
+                IQueryable<Category> categories = imagesRepository.GetCategories();
+                homeViewModel.categories = categories;
+                images = imagesRepository.FilterByCategory(category);
+            }
+
+            Func<Image, IComparable> func = null;
+            func = (Image a) => a.ImageId;
+
+            var paginatedList = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
+            homeViewModel.images = paginatedList;
+            ViewBag.category = category;
+
+            ViewBag.noPages = calculateNumberOfPages(pageSize, images);
+            */
+            return View(imagesViewModel);
+        }
 
     }
 }

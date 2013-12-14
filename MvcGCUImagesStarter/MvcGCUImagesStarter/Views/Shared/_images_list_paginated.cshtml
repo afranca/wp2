@@ -17,8 +17,15 @@
                          height="100" width="100" />
                 </a>
                 <span>
-                    @Html.DisplayFor(modelItem => item.ImageTitle)<br />
-                    @Html.DisplayFor(modelItem => item.ImageContributor)
+                    <b>Title:</b> @Html.DisplayFor(modelItem => item.ImageTitle)<br />
+                    <b>Contributor:</b> @Html.DisplayFor(modelItem => item.ImageContributor)<br>
+                    <b>Category:</b> @Html.DisplayFor(modelItem => item.Category) <br>
+                    <b>Tags:</b><br>
+                    @foreach (var tag in item.Tags) { 
+                        @Html.Encode(tag.TagName)<br />
+                    }
+
+
                 </span>
             </p>
         </div>
