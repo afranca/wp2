@@ -370,12 +370,14 @@ namespace MvcGCUImagesStarter.Controllers
             string tagName = Request.Form["filter_tag"];
             string categoryName = Request.Form["filter_category"];
             string contributorName = Request.Form["filter_contributor"];
+            string imageTitle = Request.Form["filter_title"];
 
             ViewBag.filter_category = categoryName;
             ViewBag.filter_contributor = contributorName;
             ViewBag.filter_tag = tagName;
+            ViewBag.filter_title = imageTitle;
 
-            images = imagesRepository.Filters(tagName, categoryName, contributorName);
+            images = imagesRepository.Filters(tagName, categoryName, contributorName, imageTitle);
             if (images == null){
                 //TODO Return Empty List!!!!!!
                 images = imagesRepository.GetAllImages();
@@ -424,5 +426,48 @@ namespace MvcGCUImagesStarter.Controllers
             return View(imagesViewModel);
         }
 
+
+        public ActionResult Filters(int? page, string filter_category, string filter_contributor,string filter_tag)
+        {
+            //int page = 0;
+            const int pageSize = 12;
+            IQueryable<Image> images;
+
+            IQueryable<Tag> tags = imagesRepository.GetTags();
+            IQueryable<Category> categories = imagesRepository.GetCategories();
+            IQueryable<Contributor> contributors = imagesRepository.GetContributors();
+
+            string tagName = filter_tag;
+            string categoryName = filter_category;
+            string contributorName = filter_contributor;
+
+            ViewBag.filter_category = categoryName;
+            ViewBag.filter_contributor = contributorName;
+            ViewBag.filter_tag = tagName;
+
+            images = imagesRepository.Filters(tagName, categoryName, contributorName);
+            if (images == null)
+            {
+                //TODO Return Empty List!!!!!!
+                images = imagesRepository.GetAllImages();
+            }
+
+
+            ImagesViewModel imagesViewModel = new ImagesViewModel();
+            imagesViewModel.categories = categories;
+            imagesViewModel.tags = tags;
+            imagesViewModel.contributors = contributors;
+
+
+            Func<Image, IComparable> func = null;
+            func = (Image a) => a.ImageId;
+
+            var paginatedList = new PaginatedList<Image>(images, page ?? 0, func, pageSize);
+            ViewBag.noPages = calculateNumberOfPages(pageSize, images);
+
+            imagesViewModel.images = paginatedList;
+
+            return View(imagesViewModel);
+        }
     }
 }

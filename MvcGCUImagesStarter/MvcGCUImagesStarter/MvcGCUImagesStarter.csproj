@@ -360,6 +360,7 @@
     <Content Include="Views\Image\Admin.cshtml" />
     <Content Include="Views\Shared\_filters.cshtml" />
     <Content Include="Views\Image\Filters.cshtml" />
+    <Content Include="Views\Image\_filters_paginated.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

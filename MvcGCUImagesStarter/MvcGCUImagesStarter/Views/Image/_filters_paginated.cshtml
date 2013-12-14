@@ -1,0 +1,101 @@
+﻿@model MvcGCUImagesStarter.Helpers.PaginatedList<MvcGCUImagesStarter.Models.Image>
+
+<div id="galleryThumbnail">
+    @{ int x = 0; }
+    @foreach (var item in Model)
+    {
+        if (x == 0)
+        {
+            @:<div class="row">
+            x = 1;
+        }
+        <div class="cell">
+            <p>
+                @{ string imageURL = "../../Images/" + Html.Encode(item.ImageURL);}
+                <a href="@Url.Action("Details", "Image", new { id = item.ImageId })">
+                    <img src="@Html.Encode(imageURL)" alt="@Html.Encode(item.ImageTitle)"
+                         height="100" width="100" />
+                </a>
+                <span>
+                    <b>Title:</b> @Html.DisplayFor(modelItem => item.ImageTitle)<br />
+                    <b>Contributor:</b> @Html.DisplayFor(modelItem => item.ImageContributor)<br>
+                    <b>Category:</b> @Html.DisplayFor(modelItem => item.Category) <br>
+                    <b>Tags:</b><br>
+                    @foreach (var tag in item.Tags) { 
+                        @Html.Encode(tag.TagName)<br />
+                    }
+
+
+                </span>
+            </p>
+        </div>
+        if (x == 4)
+        {
+            @:</div>
+            x = 0;
+        }
+        else
+        {
+            x++;
+        }
+    }
+</div>
+
+<div class="pagination">
+
+    @if (Model.HasPreviousPage)
+    {
+
+            @Html.ActionLink("Previous", "Filters",
+             new
+             {
+                 page = (Model.PageIndex - 1),
+                 filter_category = ViewBag.filter_category,
+                 filter_contributor = ViewBag.filter_contributor,
+                 filter_tag = ViewBag.filter_tag
+             })
+  
+     }
+       
+
+
+    @for (int i = 0; i < ViewBag.noPages; i++)
+    {
+
+        if (Model.PageIndex != i)
+        {   
+                @Html.ActionLink((i + 1) + "", "Filters",
+                new
+                {
+                    page = i,
+                    filter_category = ViewBag.filter_category,
+                    filter_contributor = ViewBag.filter_contributor,
+                    filter_tag = ViewBag.filter_tag
+                })  
+            
+        }
+        else
+        {
+            
+            @Html.Raw("<b>"+(i+1)+"</b>")
+        }
+        
+        @Html.Encode(" ");  
+        
+    }
+
+
+    @if (Model.HasNextPage)
+    {
+            @Html.ActionLink("Next", "Filters",
+            new
+            {
+                page = (Model.PageIndex + 1),
+                filter_category = ViewBag.filter_category,
+                filter_contributor = ViewBag.filter_contributor,
+                filter_tag = ViewBag.filter_tag
+            })
+     }
+
+</div>
+
