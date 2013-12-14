@@ -140,77 +140,166 @@ namespace MvcGCUImagesStarter.Repository
             }
         }
 
-        public IQueryable<Image> Filters(string tagName = null, string catName = null, string contName = null)
+        public IQueryable<Image> Filters(string tagName = null, string catName = null, string contName = null, string imgTitle = null)
         {
 
-            if ((tagName!=null && tagName!="") && (catName!=null && catName!="") && (contName!=null && contName!=""))
+            if (imgTitle != null && imgTitle != "")
             {
-                IQueryable<Image> Result =
-                   (from c in context.Images
-                    where c.Tags.Any(t => t.TagName == tagName) &&
-                       (c.ImageContributor.Contains(contName)) &&
-                       (c.Category.Contains(catName))
-                    orderby c.ImageId
-                    select c).Distinct();
-                return Result;
-            }
-            else if ((tagName != null && tagName != "") && (catName != null && catName != ""))
-            {
-                IQueryable<Image> Result =
-                   (from c in context.Images
-                    where c.Tags.Any(t => t.TagName == tagName) &&                       
-                       (c.Category.Contains(catName))
-                    orderby c.ImageId
-                    select c).Distinct();
-                return Result;
+                if ((tagName != null && tagName != "") && (catName != null && catName != "") && (contName != null && contName != ""))
+                {
+                    IQueryable<Image> Result =
+                       (from c in context.Images
+                        where c.Tags.Any(t => t.TagName == tagName) &&
+                           (c.ImageContributor.Contains(contName)) &&
+                           (c.Category.Contains(catName)) && (c.ImageTitle.Contains(imgTitle)) && (c.ImageTitle.Contains(imgTitle))
+                        orderby c.ImageId
+                        select c).Distinct();
+                    return Result;
+                }
+                else if ((tagName != null && tagName != "") && (catName != null && catName != ""))
+                {
+                    IQueryable<Image> Result =
+                       (from c in context.Images
+                        where c.Tags.Any(t => t.TagName == tagName) &&
+                           (c.Category.Contains(catName)) && (c.ImageTitle.Contains(imgTitle))
+                        orderby c.ImageId
+                        select c).Distinct();
+                    return Result;
+
+                }
+                else if ((tagName != null && tagName != "") && (contName != null && contName != ""))
+                {
+                    IQueryable<Image> Result =
+                       (from c in context.Images
+                        where c.Tags.Any(t => t.TagName == tagName) &&
+                           (c.ImageContributor.Contains(contName)) && (c.ImageTitle.Contains(imgTitle))
+                        orderby c.ImageId
+                        select c).Distinct();
+                    return Result;
+                }
+                else if ((catName != null && catName != "") && (contName != null && contName != ""))
+                {
+                    IQueryable<Image> Result =
+                       (from c in context.Images
+                        where (c.ImageContributor.Contains(contName)) &&
+                              (c.Category.Contains(catName)) && (c.ImageTitle.Contains(imgTitle))
+                        orderby c.ImageId
+                        select c).Distinct();
+                    return Result;
+                }
+                else if (tagName != null && tagName != "")
+                {
+                    IQueryable<Image> Result =
+                       (from c in context.Images
+                        where c.Tags.Any(t => t.TagName == tagName) && (c.ImageTitle.Contains(imgTitle))
+                        orderby c.ImageId
+                        select c).Distinct();
+                    return Result;
+                }
+                else if (catName != null && catName != "")
+                {
+                    IQueryable<Image> Result =
+                       (from c in context.Images
+                        where c.Category.Contains(catName) && (c.ImageTitle.Contains(imgTitle))
+                        orderby c.ImageId
+                        select c).Distinct();
+                    return Result;
+                }
+                else if (contName != null && contName != "")
+                {
+                    IQueryable<Image> Result =
+                       (from c in context.Images
+                        where c.ImageContributor.Contains(contName) && (c.ImageTitle.Contains(imgTitle))
+                        orderby c.ImageId
+                        select c).Distinct();
+                    return Result;
+                }
+                else {
+                    IQueryable<Image> Result =
+                      (from c in context.Images
+                       where  (c.ImageTitle.Contains(imgTitle))
+                       orderby c.ImageId
+                       select c).Distinct();
+                    return Result;               
+                }
+
 
             }
-            else if ((tagName != null && tagName != "") && (contName != null && contName != ""))
+            else 
             {
-                IQueryable<Image> Result =
-                   (from c in context.Images
-                    where c.Tags.Any(t => t.TagName == tagName) &&
-                       (c.ImageContributor.Contains(contName))
-                    orderby c.ImageId
-                    select c).Distinct();
-                return Result;
+                if ((tagName != null && tagName != "") && (catName != null && catName != "") && (contName != null && contName != ""))
+                {
+                    IQueryable<Image> Result =
+                       (from c in context.Images
+                        where c.Tags.Any(t => t.TagName == tagName) &&
+                           (c.ImageContributor.Contains(contName)) &&
+                           (c.Category.Contains(catName))
+                        orderby c.ImageId
+                        select c).Distinct();
+                    return Result;
+                }
+                else if ((tagName != null && tagName != "") && (catName != null && catName != ""))
+                {
+                    IQueryable<Image> Result =
+                       (from c in context.Images
+                        where c.Tags.Any(t => t.TagName == tagName) &&
+                           (c.Category.Contains(catName))
+                        orderby c.ImageId
+                        select c).Distinct();
+                    return Result;
+
+                }
+                else if ((tagName != null && tagName != "") && (contName != null && contName != ""))
+                {
+                    IQueryable<Image> Result =
+                       (from c in context.Images
+                        where c.Tags.Any(t => t.TagName == tagName) &&
+                           (c.ImageContributor.Contains(contName))
+                        orderby c.ImageId
+                        select c).Distinct();
+                    return Result;
+                }
+                else if ((catName != null && catName != "") && (contName != null && contName != ""))
+                {
+                    IQueryable<Image> Result =
+                       (from c in context.Images
+                        where (c.ImageContributor.Contains(contName)) &&
+                              (c.Category.Contains(catName))
+                        orderby c.ImageId
+                        select c).Distinct();
+                    return Result;
+                }
+                else if (tagName != null && tagName != "")
+                {
+                    IQueryable<Image> Result =
+                       (from c in context.Images
+                        where c.Tags.Any(t => t.TagName == tagName)
+                        orderby c.ImageId
+                        select c).Distinct();
+                    return Result;
+                }
+                else if (catName != null && catName != "")
+                {
+                    IQueryable<Image> Result =
+                       (from c in context.Images
+                        where c.Category.Contains(catName)
+                        orderby c.ImageId
+                        select c).Distinct();
+                    return Result;
+                }
+                else if (contName != null && contName != "")
+                {
+                    IQueryable<Image> Result =
+                       (from c in context.Images
+                        where c.ImageContributor.Contains(contName)
+                        orderby c.ImageId
+                        select c).Distinct();
+                    return Result;
+                }          
+            
             }
-            else if ((catName != null && catName != "") && (contName != null && contName != ""))
-            {
-                IQueryable<Image> Result =
-                   (from c in context.Images
-                    where (c.ImageContributor.Contains(contName)) &&
-                          (c.Category.Contains(catName))
-                    orderby c.ImageId
-                    select c).Distinct();
-                return Result;
-            }
-            else if (tagName != null && tagName != "")
-            {
-                IQueryable<Image> Result =
-                   (from c in context.Images
-                    where c.Tags.Any(t => t.TagName == tagName)
-                    orderby c.ImageId
-                    select c).Distinct();
-                return Result;
-            }
-            else if (catName != null && catName != "")
-            {
-                IQueryable<Image> Result =
-                   (from c in context.Images
-                    where c.Category.Contains(catName)
-                    orderby c.ImageId
-                    select c).Distinct();
-                return Result;
-            }
-            else if (contName != null && contName != "") {
-                IQueryable<Image> Result =
-                   (from c in context.Images
-                    where c.ImageContributor.Contains(contName)
-                    orderby c.ImageId
-                    select c).Distinct();
-                return Result;            
-            }
+
+
             
             return null;
         }

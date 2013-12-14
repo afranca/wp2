@@ -27,6 +27,6 @@ namespace MvcGCUImagesStarter.Repository
         void Save();
 
         Tag GetTagByName(string tagName);
-        IQueryable<Image> Filters(string tagName = null, string catName = null, string contName = null);
+        IQueryable<Image> Filters(string tagName = null, string catName = null, string contName = null, string imgTitle = null);
     }
 }
